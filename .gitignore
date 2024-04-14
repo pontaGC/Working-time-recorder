@@ -1,0 +1,21 @@
+﻿################################################################################
+# この .gitignore ファイルは Microsoft(R) Visual Studio によって自動的に作成されました。
+################################################################################
+
+/WorkingTImeRecorder.wpf/.vs
+/WorkingTImeRecorder.wpf/WorkingTImeRecorder.wpf/bin/Debug/net8.0-windows
+/WorkingTImeRecorder.wpf/WorkingTImeRecorder.wpf/obj
+/.vs
+/WorkingTImeRecorder.wpf/WorkingTimeRecorder.wpf.Presentation/bin/Debug/net8.0-windows
+/WorkingTImeRecorder.wpf/WorkingTimeRecorder.wpf.Presentation/obj
+/WorkingTImeRecorder.wpf/WorkingTimeRecorderPresentation.Core/bin/Debug/net8.0-windows
+/WorkingTImeRecorder.wpf/WorkingTimeRecorderPresentation.Core/obj
+/dotnet/WorkingTimeRecorder.Core/bin/Debug/net8.0
+/dotnet/WorkingTimeRecorder.Core/obj
+/dotnet/WorkingTImeRecorder.wpf/.vs
+/dotnet/WorkingTImeRecorder.wpf/WorkingTImeRecorder.wpf/bin/Debug/net8.0-windows
+/dotnet/WorkingTImeRecorder.wpf/WorkingTImeRecorder.wpf/obj
+/dotnet/WorkingTImeRecorder.wpf/WorkingTimeRecorder.wpf.Presentation/bin/Debug/net8.0-windows
+/dotnet/WorkingTImeRecorder.wpf/WorkingTimeRecorder.wpf.Presentation/obj
+/dotnet/WorkingTImeRecorder.wpf/WorkingTimeRecorder.wpf.Presentation.Core/bin/Debug/net8.0-windows
+/dotnet/WorkingTImeRecorder.wpf/WorkingTimeRecorder.wpf.Presentation.Core/obj
