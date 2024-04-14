@@ -1,0 +1,7 @@
+﻿################################################################################
+# この .gitignore ファイルは Microsoft(R) Visual Studio によって自動的に作成されました。
+################################################################################
+
+/WorkingTImeRecorder.wpf/.vs
+/WorkingTImeRecorder.wpf/WorkingTImeRecorder.wpf/bin/Debug/net8.0-windows
+/WorkingTImeRecorder.wpf/WorkingTImeRecorder.wpf/obj
