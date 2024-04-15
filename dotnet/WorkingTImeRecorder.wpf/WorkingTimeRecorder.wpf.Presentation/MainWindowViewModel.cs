@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkingTImeRecorder.Core.Mvvm;
 
 namespace WorkingTimeRecorder.wpf.Presentation
 {
-    internal class MainWindowViewModel
+    /// <summary>
+    /// The view-model of the main window.
+    /// </summary>
+    internal class MainWindowViewModel : ViewModelBase
     {
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Windows;
+using WorkingTimeRecorder.wpf.Presentation;
 using WorkingTimeRecorder.wpf.Presentation.Core;
+using WorkingTImeRecorder.Core.Injectors;
 
 namespace WorkingTImeRecorder.wpf
 {
@@ -11,17 +13,17 @@ namespace WorkingTImeRecorder.wpf
         /// <inheritdoc />
         protected override void OnStartup(StartupEventArgs e)
         {
-            var mainWindowFactory = new MainWindowFactoryMock();
+            var container = ContainerFactory.Create();
+            RegisterDependencies(container, new PresentationDepedencyRegistrant());
+
+            var mainWindowFactory = container.Resolve<IMainWindowFactory>();
             var mainWindow = mainWindowFactory.Create();
             mainWindow.ShowDialog();
         }
 
-        private class MainWindowFactoryMock : IMainWindowFactory
+        private static void RegisterDependencies(IIoCContainer container, IDependenyRegistrant registrant)
         {
-            public Window Create()
-            {
-                throw new NotImplementedException();
-            }
+            registrant.Register(container);
         }
     }
 

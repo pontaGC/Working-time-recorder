@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\WorkingTimeRecorder.Core\WorkingTimeRecorder.Core.csproj" />
     <ProjectReference Include="..\WorkingTimeRecorder.wpf.Presentation.Core\WorkingTimeRecorder.wpf.Presentation.Core.csproj" />
   </ItemGroup>
 
