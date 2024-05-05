@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace WorkingTImeRecorder.Core.Extensions
+namespace SharedLibraries.Extensions
 {
     /// <summary>
     /// Extension methods for List type.

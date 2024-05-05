@@ -1,7 +1,8 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
-namespace WorkingTImeRecorder.Core.Extensions
+namespace SharedLibraries.Extensions
 {
     /// <summary>
     /// Extension methods for <c>string</c> type.
@@ -23,6 +24,19 @@ namespace WorkingTImeRecorder.Core.Extensions
 
             // Extracts non-whitespace characters
             return Regex.Matches(source, "\\S+").OfType<Match>().Select(m => m.Value);
+        }
+
+        /// <summary>
+        /// Determines whether two specified string objects have the same value.
+        /// This method uses the <c>OrdinalIgnoreCase</c> comparison rule.
+        /// </summary>
+        /// <param name="source">The first string to compare.</param>
+        /// <param name="other">The second string to compare.</param>
+        /// <returns><c>true</c> if the given parameters are same; otherwise, returns <c>false</c>.</returns>
+        [DebuggerStepThrough]
+        public static bool EqulasOrdinalIgnoreCase(this string source, string other)
+        {
+            return string.Equals(source, other, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

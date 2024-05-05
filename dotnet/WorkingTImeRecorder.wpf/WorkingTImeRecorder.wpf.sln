@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingTImeRecorder.wpf", "WorkingTImeRecorder.wpf\WorkingTImeRecorder.wpf.csproj", "{82068701-E891-4EC1-9335-E7BDDDDD4ED8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingTimeRecorder.wpf", "WorkingTImeRecorder.wpf\WorkingTimeRecorder.wpf.csproj", "{82068701-E891-4EC1-9335-E7BDDDDD4ED8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingTimeRecorder.wpf.Presentation", "WorkingTimeRecorder.wpf.Presentation\WorkingTimeRecorder.wpf.Presentation.csproj", "{9E28A3D3-9354-4CEF-85FC-352CBD035E6A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingTimeRecorder.wpf.Presentation.Core", "WorkingTimeRecorder.wpf.Presentation.Core\WorkingTimeRecorder.wpf.Presentation.Core.csproj", "{3AAAF723-B647-4220-9AFC-5B2A88462B12}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingTimeRecorder.Core", "..\WorkingTimeRecorder.Core\WorkingTimeRecorder.Core.csproj", "{0F1C6EFC-0140-47D2-9558-5DD47A32615D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedLibraries", "..\SharedLibraries\SharedLibraries.csproj", "{77B0DEA0-4116-45EB-8FE9-E042C3E1649B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0F1C6EFC-0140-47D2-9558-5DD47A32615D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F1C6EFC-0140-47D2-9558-5DD47A32615D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F1C6EFC-0140-47D2-9558-5DD47A32615D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77B0DEA0-4116-45EB-8FE9-E042C3E1649B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77B0DEA0-4116-45EB-8FE9-E042C3E1649B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77B0DEA0-4116-45EB-8FE9-E042C3E1649B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77B0DEA0-4116-45EB-8FE9-E042C3E1649B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

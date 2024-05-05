@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace WorkingTImeRecorder.Core.Extensions
+﻿namespace SharedLibraries.Extensions
 {
     /// <summary>
     /// Extension methods for an <c>Exception</c>.
@@ -14,8 +12,7 @@ namespace WorkingTImeRecorder.Core.Extensions
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <returns>The exception message, if <c>exception</c> is not <c>null</c>, otherwise, retruns an empty string.</returns>
-        [DebuggerStepThrough]
-        public static string GetMessage(this Exception exception)
+        public static string GetMessageWithInnerException(this Exception exception)
         {
             if (exception is null)
             {
