@@ -12,8 +12,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="IModuleInitializer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="SimpleInjector" Version="5.4.3" />
     <PackageReference Include="System.Reactive" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SharedLibraries\SharedLibraries.csproj" />
+    <None Update="Languages\en-US\WorkingTimeRecorder_en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Languages\ja-JP\WorkingTimeRecorder_ja-JP.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

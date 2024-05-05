@@ -1,4 +1,4 @@
-﻿<Application x:Class="WorkingTImeRecorder.wpf.App"
+﻿<Application x:Class="WorkingTimeRecorder.wpf.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Application.Resources>

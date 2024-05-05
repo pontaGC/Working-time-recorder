@@ -1,0 +1,12 @@
+{
+  "Item": [
+    {
+      "Id": "WorkingTimeRecorder.Title",
+      "Text": "作業時間レコーダ"
+    },
+    {
+      "Id": "WorkingTimeRecorder.WorkingName",
+      "Text": "作業名"
+    }
+  ]
+}

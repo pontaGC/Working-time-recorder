@@ -23,6 +23,14 @@
            where TImplementation : class;
 
         /// <summary>
+        /// Registers a single instance that will be returned when an instance of type.
+        /// </summary>
+        /// <typeparam name="TInstance">The type of instance to register.</typeparam>
+        /// <param name="instance">The single instance.</param>
+        void RegisterInstance<TInstance>(TInstance instance)
+            where TInstance : class;
+
+        /// <summary>
         /// Resolves an instance that has been registered.
         /// </summary>
         /// <typeparam name="TInterface">The interface or base type that can be used to retrieve the instances.</typeparam>

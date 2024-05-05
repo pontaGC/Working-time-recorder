@@ -4,7 +4,7 @@ using WorkingTImeRecorder.Core.Injectors;
 namespace WorkingTimeRecorder.wpf.Presentation
 {
     /// <inheritdoc />
-    public sealed class PresentationDepedencyRegistrant : IDependenyRegistrant
+    public sealed class PresentationDependencyRegistrant : IDependenyRegistrant
     {
         /// <inheritdoc />
         public void Register(IIoCContainer container)

@@ -37,6 +37,12 @@ namespace WorkingTImeRecorder.Core.Injectors
         }
 
         /// <inheritdoc />
+        void IIoCContainer.RegisterInstance<TInstance>(TInstance instance) where TInstance : class
+        {
+            this.container.RegisterInstance<TInstance>(instance);
+        }
+
+        /// <inheritdoc />
         TInterface IIoCContainer.Resolve<TInterface>() where TInterface : class
         {
             return this.container.GetInstance<TInterface>();
@@ -62,7 +68,7 @@ namespace WorkingTImeRecorder.Core.Injectors
         private void EnableAutoVerificationForDebug()
         {
             this.container.Options.EnableAutoVerification = true;
-        } 
+        }
 
         #endregion
     }
