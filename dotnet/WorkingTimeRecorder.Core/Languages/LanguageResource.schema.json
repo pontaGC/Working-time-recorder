@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema#",
+  "title": "Working Time Recorder language resource JSON schema file",
+
+  "properties": {
+    "Item": {
+      "$id": "#/properties/Item",
+      "type": "array",
+      "items": {
+        "properties": {
+          "Id": {
+            "$id": "#/properties/Item/Id",
+            "description": "The ID of a text.",
+            "pattern": "^[a-zA-Z]\\S+$",
+            "type": "string",
+            "uniqueItems": true
+          },
+
+          "Text": {
+            "$id": "#/properties/Item/Text",
+            "description": "The text.",
+            "type": "string",
+            "uniqueItems": false
+          }
+        },
+
+        "type": "object",
+        "required": [ "Id", "Text" ]
+      },
+    }
+  },
+
+  "type": "object",
+  "required": [ "Item" ]
+}
