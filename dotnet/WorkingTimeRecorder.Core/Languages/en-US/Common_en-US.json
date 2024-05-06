@@ -1,0 +1,20 @@
+{
+  "Item": [
+    {
+      "Id": "OK",
+      "Text": "OK"
+    },
+    {
+      "Id": "Cancel",
+      "Text": "Cancel"
+    },
+    {
+      "Id": "Yes",
+      "Text": "Yes"
+    },
+    {
+      "Id": "No",
+      "Text": "No"
+    },
+  ]
+}

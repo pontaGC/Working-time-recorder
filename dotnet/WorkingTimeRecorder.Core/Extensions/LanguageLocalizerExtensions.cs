@@ -20,5 +20,49 @@ namespace WorkingTimeRecorder.Core.Extensions
         {
             return @this.Localize(CommonTextKeys.Title, CommonTextKeys.DefaultTitle);
         }
+
+        /// <summary>
+        /// Gets the localized text of "OK" key.
+        /// </summary>
+        /// <param name="this">The instance.</param>
+        /// <returns>The localized text.</returns>
+        [DebuggerStepThrough]
+        public static string LocalizeOk(this ILanguageLocalizer @this)
+        {
+            return @this.Localize(CommonTextKeys.Ok, CommonTextKeys.DefaultOk);
+        }
+
+        /// <summary>
+        /// Gets the localized text of "Cancel" key.
+        /// </summary>
+        /// <param name="this">The instance.</param>
+        /// <returns>The localized text.</returns>
+        [DebuggerStepThrough]
+        public static string LocalizeCancel(this ILanguageLocalizer @this)
+        {
+            return @this.Localize(CommonTextKeys.Cancel, CommonTextKeys.DefaultCancel);
+        }
+
+        /// <summary>
+        /// Gets the localized text of "Yes" key.
+        /// </summary>
+        /// <param name="this">The instance.</param>
+        /// <returns>The localized text.</returns>
+        [DebuggerStepThrough]
+        public static string LocalizeYes(this ILanguageLocalizer @this)
+        {
+            return @this.Localize(CommonTextKeys.Yes, CommonTextKeys.DefaultYes);
+        }
+
+        /// <summary>
+        /// Gets the localized text of "No" key.
+        /// </summary>
+        /// <param name="this">The instance.</param>
+        /// <returns>The localized text.</returns>
+        [DebuggerStepThrough]
+        public static string LocalizeNo(this ILanguageLocalizer @this)
+        {
+            return @this.Localize(CommonTextKeys.No, CommonTextKeys.DefaultNo);
+        }
     }
 }
