@@ -7,6 +7,10 @@
     {
       "Id": "WorkingTimeRecorder.WorkingName",
       "Text": "作業名"
+    },
+    {
+      "Id": "WorkingTimeRecorder.UnhandledExceptionOccuurred",
+      "Text": "予期せぬエラーが発生しました。"
     }
   ]
 }

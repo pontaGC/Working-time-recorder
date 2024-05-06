@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Windows;
+using System.Windows.Threading;
 
 using Microsoft.Extensions.Configuration;
 using WorkingTimeRecorder.Core.Extensions;
@@ -8,7 +10,7 @@ using WorkingTImeRecorder.Core.Injectors;
 using WorkingTimeRecorder.Core.Shared;
 using WorkingTimeRecorder.Core;
 using WorkingTimeRecorder.Core.Languages;
-using System.Windows.Threading;
+using SharedLibraries.Extensions;
 
 namespace WorkingTimeRecorder.wpf
 {
@@ -80,9 +82,11 @@ namespace WorkingTimeRecorder.wpf
 
         private void OnAppDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
+            var localizer = WTRSystem.Instance.LanguageLocalizer;
+
             MessageBox.Show(
-                GetUnhandledErrorMessage(e.Exception),
-                WTRSystem.Instance.LanguageLocalizer.LocalizeAppTitle(),
+                GetUnhandledErrorMessage(localizer, e.Exception),
+                localizer.LocalizeAppTitle(),
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
 
@@ -93,10 +97,12 @@ namespace WorkingTimeRecorder.wpf
 
         private void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
         {
+            var localizer = WTRSystem.Instance.LanguageLocalizer;
             var exception = e.Exception.InnerException;
+
             MessageBox.Show(
-                GetUnhandledErrorMessage(exception),
-                WTRSystem.Instance.LanguageLocalizer.LocalizeAppTitle(),
+                GetUnhandledErrorMessage(localizer, exception),
+                localizer.LocalizeAppTitle(),
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
 
@@ -107,24 +113,29 @@ namespace WorkingTimeRecorder.wpf
 
         private void OnCurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            var localizer = WTRSystem.Instance.LanguageLocalizer;
             var exception = e.ExceptionObject as Exception;
+
             MessageBox.Show(
-                GetUnhandledErrorMessage(exception),
-                WTRSystem.Instance.LanguageLocalizer.LocalizeAppTitle(),
+                GetUnhandledErrorMessage(localizer, exception),
+                localizer.LocalizeAppTitle(),
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
 
             Environment.Exit(1);
         }
 
-        private static string GetUnhandledErrorMessage(Exception ex)
+        private static string GetUnhandledErrorMessage(ILanguageLocalizer localizer, [AllowNull]Exception ex)
         {
+            var mainMessage = localizer.Localize(
+                "WorkingTimeRecorder.UnhandledExceptionOccuurred",
+                "The unexpected error has occurred.");
             if (string.IsNullOrEmpty(ex?.Message))
             {
-                return "The unexpected error has occurred.";
+                return mainMessage;
             }
 
-            return $"The unexpected error has occurred.\r\n{ex.Message}";
+            return $"{mainMessage}\r\n{ex.GetMessageWithInnerEx()}";
         }
 
         #endregion

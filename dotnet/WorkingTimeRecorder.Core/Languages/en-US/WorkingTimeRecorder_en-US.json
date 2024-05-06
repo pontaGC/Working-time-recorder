@@ -7,6 +7,10 @@
     {
       "Id": "WorkingTimeRecorder.WorkingName",
       "Text": "Work name"
+    },
+    {
+      "Id": "WorkingTimeRecorder.UnhandledExceptionOccuurred",
+      "Text": "The unexpected error has occurred."
     }
   ]
 }

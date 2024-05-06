@@ -12,7 +12,7 @@
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <returns>The exception message, if <c>exception</c> is not <c>null</c>, otherwise, retruns an empty string.</returns>
-        public static string GetMessageWithInnerException(this Exception exception)
+        public static string GetMessageWithInnerEx(this Exception exception)
         {
             if (exception is null)
             {
