@@ -2,7 +2,7 @@
 
 using SimpleInjector;
 
-namespace WorkingTImeRecorder.Core.Injectors
+namespace WorkingTimeRecorder.Core.Injectors
 {
     /// <summary>
     /// IoC Container using a SimpleInjector library.

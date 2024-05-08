@@ -1,4 +1,4 @@
-﻿namespace WorkingTImeRecorder.Core.Injectors
+﻿namespace WorkingTimeRecorder.Core.Injectors
 {
     /// <summary>
     /// Responsible for creating an instance of container.

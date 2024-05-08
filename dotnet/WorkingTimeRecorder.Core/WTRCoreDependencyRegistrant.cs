@@ -1,6 +1,5 @@
-﻿
-using WorkingTimeRecorder.Core.Shared;
-using WorkingTImeRecorder.Core.Injectors;
+﻿using WorkingTimeRecorder.Core.Shared;
+using WorkingTimeRecorder.Core.Injectors;
 
 namespace WorkingTimeRecorder.Core
 {

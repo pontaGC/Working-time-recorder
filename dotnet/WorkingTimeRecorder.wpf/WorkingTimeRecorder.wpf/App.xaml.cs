@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using WorkingTimeRecorder.Core.Extensions;
 using WorkingTimeRecorder.wpf.Presentation;
 using WorkingTimeRecorder.wpf.Presentation.Core;
-using WorkingTImeRecorder.Core.Injectors;
+using WorkingTimeRecorder.Core.Injectors;
 using WorkingTimeRecorder.Core.Shared;
 using WorkingTimeRecorder.Core;
 using WorkingTimeRecorder.Core.Languages;

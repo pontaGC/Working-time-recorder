@@ -1,4 +1,4 @@
-﻿namespace WorkingTImeRecorder.Core.Injectors
+﻿namespace WorkingTimeRecorder.Core.Injectors
 {
     /// <summary>
     /// A container to create an instance of type for registration of dependencies.

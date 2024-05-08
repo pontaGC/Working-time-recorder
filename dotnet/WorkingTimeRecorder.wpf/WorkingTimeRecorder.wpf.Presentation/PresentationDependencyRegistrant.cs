@@ -1,5 +1,6 @@
 ﻿using WorkingTimeRecorder.wpf.Presentation.Core;
-using WorkingTImeRecorder.Core.Injectors;
+using WorkingTimeRecorder.wpf.Presentation.Core.Dialogs;
+using WorkingTimeRecorder.Core.Injectors;
 
 namespace WorkingTimeRecorder.wpf.Presentation
 {
@@ -10,6 +11,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
         public void Register(IIoCContainer container)
         {
             container.Register<IMainWindowFactory, MainWindowFactory>(InstanceLifeStyle.Singleton);
+            container.Register<IDialogs, Dialogs.Dialogs>(InstanceLifeStyle.Singleton);
         }
     }
 }

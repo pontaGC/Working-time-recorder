@@ -1,4 +1,4 @@
-﻿namespace WorkingTImeRecorder.Core.Injectors
+﻿namespace WorkingTimeRecorder.Core.Injectors
 {
     /// <summary>
     /// Life style of a registered instance in the <see cref="IIoCContainer"/>.

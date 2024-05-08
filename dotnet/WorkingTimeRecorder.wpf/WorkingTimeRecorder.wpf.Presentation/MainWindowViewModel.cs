@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WorkingTImeRecorder.Core.Mvvm;
+using WorkingTimeRecorder.Core.Mvvm;
 
 namespace WorkingTimeRecorder.wpf.Presentation
 {

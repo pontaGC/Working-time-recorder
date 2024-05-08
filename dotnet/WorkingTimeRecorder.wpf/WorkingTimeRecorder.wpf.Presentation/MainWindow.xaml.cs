@@ -1,4 +1,4 @@
-﻿namespace WorkingTImeRecorder.wpf
+﻿namespace WorkingTimeRecorder.wpf
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using WorkingTimeRecorder.wpf.Presentation.Core;
-using WorkingTImeRecorder.wpf;
 
 namespace WorkingTimeRecorder.wpf.Presentation
 {

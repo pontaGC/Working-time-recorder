@@ -2,7 +2,7 @@
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
 
-namespace WorkingTImeRecorder.Core.Mvvm
+namespace WorkingTimeRecorder.Core.Mvvm
 {
     /// <summary>
     /// The simple base view-model that implements <see cref="INotifyPropertyChanged"/>.
