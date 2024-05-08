@@ -1,0 +1,98 @@
+﻿<Window x:Class="WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox.MessageBoxView"
+        x:ClassModifier="internal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:shared="clr-namespace:WorkingTimeRecorder.Core.Shared;assembly=WorkingTimeRecorder.Core"
+        xmlns:markup="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Markup;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
+        xmlns:local="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox"
+        xmlns:behaviors="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Behaviors;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
+        mc:Ignorable="d"
+        behaviors:CloseWindowBehavior.Close="{Binding DialogResult, Mode=OneWay}"
+        Title="{Binding Title, Mode=OneTime}"
+        Icon="{Binding DialogIcon, Mode=OneTime}"
+        WindowStartupLocation="CenterOwner"
+        SizeToContent="WidthAndHeight"
+        MinWidth="250"
+        MaxWidth="450"
+        MinHeight="200"
+        ResizeMode="NoResize"
+        d:DesignHeight="200" d:DesignWidth="450"
+        d:DataContext="{d:DesignInstance local:MessageBoxViewModel, IsDesignTimeCreatable=False}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <local:MessageBoxImageConverter x:Key="MessageBoxImageConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--Message image and text-->
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    Margin="5, 10, 5 ,5"
+                    VerticalAlignment="Center"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <!--Message Image-->
+            <Image Source="{Binding MessageBoxImage, Mode=OneTime, Converter={StaticResource MessageBoxImageConverter}}"
+                   VerticalAlignment="Top"
+                   Margin="0, 0, 10, 0"
+                   Width="25"
+                   Height="25" />
+            <!--Text-->
+            <TextBlock Background="Transparent"
+                       MaxWidth="400"
+                       Text="{Binding Text, Mode=OneTime}"
+                       TextWrapping="Wrap"
+                       ToolTip="{Binding Path=Text, RelativeSource={RelativeSource Self}}" />
+        </StackPanel>
+        
+        <!--Buttons-->
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Margin="5, 10, 5, 15">
+
+            <!--Affirmative button-->
+            <Button x:Name="AffirmativeButton"
+                    BorderBrush="Transparent"
+                    Margin="0, 0, 10, 0"
+                    MinWidth="80" Height="40"
+                    IsDefault="{Binding IsAffirmativeButtonDefault, Mode=OneTime}"
+                    VerticalContentAlignment="Center"
+                    Content="{Binding AffirmativeButtonText, Mode=OneTime}"
+                    Command="{Binding AffirmCommand, Mode=OneTime}" />
+
+            <!--Negative button-->
+            <Button x:Name="NegativeButton"
+                    Margin="0, 0, 10, 0"
+                    IsDefault="{Binding IsNegativeButtonDefault, Mode=OneTime}"
+                    VerticalContentAlignment="{Binding Path=VerticalContentAlignment, ElementName=AffirmativeButton}"
+                    MinWidth="{Binding Path=MinWidth, ElementName=AffirmativeButton}"
+                    Width="{Binding Path=Width, ElementName=AffirmativeButton}"
+                    Height="{Binding Path=Height, ElementName=AffirmativeButton}"
+                    Content="{Binding NegativeButtonText, Mode=OneTime}"
+                    Command="{Binding DenyCommand, Mode=OneTime}"
+                    Visibility="{Binding NegativeButtonVisibility, Mode=OneTime}" />
+
+            <!--Cancel button-->
+            <Button x:Name="CancelButton"
+                    Margin="0"
+                    IsDefault="{Binding IsCancelButtonDefault, Mode=OneTime}"
+                    VerticalContentAlignment="{Binding Path=VerticalContentAlignment, ElementName=AffirmativeButton}"
+                    MinWidth="{Binding Path=MinWidth, ElementName=AffirmativeButton}"
+                    Width="{Binding Path=Width, ElementName=AffirmativeButton}"
+                    Height="{Binding Path=Height, ElementName=AffirmativeButton}"
+                    Content="{markup:Localize Id={x:Static shared:CommonTextKeys.Cancel}, DefaultText={x:Static shared:CommonTextKeys.DefaultCancel}}"
+                    Command="{Binding CancelCommand, Mode=OneTime}"
+                    Visibility="{Binding CancelButtonVisibility, Mode=OneTime}" />
+
+        </StackPanel>
+
+    </Grid>
+</Window>

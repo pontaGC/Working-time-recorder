@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Prism.Wpf" Version="8.1.97" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\WorkingTimeRecorder.Core\WorkingTimeRecorder.Core.csproj" />
     <ProjectReference Include="..\WorkingTimeRecorder.wpf.Presentation.Core\WorkingTimeRecorder.wpf.Presentation.Core.csproj" />
   </ItemGroup>
