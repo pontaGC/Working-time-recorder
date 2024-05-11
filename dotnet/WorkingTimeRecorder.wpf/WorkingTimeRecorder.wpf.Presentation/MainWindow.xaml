@@ -12,6 +12,8 @@
         Height="450" Width="800"
         d:DataContext="{d:DesignInstance local:MainWindowViewModel, IsDesignTimeCreatable=False}">
     <Grid>
-
+        <Button
+            Width="100" Height="40"
+            Content="Dummy" Command="{Binding DummyCommand, Mode=OneTime}" />
     </Grid>
 </Window>
