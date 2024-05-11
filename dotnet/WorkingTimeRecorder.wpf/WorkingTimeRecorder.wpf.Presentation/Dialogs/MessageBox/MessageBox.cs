@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
 
 using WorkingTimeRecorder.Core.Extensions;
 using WorkingTimeRecorder.Core.Languages;
@@ -40,43 +39,43 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
         /// <inheritdoc />
         public MessageBoxResult Show(string text)
         {
-            return this.Show(text, Application.Current.MainWindow?.Title ?? CommonTextKeys.DefaultTitle);
+            return this.Show(text, GetMainWindowTitle());
         }
 
         /// <inheritdoc />
         public MessageBoxResult Show(string text, string caption)
         {
-            return this.Show(Application.Current.MainWindow, text, caption, MessageBoxButtonType.OK, MessageBoxImageType.None);
+            return this.Show(Application.Current?.MainWindow, text, caption, MessageBoxButtons.OK, MessageBoxImages.None);
         }
 
         /// <inheritdoc />
-        public MessageBoxResult Show(string text, string caption, MessageBoxButtonType button, MessageBoxImageType image)
+        public MessageBoxResult Show(string text, string caption, MessageBoxButtons button, MessageBoxImages image)
         {
-            return this.Show(Application.Current.MainWindow, text, caption, button, image);
+            return this.Show(Application.Current?.MainWindow, text, caption, button, image);
         }
 
         /// <inheritdoc />
         public MessageBoxResult Show(
             string text,
             string caption,
-            MessageBoxButtonType button,
-            MessageBoxImageType image,
+            MessageBoxButtons button,
+            MessageBoxImages image,
             MessageBoxResult? defaultResult)
         {
-            return this.Show(Application.Current.MainWindow, text, caption, button, image, defaultResult);
+            return this.Show(Application.Current?.MainWindow, text, caption, button, image, defaultResult);
         }
 
         /// <inheritdoc />
         public MessageBoxResult Show(
             string text,
             string caption,
-            MessageBoxButtonType button,
-            MessageBoxImageType image,
+            MessageBoxButtons button,
+            MessageBoxImages image,
             MessageBoxResult? defaultResult,
             MessageBoxSettings dialogSettings)
         {
             return this.Show(
-                Application.Current.MainWindow,
+                Application.Current?.MainWindow,
                 text,
                 caption,
                 button,
@@ -88,23 +87,23 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
         /// <inheritdoc />
         public MessageBoxResult Show(Window owner, string text)
         {
-            return this.Show(owner, text, Application.Current.MainWindow?.Title ?? CommonTextKeys.DefaultTitle);
+            return this.Show(owner, text, GetMainWindowTitle());
         }
 
         /// <inheritdoc />
         public MessageBoxResult Show(Window owner, string text, string caption)
         {
-            return this.Show(owner, text, caption, MessageBoxButtonType.OK, MessageBoxImageType.None);
+            return this.Show(owner, text, caption, MessageBoxButtons.OK, MessageBoxImages.None);
         }
 
         /// <inheritdoc />
-        public MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButtonType button, MessageBoxImageType image)
+        public MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButtons button, MessageBoxImages image)
         {
             return this.Show(owner, text, caption, button, image, MessageBoxResult.OK);
         }
 
         /// <inheritdoc />
-        public MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButtonType button, MessageBoxImageType image, MessageBoxResult? defaultResult)
+        public MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButtons button, MessageBoxImages image, MessageBoxResult? defaultResult)
         {
             return this.Show(owner, text, caption, button, image, defaultResult, CreateDefaultDialogSettings(button));
         }
@@ -114,8 +113,8 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
             Window owner,
             string text,
             string caption,
-            MessageBoxButtonType button,
-            MessageBoxImageType image,
+            MessageBoxButtons button,
+            MessageBoxImages image,
             MessageBoxResult? defaultResult,
             MessageBoxSettings dialogSettings)
         {
@@ -127,7 +126,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
             if (owner is null)
             {
                 return this.ShowMessageDialog(
-                    Application.Current.MainWindow,
+                    Application.Current?.MainWindow,
                     text,
                     caption,
                     button,
@@ -143,7 +142,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
 
         #region Private methods
 
-        private MessageBoxResult ShowMessageDialog(Window owner, string text, string caption, MessageBoxButtonType button, MessageBoxImageType image, MessageBoxResult? defaultResult, MessageBoxSettings dialogSettings)
+        private MessageBoxResult ShowMessageDialog(Window? owner, string text, string caption, MessageBoxButtons button, MessageBoxImages image, MessageBoxResult? defaultResult, MessageBoxSettings dialogSettings)
         {
             var viewModel = new MessageBoxViewModel(button, defaultResult)
             {
@@ -176,17 +175,17 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
             }
         }
 
-        private MessageBoxSettings CreateDefaultDialogSettings(MessageBoxButtonType button)
+        private MessageBoxSettings CreateDefaultDialogSettings(MessageBoxButtons button)
         {
             return new MessageBoxSettings()
             {
                 AffirmativeButtonText = this.GetAffirmativeButtonText(string.Empty, button),
                 NegativeButtonText = this.GetNegativeButtonText(string.Empty, button),
-                DialogIcon = GetDialogIcon(null),
+                DialogIcon = Application.Current?.MainWindow?.Icon,
             };
         }
 
-        private string GetAffirmativeButtonText(string affirmativeText, MessageBoxButtonType button)
+        private string GetAffirmativeButtonText(string affirmativeText, MessageBoxButtons button)
         {
             if (string.IsNullOrWhiteSpace(affirmativeText) == false)
             {
@@ -195,20 +194,20 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
 
             switch (button)
             {
-                case MessageBoxButtonType.OK:
-                case MessageBoxButtonType.OKCancel:
+                case MessageBoxButtons.OK:
+                case MessageBoxButtons.OKCancel:
                     return this.languageLocalizer.LocalizeOk();
 
-                case MessageBoxButtonType.YesNoCancel:
-                case MessageBoxButtonType.YesNo:
+                case MessageBoxButtons.YesNoCancel:
+                case MessageBoxButtons.YesNo:
                     return this.languageLocalizer.LocalizeYes();
 
                 default:
-                    return "OK";
+                    return CommonTextKeys.DefaultOk;
             }
         }
 
-        private string GetNegativeButtonText(string negativeText, MessageBoxButtonType button)
+        private string GetNegativeButtonText(string negativeText, MessageBoxButtons button)
         {
             if (string.IsNullOrWhiteSpace(negativeText) == false)
             {
@@ -217,11 +216,11 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
 
             switch (button)
             {
-                case MessageBoxButtonType.OKCancel:
+                case MessageBoxButtons.OKCancel:
                     return this.languageLocalizer.LocalizeCancel();
 
-                case MessageBoxButtonType.YesNoCancel:
-                case MessageBoxButtonType.YesNo:
+                case MessageBoxButtons.YesNoCancel:
+                case MessageBoxButtons.YesNo:
                     return this.languageLocalizer.LocalizeNo();
 
                 default:
@@ -229,14 +228,9 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
             }
         }
 
-        private static ImageSource GetDialogIcon(ImageSource? dialogIcon)
+        private static string GetMainWindowTitle(string defaultTitle = CommonTextKeys.DefaultTitle)
         {
-            if (dialogIcon is null)
-            {
-                return Application.Current.MainWindow.Icon;
-            }
-
-            return dialogIcon;
+            return Application.Current?.MainWindow?.Title ?? defaultTitle;
         }
 
         #endregion

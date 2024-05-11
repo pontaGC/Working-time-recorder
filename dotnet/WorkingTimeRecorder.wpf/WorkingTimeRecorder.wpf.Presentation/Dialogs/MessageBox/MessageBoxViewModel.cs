@@ -16,12 +16,12 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
     {
         #region Fields
 
-        private readonly MessageBoxButtonType displayButton;
+        private readonly MessageBoxButtons displayButton;
         private readonly MessageBoxResult? defaultResult;
 
         private bool? dialogResult;
         private Visibility cancelButtonVisibility;
-        private MessageBoxImageType messageDialogImage;
+        private MessageBoxImages messageDialogImage;
 
         #endregion
 
@@ -32,7 +32,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
         /// </summary>
         /// <param name="displayButton">The value that specifies which button or buttons to display.</param>
         /// <param name="defaultResult">The value determines the button is focused by default.</param>
-        public MessageBoxViewModel(MessageBoxButtonType displayButton, MessageBoxResult? defaultResult)
+        public MessageBoxViewModel(MessageBoxButtons displayButton, MessageBoxResult? defaultResult)
         {
             this.displayButton = displayButton;
             this.defaultResult = defaultResult;
@@ -105,7 +105,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
         /// <summary>
         /// Gets or sets a message box image.
         /// </summary>
-        public MessageBoxImageType MessageBoxImage
+        public MessageBoxImages MessageBoxImage
         {
             get => this.messageDialogImage;
             set => SetProperty(ref this.messageDialogImage, value);
@@ -140,13 +140,13 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
         {
             switch (this.displayButton)
             {
-                case MessageBoxButtonType.OK:
-                case MessageBoxButtonType.OKCancel:
+                case MessageBoxButtons.OK:
+                case MessageBoxButtons.OKCancel:
                     this.Result = MessageBoxResult.OK;
                     break;
 
-                case MessageBoxButtonType.YesNoCancel:
-                case MessageBoxButtonType.YesNo:
+                case MessageBoxButtons.YesNoCancel:
+                case MessageBoxButtons.YesNo:
                     this.Result = MessageBoxResult.Yes;
                     break;
 
@@ -162,13 +162,13 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
         {
             switch (this.displayButton)
             {
-                case MessageBoxButtonType.OK:
-                case MessageBoxButtonType.OKCancel:
+                case MessageBoxButtons.OK:
+                case MessageBoxButtons.OKCancel:
                     this.Result = MessageBoxResult.Cancel;
                     break;
 
-                case MessageBoxButtonType.YesNoCancel:
-                case MessageBoxButtonType.YesNo:
+                case MessageBoxButtons.YesNoCancel:
+                case MessageBoxButtons.YesNo:
                     this.Result = MessageBoxResult.No;
                     break;
 
@@ -192,32 +192,32 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
             this.DialogResult = true;
         }
 
-        private void InitializeButtonsVisibility(MessageBoxButtonType displayButton)
+        private void InitializeButtonsVisibility(MessageBoxButtons displayButton)
         {
             // Affirmative button is always visible
 
             switch (displayButton)
             {
-                case MessageBoxButtonType.OK:
+                case MessageBoxButtons.OK:
                     this.NegativeButtonVisibility = Visibility.Collapsed;
                     this.CancelButtonVisibility = Visibility.Collapsed;
                     break;
-                case MessageBoxButtonType.OKCancel:
+                case MessageBoxButtons.OKCancel:
                     this.NegativeButtonVisibility = Visibility.Collapsed;
                     this.CancelButtonVisibility = Visibility.Visible;
                     break;
-                case MessageBoxButtonType.YesNoCancel:
+                case MessageBoxButtons.YesNoCancel:
                     this.NegativeButtonVisibility = Visibility.Visible;
                     this.CancelButtonVisibility = Visibility.Visible;
                     break;
-                case MessageBoxButtonType.YesNo:
+                case MessageBoxButtons.YesNo:
                     this.NegativeButtonVisibility = Visibility.Visible;
                     this.CancelButtonVisibility = Visibility.Collapsed;
                     break;
             }
         }
 
-        private void InitializeResult(MessageBoxButtonType displayButton, MessageBoxResult? defaultResult)
+        private void InitializeResult(MessageBoxButtons displayButton, MessageBoxResult? defaultResult)
         {
             if (defaultResult.HasValue)
             {
@@ -227,16 +227,16 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
 
             switch (displayButton)
             {
-                case MessageBoxButtonType.OK:
+                case MessageBoxButtons.OK:
                     this.Result = MessageBoxResult.OK;
                     break;
 
-                case MessageBoxButtonType.OKCancel:
-                case MessageBoxButtonType.YesNoCancel:
+                case MessageBoxButtons.OKCancel:
+                case MessageBoxButtons.YesNoCancel:
                     this.Result = MessageBoxResult.Cancel;
                     break;
 
-                case MessageBoxButtonType.YesNo:
+                case MessageBoxButtons.YesNo:
                     this.Result = MessageBoxResult.No;
                     break;
 

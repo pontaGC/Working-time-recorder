@@ -26,9 +26,9 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
         /// <returns>A converted value.</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Debug.Assert(value is MessageBoxImageType, $"The type of {nameof(value)} must be {nameof(MessageBoxImageType)}.");
+            Debug.Assert(value is MessageBoxImages, $"The type of {nameof(value)} must be {nameof(MessageBoxImages)}.");
 
-            var convertedValue = Convert((MessageBoxImageType)value);
+            var convertedValue = Convert((MessageBoxImages)value);
             return convertedValue ?? DependencyProperty.UnsetValue;
         }
 
@@ -45,7 +45,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
         /// </summary>
         /// <param name="imageKind">The kind of message box image.</param>
         /// <returns>A converted image source.</returns>
-        private static ImageSource? Convert(MessageBoxImageType imageKind)
+        private static ImageSource? Convert(MessageBoxImages imageKind)
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
             {
@@ -54,19 +54,19 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
 
             switch (imageKind)
             {
-                case MessageBoxImageType.Error:
+                case MessageBoxImages.Error:
                     //return iconService.GetIcon(IconConstants.Status.CriticalError);
                     return null;
 
-                case MessageBoxImageType.Warning:
+                case MessageBoxImages.Warning:
                     //return iconService.GetIcon(IconConstants.Status.Warning);
                     return null;
 
-                case MessageBoxImageType.Information:
+                case MessageBoxImages.Information:
                     //return iconService.GetIcon(IconConstants.Status.Information);
                     return null;
 
-                case MessageBoxImageType.Question:
+                case MessageBoxImages.Question:
                     //return iconService.GetIcon(IconConstants.Status.Help);
                     return null;
 

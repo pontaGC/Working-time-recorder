@@ -5,9 +5,9 @@
     /// </summary>
     public interface IDialogs
     {
-       /// <summary>
-       /// Gets a message box.
-       /// </summary>
-       IMessageBox MessageBox { get; }
+        /// <summary>
+        /// Gets a message box.
+        /// </summary>
+        IMessageBox MessageBox { get; }
     }
 }

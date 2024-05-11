@@ -3,7 +3,7 @@
     /// <summary>
     /// The message box image type.
     /// </summary>
-    public enum MessageBoxImageType
+    public enum MessageBoxImages
     {
         None,
         Error,

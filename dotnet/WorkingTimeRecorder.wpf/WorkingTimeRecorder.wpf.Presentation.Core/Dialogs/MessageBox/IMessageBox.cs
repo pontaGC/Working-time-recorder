@@ -34,7 +34,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Dialogs
         /// <param name="button">The button(s).</param>
         /// <param name="image">The image.</param>
         /// <returns>The result.</returns>
-        MessageBoxResult Show(string text, string caption, MessageBoxButtonType button, MessageBoxImageType image);
+        MessageBoxResult Show(string text, string caption, MessageBoxButtons button, MessageBoxImages image);
 
         /// <summary>
         /// Shows a message box.
@@ -45,7 +45,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Dialogs
         /// <param name="image">The image.</param>
         /// <param name="defaultResult">The <c>MessageBoxResult</c> value that specifies the default result of the message box.</param>
         /// <returns>The result.</returns>
-        MessageBoxResult Show(string text, string caption, MessageBoxButtonType button, MessageBoxImageType image, MessageBoxResult? defaultResult);
+        MessageBoxResult Show(string text, string caption, MessageBoxButtons button, MessageBoxImages image, MessageBoxResult? defaultResult);
 
         /// <summary>
         /// Shows a message box.
@@ -58,7 +58,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Dialogs
         /// <param name="dialogSettings">The dialog settings.</param>
         /// <returns>The result.</returns>
         /// <exception cref="ArgumentNullException"><c>dialogSettings</c> is <c>null</c>.</exception>
-        MessageBoxResult Show(string text, string caption, MessageBoxButtonType button, MessageBoxImageType image, MessageBoxResult? defaultResult, MessageBoxSettings dialogSettings);
+        MessageBoxResult Show(string text, string caption, MessageBoxButtons button, MessageBoxImages image, MessageBoxResult? defaultResult, MessageBoxSettings dialogSettings);
 
         /// <summary>
         /// Shows a message box belonging to the specified owner window.
@@ -86,7 +86,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Dialogs
         /// <param name="button">The button(s).</param>
         /// <param name="image">The image.</param>
         /// <returns>The result.</returns>
-        MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButtonType button, MessageBoxImageType image);
+        MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButtons button, MessageBoxImages image);
 
         /// <summary>
         /// Shows a message box belonging to the specified owner window.
@@ -98,8 +98,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Dialogs
         /// <param name="image">The image.</param>
         /// <param name="defaultResult">The <c>MessageBoxResult</c> value that specifies the default result of the message box.</param>
         /// <returns>The result.</returns>
-        /// <exception cref="ArgumentNullException"><c>dialogSettings</c> is <c>null</c>.</exception>
-        MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButtonType button, MessageBoxImageType image, MessageBoxResult? defaultResult);
+        MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButtons button, MessageBoxImages image, MessageBoxResult? defaultResult);
 
         /// <summary>
         /// Shows a message box belonging to the specified owner window.
@@ -112,8 +111,8 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Dialogs
         /// <param name="defaultResult">The <c>MessageBoxResult</c> value that specifies the default result of the message box.</param>
         /// <param name="dialogSettings">The dialog settings.</param>
         /// <returns>The result.</returns>
-        /// <exception cref="ArgumentNullException"><c>dialogSettings</c> is <c>null</c>.</exception>
-        MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButtonType button, MessageBoxImageType image, MessageBoxResult? defaultResult, MessageBoxSettings dialogSettings);
+        /// <exception cref="ArgumentNullException"><paramref name="dialogSettings"/> is <c>null</c>.</exception>
+        MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButtons button, MessageBoxImages image, MessageBoxResult? defaultResult, MessageBoxSettings dialogSettings);
 
         #endregion
 

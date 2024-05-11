@@ -3,7 +3,7 @@
     /// <summary>
     /// The message box button type.
     /// </summary>
-    public enum MessageBoxButtonType
+    public enum MessageBoxButtons
     {
         OK,
         OKCancel,
