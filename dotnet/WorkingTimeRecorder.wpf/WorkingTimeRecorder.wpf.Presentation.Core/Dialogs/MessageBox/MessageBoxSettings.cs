@@ -1,6 +1,4 @@
-﻿using System.Windows.Media;
-
-namespace WorkingTimeRecorder.wpf.Presentation.Core.Dialogs
+﻿namespace WorkingTimeRecorder.wpf.Presentation.Core.Dialogs
 {
     /// <summary>
     /// Represents the setting to custom a message box.
@@ -16,10 +14,5 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Dialogs
         /// Gets or sets a text of the negative button, e.g. "Cancel", "No".
         /// </summary>
         public string? NegativeButtonText { get; set; }
-
-        /// <summary>
-        /// Gets or sets a icon of the dialog title.
-        /// </summary>
-        public ImageSource? DialogIcon { get; set; }
     }
 }

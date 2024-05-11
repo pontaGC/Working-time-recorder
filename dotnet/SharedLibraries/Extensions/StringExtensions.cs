@@ -27,6 +27,23 @@ namespace SharedLibraries.Extensions
         }
 
         /// <summary>
+        /// Splits the given string with period('.').
+        /// </summary>
+        /// <param name="source">The string to split.</param>
+        /// <returns>A collection of the split string with period.</returns>
+        [return: NotNull]
+        public static IEnumerable<string> SplitWithPeriod(this string source)
+        {
+            if (string.IsNullOrWhiteSpace(source))
+            {
+                return Enumerable.Empty<string>();
+            }
+
+            // Extracts non-whitespace characters
+            return source.Split('.');
+        }
+
+        /// <summary>
         /// Determines whether two specified string objects have the same value.
         /// This method uses the <c>OrdinalIgnoreCase</c> comparison rule.
         /// </summary>

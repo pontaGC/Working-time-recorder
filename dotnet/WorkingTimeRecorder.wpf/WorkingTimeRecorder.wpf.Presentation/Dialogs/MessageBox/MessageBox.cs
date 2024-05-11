@@ -149,9 +149,9 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
                 Title = caption,
                 Text = text,
                 MessageBoxImage = image,
-                DialogIcon = dialogSettings.DialogIcon,
                 AffirmativeButtonText = this.GetAffirmativeButtonText(dialogSettings.AffirmativeButtonText, button),
                 NegativeButtonText = this.GetNegativeButtonText(dialogSettings.NegativeButtonText, button),
+                DialogIcon = owner?.Icon ?? Application.Current?.MainWindow?.Icon,
             };
 
             var dialogView = new MessageBoxView()
@@ -181,7 +181,6 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
             {
                 AffirmativeButtonText = this.GetAffirmativeButtonText(string.Empty, button),
                 NegativeButtonText = this.GetNegativeButtonText(string.Empty, button),
-                DialogIcon = Application.Current?.MainWindow?.Icon,
             };
         }
 

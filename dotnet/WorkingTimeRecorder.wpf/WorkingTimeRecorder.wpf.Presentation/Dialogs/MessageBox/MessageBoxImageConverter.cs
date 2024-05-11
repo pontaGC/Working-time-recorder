@@ -3,17 +3,26 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Media;
+
+using WorkingTimeRecorder.Core.Shared;
 using WorkingTimeRecorder.wpf.Presentation.Core.Dialogs;
+using WorkingTimeRecorder.wpf.Presentation.Core.Icons;
+using WorkingTimeRecorder.wpf.Presentation.Icons;
 
 namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
 {
     /// <summary>
     /// The converters the message box image kind to the actual image.
     /// </summary>
-    [ValueConversion(typeof(MessageBoxImages), typeof(ImageSource))]
+    [ValueConversion(typeof(MessageBoxImages), typeof(UIElement))]
     internal sealed class MessageBoxImageConverter : IValueConverter
     {
+        #region Fields
+
+        private readonly IIconService iconService = IconService.Instance;
+
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -45,7 +54,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
         /// </summary>
         /// <param name="imageKind">The kind of message box image.</param>
         /// <returns>A converted image source.</returns>
-        private static ImageSource? Convert(MessageBoxImages imageKind)
+        private UIElement? Convert(MessageBoxImages imageKind)
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
             {
@@ -55,20 +64,16 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
             switch (imageKind)
             {
                 case MessageBoxImages.Error:
-                    //return iconService.GetIcon(IconConstants.Status.CriticalError);
-                    return null;
+                    return this.iconService.GetIcon(IconKeys.StatusError);
 
                 case MessageBoxImages.Warning:
-                    //return iconService.GetIcon(IconConstants.Status.Warning);
-                    return null;
+                    return this.iconService.GetIcon(IconKeys.StatusWarning);
 
                 case MessageBoxImages.Information:
-                    //return iconService.GetIcon(IconConstants.Status.Information);
-                    return null;
+                    return this.iconService.GetIcon(IconKeys.StatusInformation);
 
                 case MessageBoxImages.Question:
-                    //return iconService.GetIcon(IconConstants.Status.Help);
-                    return null;
+                    return this.iconService.GetIcon(IconKeys.StatusHelp);
 
                 default:
                     return null;

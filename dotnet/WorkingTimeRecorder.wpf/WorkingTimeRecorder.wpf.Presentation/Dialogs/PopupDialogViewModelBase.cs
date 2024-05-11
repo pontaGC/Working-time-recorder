@@ -18,7 +18,6 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs
         private string affirmativeButtonText;
         private string negativeButtonText;
         private ImageSource dialogIcon;
-        private ImageSource messageImage;
         private Visibility negativeButtonVisibility;
 
         #endregion
@@ -68,15 +67,6 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs
         {
             get => this.dialogIcon;
             set => this.SetProperty(ref this.dialogIcon, value);
-        }
-
-        /// <summary>
-        /// Gets or sets a image of the message.
-        /// </summary>
-        public ImageSource MessageImage
-        {
-            get => this.messageImage;
-            set => this.SetProperty(ref this.messageImage, value);
         }
 
         /// <summary>

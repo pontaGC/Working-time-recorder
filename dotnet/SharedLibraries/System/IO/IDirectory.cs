@@ -53,6 +53,17 @@ namespace SharedLibraries.System.IO
         DirectoryInfo? GetDirectoryInfo(string path);
 
         /// <summary>
+        /// Gets the directory name from the path.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <returns>
+        /// A directory name which has the file.
+        /// Returns <c>null</c> if path denotes a root directory or is <c>null</c>.
+        /// Returns <paramref name="defaultDirName"/> if path does not contain directory information.
+        /// </returns>
+        string GetDirectoryName(string path, string defaultDirName = "");
+
+        /// <summary>
         /// Enumerates all files in the specified directory.
         /// </summary>
         /// <param name="directoryPath">The path of the directory to be searched.</param>

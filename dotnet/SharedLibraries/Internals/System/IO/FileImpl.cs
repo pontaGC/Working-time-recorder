@@ -79,6 +79,29 @@ namespace SharedLibraries.Internals.System.IO
             }
         }
 
+        /// <inheritdoc />
+        public string GetExtension(string filename, bool removesDot)
+        {
+            if (Path.HasExtension(filename) == false)
+            {
+                return string.Empty;
+            }
+
+            var extension = Path.GetExtension(filename);
+            if (removesDot)
+            {
+                return extension.Replace(".", string.Empty);
+            }
+
+            return extension;
+        }
+
+        /// <inheritdoc />
+        public string GetFileName(string path) => Path.GetFileName(path);
+
+        /// <inheritdoc />
+        public string GetFileNameWithoutExtension(string path) => Path.GetFileNameWithoutExtension(path);
+
         #endregion
 
         #endregion

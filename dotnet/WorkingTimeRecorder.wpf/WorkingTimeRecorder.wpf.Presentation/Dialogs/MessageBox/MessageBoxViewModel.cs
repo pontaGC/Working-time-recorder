@@ -1,10 +1,8 @@
-﻿using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Prism.Commands;
-using SharedLibraries.Retry;
 using WorkingTimeRecorder.wpf.Presentation.Core.Dialogs;
+
 using MessageBoxResult = WorkingTimeRecorder.wpf.Presentation.Core.Dialogs.MessageBoxResult;
 
 namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox

@@ -50,6 +50,19 @@ namespace SharedLibraries.Internals.System.IO
         }
 
         /// <inheritdoc />
+        public string GetDirectoryName(string path, string defaultDirName)
+        {
+            try
+            {
+                return Path.GetDirectoryName(path) ?? defaultDirName;
+            }
+            catch
+            {
+                return defaultDirName;
+            }
+        }
+
+        /// <inheritdoc />
         public IEnumerable<string> EnumerateFiles(string directoryPath, bool recursive)
         {
             return this.EnumerateFiles(directoryPath, "*.*", recursive);

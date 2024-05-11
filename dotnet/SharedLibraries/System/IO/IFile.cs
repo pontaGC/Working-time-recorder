@@ -100,6 +100,29 @@
         /// <returns>The file information if the <c>fileName</c> is valid and the caller has the required permission, otherwise, returns <c>null</c>.</returns>
         FileInfo? GetFileInfo(string fileName);
 
+        /// <summary>
+        /// Gets a file extension. The default file extension has dot like '.txt'.
+        /// To get a file extension without dot like 'txt', sets <paramref name="removesDot"/> to <c>true</c>.
+        /// </summary>
+        /// <param name="filename">The file name.</param>
+        /// <param name="removesDot">The value indicating removing the dot character from the file extension.</param>
+        /// <returns>A file extension, if the file name has a file extension. Otherwise; an empty string.</returns>
+        string GetExtension(string filename, bool removesDot = false);
+
+        /// <summary>
+        /// Gets the filename from the file path.
+        /// </summary>
+        /// <param name="path">Path of a file.</param>
+        /// <returns>A filename from path</returns>
+        string GetFileName(string path);
+
+        /// <summary>
+        /// Gets the filename without extension from the file path.
+        /// </summary>
+        /// <param name="path">Path of a file.</param>
+        /// <returns>A filename without the file extension.</returns>
+        string GetFileNameWithoutExtension(string path);
+
         #endregion
     }
 }
