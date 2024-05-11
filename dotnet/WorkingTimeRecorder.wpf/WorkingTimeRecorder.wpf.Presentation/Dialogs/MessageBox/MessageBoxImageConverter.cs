@@ -11,7 +11,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
     /// <summary>
     /// The converters the message box image kind to the actual image.
     /// </summary>
-    [ValueConversion(typeof(MessageBoxImage), typeof(ImageSource))]
+    [ValueConversion(typeof(MessageBoxImages), typeof(ImageSource))]
     internal sealed class MessageBoxImageConverter : IValueConverter
     {
         #region Methods
