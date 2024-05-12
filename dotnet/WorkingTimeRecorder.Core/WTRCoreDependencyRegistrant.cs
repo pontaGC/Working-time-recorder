@@ -1,5 +1,6 @@
 ﻿using WorkingTimeRecorder.Core.Shared;
 using WorkingTimeRecorder.Core.Injectors;
+using WorkingTimeRecorder.Core.Languages;
 
 namespace WorkingTimeRecorder.Core
 {
@@ -10,6 +11,7 @@ namespace WorkingTimeRecorder.Core
         public void Register(IIoCContainer container)
         {
             container.RegisterInstance<IWTRSystem>(WTRSystem.Instance);
+            container.RegisterInstance(WTRSystem.Instance.CultureSetter);
         }
     }
 }

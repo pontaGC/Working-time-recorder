@@ -25,8 +25,10 @@ namespace WorkingTimeRecorder.Core.Shared
         /// <inheritdoc />
         public ILanguageLocalizer LanguageLocalizer => lazyLanguageLocalizer.Value;
 
-        /// <inheritdoc />
-        public ICultureSetter CultureSetter => lazyLanguageLocalizer.Value;
+        /// <summary>
+        /// Gets a culture setter.
+        /// </summary>
+        internal ICultureSetter CultureSetter => lazyLanguageLocalizer.Value;
 
         private static readonly Lazy<LanguageLocalizer> lazyLanguageLocalizer = new Lazy<LanguageLocalizer>(() => new LanguageLocalizer());
 

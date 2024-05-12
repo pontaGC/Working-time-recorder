@@ -16,12 +16,6 @@ namespace WorkingTimeRecorder.Core.Shared
         [NotNull]
         ILanguageLocalizer LanguageLocalizer { get; }
 
-        /// <summary>
-        /// Gets a culture setter.
-        /// </summary>
-        [NotNull]
-        ICultureSetter CultureSetter { get; }
-
         #endregion
     }
 }

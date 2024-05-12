@@ -48,8 +48,7 @@ namespace WorkingTimeRecorder.wpf
             RegisterDependencies(container, new WTRCoreDependencyRegistrant());
             RegisterDependencies(container, new PresentationDependencyRegistrant());
 
-            var wtrSystem = container.Resolve<IWTRSystem>();
-            SetCulture(wtrSystem.CultureSetter);
+            SetCulture(container.Resolve<ICultureSetter>());
 
             var mainWindowFactory = container.Resolve<IMainWindowFactory>();
             var mainWindow = mainWindowFactory.Create();
