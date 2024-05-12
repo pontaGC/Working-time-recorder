@@ -7,5 +7,8 @@
     {
         public const string Title = "WorkingTimeRecorder.Title";
         public const string DefaultTitle = "Working time Recorder";
+
+        public const string TaskName = "WorkingTimeRecorder.TaskName";
+        public const string DefaultTaskName = "Task name";
     }
 }

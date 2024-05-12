@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="WorkingTimeRecorder.wpf.Presentation.TaskViews.TaskView"
+             x:ClassModifier="internal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"             
+             xmlns:local="clr-namespace:WorkingTimeRecorder.wpf.Presentation.TaskViews"
+             xmlns:markup="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Markup;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
+             xmlns:shared="clr-namespace:WorkingTimeRecorder.Core.Shared;assembly=WorkingTimeRecorder.Core"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance local:TaskViewModel, IsDesignTimeCreatable=False}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="TaskViewStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <!--Task list-->
+    <DataGrid AutoGenerateColumns="False"
+              ItemsSource="{Binding TaskItems, Mode=OneTime}"
+              VirtualizingPanel.IsVirtualizing="True">
+        <DataGrid.Columns>
+            <!--Task No.-->
+            <DataGridTemplateColumn Header="No." Width="Auto">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBox Style="{StaticResource TaskNoTextBoxStyle}"
+                                 Text="{Binding No, Mode=OneWay}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+            <!--Task name-->
+            <DataGridTemplateColumn Header="{markup:Localize Id={x:Static shared:WTRTextKeys.TaskName}, DefaultText={x:Static shared:WTRTextKeys.DefaultTaskName}}"
+                                    Width="Auto"
+                                    MinWidth="150"
+                                    MaxWidth="300">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBox Style="{StaticResource TaskNameTextBoxStyle}"
+                                 MinWidth="150"
+                                 MaxWidth="300"
+                                 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>

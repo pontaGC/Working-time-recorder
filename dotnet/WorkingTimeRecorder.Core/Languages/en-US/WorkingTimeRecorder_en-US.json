@@ -5,8 +5,8 @@
       "Text": "Working time Recorder"
     },
     {
-      "Id": "WorkingTimeRecorder.WorkingName",
-      "Text": "Work name"
+      "Id": "WorkingTimeRecorder.TaskName",
+      "Text": "Task name"
     },
     {
       "Id": "WorkingTimeRecorder.UnhandledExceptionOccuurred",
