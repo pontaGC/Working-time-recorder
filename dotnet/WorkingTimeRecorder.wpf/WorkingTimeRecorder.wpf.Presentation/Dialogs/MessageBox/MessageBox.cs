@@ -225,7 +225,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
             }
         }
 
-        private static string GetMainWindowTitle(string defaultTitle = CommonTextKeys.DefaultTitle)
+        private static string GetMainWindowTitle(string defaultTitle = WTRTextKeys.DefaultTitle)
         {
             return Application.Current?.MainWindow?.Title ?? defaultTitle;
         }

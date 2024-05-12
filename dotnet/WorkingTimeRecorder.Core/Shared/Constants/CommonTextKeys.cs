@@ -13,8 +13,5 @@
         public const string DefaultYes = "Yes";
         public const string No = "No";
         public const string DefaultNo = "No";
-
-        public const string Title = "WorkingTimeRecorder.Title";
-        public const string DefaultTitle = "Working time Recorder";
     }
 }

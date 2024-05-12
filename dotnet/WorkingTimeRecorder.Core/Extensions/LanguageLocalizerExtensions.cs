@@ -18,7 +18,7 @@ namespace WorkingTimeRecorder.Core.Extensions
         [DebuggerStepThrough]
         public static string LocalizeAppTitle(this ILanguageLocalizer @this)
         {
-            return @this.Localize(CommonTextKeys.Title, CommonTextKeys.DefaultTitle);
+            return @this.Localize(WTRTextKeys.Title, WTRTextKeys.DefaultTitle);
         }
 
         /// <summary>

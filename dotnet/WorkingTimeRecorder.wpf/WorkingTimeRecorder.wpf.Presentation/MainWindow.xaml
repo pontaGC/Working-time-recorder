@@ -8,7 +8,7 @@
         xmlns:markup="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Markup;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
         xmlns:local="clr-namespace:WorkingTimeRecorder.wpf.Presentation"
         mc:Ignorable="d"
-        Title="{markup:Localize Id={x:Static shared:CommonTextKeys.Title},DefaultText={x:Static shared:CommonTextKeys.DefaultTitle}}"
+        Title="{markup:Localize Id={x:Static shared:WTRTextKeys.Title},DefaultText={x:Static shared:WTRTextKeys.DefaultTitle}}"
         Height="450" Width="800"
         d:DataContext="{d:DesignInstance local:MainWindowViewModel, IsDesignTimeCreatable=False}">
     <Grid>
