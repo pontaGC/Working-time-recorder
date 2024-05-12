@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Prism.Commands;
 using WorkingTimeRecorder.wpf.Presentation.Core.Dialogs;
 
-using MessageBoxResult = WorkingTimeRecorder.wpf.Presentation.Core.Dialogs.MessageBoxResult;
+using MessageBoxResults = WorkingTimeRecorder.wpf.Presentation.Core.Dialogs.MessageBoxResults;
 
 namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
 {
@@ -15,7 +15,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
         #region Fields
 
         private readonly MessageBoxButtons displayButton;
-        private readonly MessageBoxResult? defaultResult;
+        private readonly MessageBoxResults? defaultResult;
 
         private bool? dialogResult;
         private Visibility cancelButtonVisibility;
@@ -30,7 +30,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
         /// </summary>
         /// <param name="displayButton">The value that specifies which button or buttons to display.</param>
         /// <param name="defaultResult">The value determines the button is focused by default.</param>
-        public MessageBoxViewModel(MessageBoxButtons displayButton, MessageBoxResult? defaultResult)
+        public MessageBoxViewModel(MessageBoxButtons displayButton, MessageBoxResults? defaultResult)
         {
             this.displayButton = displayButton;
             this.defaultResult = defaultResult;
@@ -66,7 +66,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
 
                 switch (this.defaultResult)
                 {
-                    case MessageBoxResult.No:
+                    case MessageBoxResults.No:
                         return true;
 
                     default:
@@ -87,7 +87,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
                     return false;
                 }
 
-                return this.defaultResult == MessageBoxResult.Cancel;
+                return this.defaultResult == MessageBoxResults.Cancel;
             }
         }
 
@@ -112,7 +112,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
         /// <summary>
         /// Gets a message dialog result.
         /// </summary>
-        public MessageBoxResult Result { get; private set; }
+        public MessageBoxResults Result { get; private set; }
 
         /// <summary>
         /// Gets or sets a value indicating the cancel button's visible state. 
@@ -140,16 +140,16 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
             {
                 case MessageBoxButtons.OK:
                 case MessageBoxButtons.OKCancel:
-                    this.Result = MessageBoxResult.OK;
+                    this.Result = MessageBoxResults.OK;
                     break;
 
                 case MessageBoxButtons.YesNoCancel:
                 case MessageBoxButtons.YesNo:
-                    this.Result = MessageBoxResult.Yes;
+                    this.Result = MessageBoxResults.Yes;
                     break;
 
                 default:
-                    this.Result = MessageBoxResult.OK;
+                    this.Result = MessageBoxResults.OK;
                     break;
             }
 
@@ -162,16 +162,16 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
             {
                 case MessageBoxButtons.OK:
                 case MessageBoxButtons.OKCancel:
-                    this.Result = MessageBoxResult.Cancel;
+                    this.Result = MessageBoxResults.Cancel;
                     break;
 
                 case MessageBoxButtons.YesNoCancel:
                 case MessageBoxButtons.YesNo:
-                    this.Result = MessageBoxResult.No;
+                    this.Result = MessageBoxResults.No;
                     break;
 
                 default:
-                    this.Result = MessageBoxResult.Cancel;
+                    this.Result = MessageBoxResults.Cancel;
                     break;
             }
 
@@ -180,7 +180,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
 
         private void Cancel()
         {
-            this.Result = MessageBoxResult.Cancel;
+            this.Result = MessageBoxResults.Cancel;
             this.Close();
         }
 
@@ -215,7 +215,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
             }
         }
 
-        private void InitializeResult(MessageBoxButtons displayButton, MessageBoxResult? defaultResult)
+        private void InitializeResult(MessageBoxButtons displayButton, MessageBoxResults? defaultResult)
         {
             if (defaultResult.HasValue)
             {
@@ -226,20 +226,20 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
             switch (displayButton)
             {
                 case MessageBoxButtons.OK:
-                    this.Result = MessageBoxResult.OK;
+                    this.Result = MessageBoxResults.OK;
                     break;
 
                 case MessageBoxButtons.OKCancel:
                 case MessageBoxButtons.YesNoCancel:
-                    this.Result = MessageBoxResult.Cancel;
+                    this.Result = MessageBoxResults.Cancel;
                     break;
 
                 case MessageBoxButtons.YesNo:
-                    this.Result = MessageBoxResult.No;
+                    this.Result = MessageBoxResults.No;
                     break;
 
                 default:
-                    this.Result = MessageBoxResult.Cancel;
+                    this.Result = MessageBoxResults.Cancel;
                     break;
             }
         }

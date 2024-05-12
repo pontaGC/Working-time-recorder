@@ -6,8 +6,6 @@ using WorkingTimeRecorder.Core.Languages;
 using WorkingTimeRecorder.Core.Shared;
 using WorkingTimeRecorder.wpf.Presentation.Core.Dialogs;
 
-using MessageBoxResult = WorkingTimeRecorder.wpf.Presentation.Core.Dialogs.MessageBoxResult;
-
 namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
 {
     /// <summary>
@@ -37,41 +35,41 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
         #region Public methods
 
         /// <inheritdoc />
-        public MessageBoxResult Show(string text)
+        public MessageBoxResults Show(string text)
         {
             return this.Show(text, GetMainWindowTitle());
         }
 
         /// <inheritdoc />
-        public MessageBoxResult Show(string text, string caption)
+        public MessageBoxResults Show(string text, string caption)
         {
             return this.Show(Application.Current?.MainWindow, text, caption, MessageBoxButtons.OK, MessageBoxImages.None);
         }
 
         /// <inheritdoc />
-        public MessageBoxResult Show(string text, string caption, MessageBoxButtons button, MessageBoxImages image)
+        public MessageBoxResults Show(string text, string caption, MessageBoxButtons button, MessageBoxImages image)
         {
             return this.Show(Application.Current?.MainWindow, text, caption, button, image);
         }
 
         /// <inheritdoc />
-        public MessageBoxResult Show(
+        public MessageBoxResults Show(
             string text,
             string caption,
             MessageBoxButtons button,
             MessageBoxImages image,
-            MessageBoxResult? defaultResult)
+            MessageBoxResults? defaultResult)
         {
             return this.Show(Application.Current?.MainWindow, text, caption, button, image, defaultResult);
         }
 
         /// <inheritdoc />
-        public MessageBoxResult Show(
+        public MessageBoxResults Show(
             string text,
             string caption,
             MessageBoxButtons button,
             MessageBoxImages image,
-            MessageBoxResult? defaultResult,
+            MessageBoxResults? defaultResult,
             MessageBoxSettings dialogSettings)
         {
             return this.Show(
@@ -85,37 +83,37 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
         }
 
         /// <inheritdoc />
-        public MessageBoxResult Show(Window owner, string text)
+        public MessageBoxResults Show(Window owner, string text)
         {
             return this.Show(owner, text, GetMainWindowTitle());
         }
 
         /// <inheritdoc />
-        public MessageBoxResult Show(Window owner, string text, string caption)
+        public MessageBoxResults Show(Window owner, string text, string caption)
         {
             return this.Show(owner, text, caption, MessageBoxButtons.OK, MessageBoxImages.None);
         }
 
         /// <inheritdoc />
-        public MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButtons button, MessageBoxImages image)
+        public MessageBoxResults Show(Window owner, string text, string caption, MessageBoxButtons button, MessageBoxImages image)
         {
-            return this.Show(owner, text, caption, button, image, MessageBoxResult.OK);
+            return this.Show(owner, text, caption, button, image, MessageBoxResults.OK);
         }
 
         /// <inheritdoc />
-        public MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButtons button, MessageBoxImages image, MessageBoxResult? defaultResult)
+        public MessageBoxResults Show(Window owner, string text, string caption, MessageBoxButtons button, MessageBoxImages image, MessageBoxResults? defaultResult)
         {
             return this.Show(owner, text, caption, button, image, defaultResult, CreateDefaultDialogSettings(button));
         }
 
         /// <inheritdoc />
-        public MessageBoxResult Show(
+        public MessageBoxResults Show(
             Window owner,
             string text,
             string caption,
             MessageBoxButtons button,
             MessageBoxImages image,
-            MessageBoxResult? defaultResult,
+            MessageBoxResults? defaultResult,
             MessageBoxSettings dialogSettings)
         {
             if (dialogSettings is null)
@@ -142,7 +140,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
 
         #region Private methods
 
-        private MessageBoxResult ShowMessageDialog(Window? owner, string text, string caption, MessageBoxButtons button, MessageBoxImages image, MessageBoxResult? defaultResult, MessageBoxSettings dialogSettings)
+        private MessageBoxResults ShowMessageDialog(Window? owner, string text, string caption, MessageBoxButtons button, MessageBoxImages image, MessageBoxResults? defaultResult, MessageBoxSettings dialogSettings)
         {
             var viewModel = new MessageBoxViewModel(button, defaultResult)
             {
@@ -164,7 +162,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
             try
             {
                 Mouse.OverrideCursor = Cursors.Arrow;
-                return dialogView.ShowDialog() == true ? viewModel.Result : MessageBoxResult.Cancel;
+                return dialogView.ShowDialog() == true ? viewModel.Result : MessageBoxResults.Cancel;
             }
             finally
             {

@@ -3,7 +3,7 @@
     /// <summary>
     /// The message box result that users selected.
     /// </summary>
-    public enum MessageBoxResult
+    public enum MessageBoxResults
     {
         Cancel = -1,
         OK,
