@@ -4,13 +4,40 @@
     <Style x:Key="TaskNoTextBoxStyle" TargetType="TextBox">
         <Style.Setters>
             <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="TextWrapping" Value="NoWrap" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style.Setters>
     </Style>
 
+    <!--Task name Style-->
     <Style x:Key="TaskNameTextBoxStyle" TargetType="TextBox">
         <Style.Setters>
             <Setter Property="IsReadOnly" Value="False" />
             <Setter Property="TextWrapping" Value="NoWrap" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="ToolTip" Value="{Binding Path=Text, RelativeSource={RelativeSource Self}}" />
+        </Style.Setters>
+    </Style>
+
+    <!--Elapsed work time Style-->
+    <Style x:Key="ElapsedWorkTimeTextBoxStyle" TargetType="TextBox">
+        <Style.Setters>
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="TextWrapping" Value="NoWrap" />
+            <Setter Property="HorizontalContentAlignment" Value="Right" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="ToolTip" Value="{Binding Path=Text, RelativeSource={RelativeSource Self}}" />
+        </Style.Setters>
+    </Style>
+
+    <!--Man hours Style-->
+    <Style x:Key="ManHoursTextBoxStyle" TargetType="TextBox">
+        <Style.Setters>
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="TextWrapping" Value="NoWrap" />
+            <Setter Property="HorizontalContentAlignment" Value="Right" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="ToolTip" Value="{Binding Path=Text, RelativeSource={RelativeSource Self}}" />
         </Style.Setters>
     </Style>
 

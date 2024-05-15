@@ -9,6 +9,14 @@
       "Text": "タスク名"
     },
     {
+      "Id": "WorkingTimeRecorder.ElapsedWorkTime",
+      "Text": "経過時間"
+    },
+    {
+      "Id": "WorkingTimeRecorder.ManHours",
+      "Text": "工数 (h)"
+    },
+    {
       "Id": "WorkingTimeRecorder.UnhandledExceptionOccuurred",
       "Text": "予期せぬエラーが発生しました。"
     }

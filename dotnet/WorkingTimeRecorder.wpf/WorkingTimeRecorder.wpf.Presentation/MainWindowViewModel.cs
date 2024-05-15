@@ -25,10 +25,8 @@ namespace WorkingTimeRecorder.wpf.Presentation
             this.TaskList = new TaskViewModel();
             var dummyItem = new TaskItemViewModel()
             {
-                No = 1111111111,
+                No = 1,
                 Name = "Dummy task",
-                WorkingTime = nameof(TaskItemViewModel.WorkingTime),
-                MonHours = nameof(TaskItemViewModel.MonHours),
             };
             this.TaskList.TaskItems.Add(dummyItem);
 
@@ -36,7 +34,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
         }
 
         /// <summary>
-        /// Gets a task list.
+        /// Gets a task list to record the working time.
         /// </summary>
         public TaskViewModel TaskList { get; }
 

@@ -47,6 +47,37 @@
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
+
+            <!--Elapsed work time-->
+            <DataGridTemplateColumn Header="{markup:Localize Id={x:Static shared:WTRTextKeys.ElapsedWorkTime}, DefaultText={x:Static shared:WTRTextKeys.DefaultElapsedWorkTime}}"
+                                    Width="Auto"
+                                    MinWidth="50"
+                                    MaxWidth="100">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBox Style="{StaticResource ElapsedWorkTimeTextBoxStyle}"
+                                 MinWidth="50"
+                                 MaxWidth="100"
+                                 Text="{Binding ElapsedWorkTime, Mode=OneWay}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+            <!--Man-hours-->
+            <DataGridTemplateColumn Header="{markup:Localize Id={x:Static shared:WTRTextKeys.ManHours}, DefaultText={x:Static shared:WTRTextKeys.DefaultManHours}}"
+                                    Width="Auto"
+                                    MinWidth="50"
+                                    MaxWidth="100">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBox Style="{StaticResource ManHoursTextBoxStyle}"
+                                 MinWidth="50"
+                                 MaxWidth="100"
+                                 Text="{Binding ManHours, StringFormat=F2, Mode=OneWay}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
         </DataGrid.Columns>
     </DataGrid>
 </UserControl>

@@ -10,5 +10,9 @@
 
         public const string TaskName = "WorkingTimeRecorder.TaskName";
         public const string DefaultTaskName = "Task name";
+        public const string ElapsedWorkTime = "WorkingTimeRecorder.ElapsedWorkTime";
+        public const string DefaultElapsedWorkTime = "Elapsed work time";
+        public const string ManHours = "WorkingTimeRecorder.ManHours";
+        public const string DefaultManHours = "Man-hours (h)";
     }
 }

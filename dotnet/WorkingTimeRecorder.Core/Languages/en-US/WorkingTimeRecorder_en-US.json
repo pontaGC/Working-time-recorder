@@ -9,6 +9,14 @@
       "Text": "Task name"
     },
     {
+      "Id": "WorkingTimeRecorder.ElapsedWorkTime",
+      "Text": "Elapsed work time"
+    },
+    {
+      "Id": "WorkingTimeRecorder.ManHours",
+      "Text": "Man-hours (h)"
+    },
+    {
       "Id": "WorkingTimeRecorder.UnhandledExceptionOccuurred",
       "Text": "The unexpected error has occurred."
     }

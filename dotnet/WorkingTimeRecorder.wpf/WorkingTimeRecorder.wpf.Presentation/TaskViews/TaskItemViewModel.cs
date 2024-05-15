@@ -11,8 +11,8 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
 
         private int no;
         private string name = string.Empty;
-        private string workingTime = TaskConstants.ZeroWorkingTime;
-        private string manHours = TaskConstants.ZeroMonHours;
+        private string elapsedWorkTime = TaskConstants.ZeroWorkingTime;
+        private double manHours = TaskConstants.ZeroMonHours;
 
         #endregion
 
@@ -37,18 +37,18 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         }
 
         /// <summary>
-        /// Gets or sets a working time (HH:MM:SS) of this task.
+        /// Gets or sets an elapsed work time (HH:MM:SS) of this task.
         /// </summary>
-        public string WorkingTime
+        public string ElapsedWorkTime
         {
-            get => this.workingTime;
-            set => this.SetProperty(ref this.workingTime, value);
+            get => this.elapsedWorkTime;
+            set => this.SetProperty(ref this.elapsedWorkTime, value);
         }
 
         /// <summary>
         /// Gets or sets man-hours of this task.
         /// </summary>
-        public string MonHours
+        public double ManHours
         {
             get => this.manHours;
             set => this.SetProperty(ref this.manHours, value);
