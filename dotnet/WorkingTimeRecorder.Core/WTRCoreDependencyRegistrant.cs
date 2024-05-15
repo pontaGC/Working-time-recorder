@@ -1,6 +1,5 @@
 ﻿using WorkingTimeRecorder.Core.Shared;
 using WorkingTimeRecorder.Core.Injectors;
-using WorkingTimeRecorder.Core.Languages;
 
 namespace WorkingTimeRecorder.Core
 {
