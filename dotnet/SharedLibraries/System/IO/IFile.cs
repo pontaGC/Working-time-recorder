@@ -91,6 +91,84 @@
 
         #endregion
 
+        #region Delete
+
+        /// <summary>
+        /// Deletes the specified file.
+        /// </summary>
+        /// <param name="path">The path of the file to delete.</param>
+        /// <exception cref="ArgumentNullException"><c>path</c> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentException"><c>path</c> is a zero-length string, contains only white space, or contains one or more invalid characters.</exception>
+        /// <exception cref="PathTooLongException">The specified path, file name, or both exceed the system-defined maximum length.</exception>
+        /// <exception cref="IOException">
+        /// The specified file is in use.
+        /// -or-
+        /// There is an open handle on the file, and the operating system is Windows XP or earlier.This open handle can result from enumerating directories and files. </exception>
+        /// <exception cref="DirectoryNotFoundException">The specified path is invalid (for example, it is on an unmapped drive).</exception>
+        /// <exception cref="NotSupportedException"><c>path</c> is in an invalid format</exception>
+        /// <exception cref="UnauthorizedAccessException">
+        /// The caller does not have the required permission.
+        /// -or-n
+        /// The file is an executable file that is in use.
+        /// -or-
+        /// <c>path</c> is a directory.
+        /// </exception>
+        void Delete(string path);
+
+        #endregion
+
+        #region Copy
+
+        /// <summary>
+        /// Copies a file from one directory to another.
+        /// </summary>
+        /// <param name="sourceFilePath">Path of a source file.</param>
+        /// <param name="destFilePath">Path of a destination file.</param>
+        /// <param name="overwrite">Overwrite option.</param>
+        /// <exception cref="ArgumentNullException"><c>sourceFilePath</c> or <c>destFilePath</c> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentException"><para><c>sourceFilePath</c> or <c>destFilePath</c> specifies a directory.</para> or <para><c>sourceFileName</c> or <c>destFileName</c> is a zero-length string, contains only white space, or contains one or more invalid characters.</para></exception>
+        /// <exception cref="PathTooLongException">The specified path, file name, or both exceed the system-defined maximum length.</exception>
+        /// <exception cref="IOException"><c>destFilePath</c> exists and <c>overwrite</c> is <c>false</c>.-or-An I/O error has occurred.</exception>
+        /// <exception cref="FileNotFoundException"><c>sourceFilePath</c> was not found.</exception>
+        /// <exception cref="DirectoryNotFoundException">The path specified in <c>sourceFilePath</c> or <c>destFilePath</c> is invalid (for example, it is on an unmapped drive).</exception>
+        /// <exception cref="NotSupportedException"><c>sourceFilePath</c> or <c>destinationFilePath</c> is in an invalid format.</exception>
+        /// <exception cref="UnauthorizedAccessException">https://learn.microsoft.com/en-us/dotnet/api/system.io.file.copy?view=net-8.0#system-io-file-copy(system-string-system-string-system-boolean):~:text=The%20caller%20does,is%20not%20hidden.</exception>
+        void Copy(string sourceFilePath, string destFilePath, bool overwrite);
+
+        #endregion
+
+        #region Modify
+
+        /// <summary>
+        /// Adds a file extension if the target filename including it.
+        /// </summary>
+        /// <param name="filename">The file name adding a file extension to.</param>
+        /// <param name="extension">The file extension.</param>
+        /// <returns>A file name with <c>extension</c> if <c>filename</c> has no extension. Otherwise; <c>filename</c>.</returns>
+        string AddExtensionIfNotHave(string filename, string extension);
+
+        /// <summary>
+        /// Changes the extension of a path string.
+        /// If <paramref name="extension"/> is set to <c>null</c>, removes an extension from <paramref name="path"/>.
+        /// </summary>
+        /// <param name="path">The path information to modify.</param>
+        /// <param name="extension">
+        /// The new extension (with or without a leading period). Specify <c>null</c> to remove an existing extension from <c>path</c>.
+        /// </param>
+        /// <returns>The modified path. If the change fails, returns an empty string.</returns>
+        string ChangeExtension(string path, string extension);
+
+        /// <summary>
+        /// Changes file name.
+        /// If <paramref name="filename"/> is set to <c>null</c>, removes an existing file name.
+        /// </summary>
+        /// <param name="path">The path information to modify.</param>
+        /// <param name="filename">The new file name.</param>
+        /// <returns>The modified path. If the change fails, returns an empty string.</returns>
+        string ChangeFilename(string path, string filename);
+
+        #endregion
+
         #region Query
 
         /// <summary>
@@ -115,6 +193,17 @@
         /// <param name="path">Path of a file.</param>
         /// <returns>A filename from path</returns>
         string GetFileName(string path);
+
+        /// <summary>
+        /// Gets the directory name from the path.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <returns>
+        /// A directory name which has the file.
+        /// Returns <c>null</c> if path denotes a root directory or is <c>null</c>.
+        /// Returns <paramref name="defaultDirName"/> if path does not contain directory information.
+        /// </returns>
+        string GetDirectoryName(string path, string defaultDirName = "");
 
         /// <summary>
         /// Gets the filename without extension from the file path.

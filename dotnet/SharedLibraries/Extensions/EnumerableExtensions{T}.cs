@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace SharedLibraries.Extensions
 {
@@ -54,6 +55,28 @@ namespace SharedLibraries.Extensions
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Invokes the specified action for elements in the sequence.
+        /// </summary>
+        /// <typeparam name="T">The type of the source enumerable.</typeparam>
+        /// <param name="source">A sequence of values to invoke a transform function on.</param>
+        /// <param name="action">The action.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="action"/> is <c>null</c>.</exception>
+        public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
+        {
+            if (source is null)
+            {
+                return;
+            }
+
+            ArgumentNullException.ThrowIfNull(action);
+
+            foreach(var element in source)
+            {
+                action.Invoke(element);
+            }
         }
     }
 }

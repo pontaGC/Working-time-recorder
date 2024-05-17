@@ -64,6 +64,71 @@ namespace SharedLibraries.Internals.System.IO
 
         #endregion
 
+        #region Delete
+
+        /// <inheritdoc />
+        public void Delete(string path)
+        {
+            var fileInfo = new FileInfo(path);
+            fileInfo.IsReadOnly = false;
+            RetryHelper.InvokeWithRetry(() => fileInfo.Delete());
+        }
+
+        #endregion
+
+        #region Copy
+
+        /// <inheritdoc />
+        public void Copy(string sourceFilePath, string destFilePath, bool overwrite)
+        {
+            RetryHelper.InvokeWithRetry(() => File.Copy(sourceFilePath, destFilePath, overwrite));
+        }
+
+        #endregion
+
+        #region Modify
+
+        /// <inheritdoc />
+        public string AddExtensionIfNotHave(string filename, string extension)
+        {
+            if (this.HasExtension(filename))
+            {
+                return filename;
+            }
+
+            return filename + extension;
+        }
+
+        /// <inheritdoc />
+        public string ChangeExtension(string path, string extension)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                return string.Empty;
+            }
+
+            return Path.ChangeExtension(path, extension);
+        }
+
+        /// <inheritdoc />
+        public string ChangeFilename(string path, string filename)
+        {
+            if (string.IsNullOrEmpty(path) || string.IsNullOrEmpty(filename))
+            {
+                return string.Empty;
+            }
+
+            var directoryName = this.GetDirectoryName(path);
+            if (string.IsNullOrEmpty(directoryName))
+            {
+                return string.Empty;
+            }
+
+            return Path.Combine(directoryName, filename);
+        }
+
+        #endregion
+
         #region Query
 
         /// <inheritdoc />
@@ -98,6 +163,19 @@ namespace SharedLibraries.Internals.System.IO
 
         /// <inheritdoc />
         public string GetFileName(string path) => Path.GetFileName(path);
+
+        /// <inheritdoc />
+        public string GetDirectoryName(string path, string defaultDirName = "")
+        {
+            try
+            {
+                return Path.GetDirectoryName(path) ?? defaultDirName;
+            }
+            catch
+            {
+                return defaultDirName;
+            }
+        }
 
         /// <inheritdoc />
         public string GetFileNameWithoutExtension(string path) => Path.GetFileNameWithoutExtension(path);

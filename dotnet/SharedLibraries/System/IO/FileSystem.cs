@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using SharedLibraries.Internals.System.IO;
 
 namespace SharedLibraries.System.IO
@@ -16,6 +17,6 @@ namespace SharedLibraries.System.IO
         /// <summary>
         /// Gets a directory operation service.
         /// </summary>
-        public static IDirectory Directory { [DebuggerStepThrough] get; } = new DirectoryImpl();
+        public static IDirectory Directory { [DebuggerStepThrough] get; } = new DirectoryImpl(File);
     }
 }
