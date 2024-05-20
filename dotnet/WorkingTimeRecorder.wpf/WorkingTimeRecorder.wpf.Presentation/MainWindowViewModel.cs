@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Commands;
+using WorkingTimeRecorder.Core.Models.Tasks;
 using WorkingTimeRecorder.Core.Mvvm;
 using WorkingTimeRecorder.wpf.Presentation.Core.Dialogs;
 using WorkingTimeRecorder.wpf.Presentation.TaskViews;
@@ -17,16 +18,22 @@ namespace WorkingTimeRecorder.wpf.Presentation
     internal class MainWindowViewModel : ViewModelBase
     {
         private readonly IDialogs dialogs;
+        private readonly TaskItem dummyItemModel;
 
         public MainWindowViewModel(IDialogs dialogs)
         {
             this.dialogs = dialogs;
 
             this.TaskList = new TaskViewModel();
-            var dummyItem = new TaskItemViewModel()
+            this.dummyItemModel = new TaskItem()
+            {
+                Name = "Dummy task",
+            };
+            dummyItemModel.ElapsedWorkTime.Hours = 1;
+            dummyItemModel.ElapsedWorkTime.Miniutes = 20;
+            var dummyItem = new TaskItemViewModel(dummyItemModel)
             {
                 No = 1,
-                Name = "Dummy task",
             };
             this.TaskList.TaskItems.Add(dummyItem);
 
@@ -42,6 +49,8 @@ namespace WorkingTimeRecorder.wpf.Presentation
 
         private void DummyAction()
         {
+            this.dummyItemModel.ElapsedWorkTime.Hours += 1;
+            this.dummyItemModel.ElapsedWorkTime.Miniutes += 1;
         }
     }
 }

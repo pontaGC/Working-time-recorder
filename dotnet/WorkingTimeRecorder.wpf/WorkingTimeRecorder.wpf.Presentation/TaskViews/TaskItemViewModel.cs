@@ -1,4 +1,5 @@
-﻿using WorkingTimeRecorder.Core.Mvvm;
+﻿using WorkingTimeRecorder.Core.Models.Tasks;
+using WorkingTimeRecorder.Core.Mvvm;
 
 namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
 {
@@ -13,6 +14,23 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         private string name = string.Empty;
         private string elapsedWorkTime = TaskConstants.ZeroWorkingTime;
         private double manHours = TaskConstants.ZeroMonHours;
+
+        private readonly ITaskItem model;
+
+        #endregion
+
+        #region Constructors
+
+        public TaskItemViewModel(ITaskItem model)
+        {
+            ArgumentNullException.ThrowIfNull(model);
+
+            this.model = model;
+            this.Name = model.Name;
+            this.ElapsedWorkTime = GetDisplayElapsedWorkTime(model.ElapsedWorkTime.Hours, model.ElapsedWorkTime.Miniutes);
+
+            this.model.ElapsedWorkTime.ChangedEvent += this.OnElapsedWorkTimeChanged;
+        }
 
         #endregion
 
@@ -52,6 +70,24 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         {
             get => this.manHours;
             set => this.SetProperty(ref this.manHours, value);
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        #region Event Handlers
+
+        private void OnElapsedWorkTimeChanged(object? sender, ElapsedWorkTimeChangedEventArgs e)
+        {
+            this.ElapsedWorkTime = GetDisplayElapsedWorkTime(e.After.Hours, e.After.Miniuts);
+        }
+
+        #endregion
+
+        private static string GetDisplayElapsedWorkTime(uint hours, uint minutes)
+        {
+            return $"{hours}:{minutes}";
         }
 
         #endregion
