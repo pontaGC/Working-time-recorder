@@ -29,8 +29,8 @@ namespace WorkingTimeRecorder.wpf.Presentation
             {
                 Name = "Dummy task",
             };
-            dummyItemModel.ElapsedWorkTime.Hours = 1;
-            dummyItemModel.ElapsedWorkTime.Miniutes = 20;
+            dummyItemModel.ElapsedWorkTime.SetHours(1);
+            dummyItemModel.ElapsedWorkTime.SetHours(20);
             var dummyItem = new TaskItemViewModel(dummyItemModel)
             {
                 No = 1,
@@ -49,8 +49,8 @@ namespace WorkingTimeRecorder.wpf.Presentation
 
         private void DummyAction()
         {
-            this.dummyItemModel.ElapsedWorkTime.Hours += 1;
-            this.dummyItemModel.ElapsedWorkTime.Miniutes += 1;
+            this.dummyItemModel.ElapsedWorkTime.IncrementHours();
+            this.dummyItemModel.ElapsedWorkTime.IncrementMinutes();
         }
     }
 }

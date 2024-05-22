@@ -1,32 +1,53 @@
 ﻿namespace WorkingTimeRecorder.Core.Models.Tasks
 {
     /// <summary>
-    /// The elapsed work time of a task.
+    /// Responsible for getting or setting an elapsed work time of a task.
     /// </summary>
-    public interface IElapsedWorkTime
+    public interface IElapsedWorkTime : IReadOnlyElapsedWorkTIme
     {
         #region Events
 
         /// <summary>
         /// This event occurrs when the elapsed work time is changed.
         /// </summary>
-        public event EventHandler<ElapsedWorkTimeChangedEventArgs> ChangedEvent;
+        event EventHandler<ElapsedWorkTimeChangedEventArgs> ChangedEvent;
 
         #endregion
 
-        /// <summary>
-        /// Gets a task ID.
-        /// </summary>
-        public string TaskId { get; set; }
+        #region Methods
 
         /// <summary>
-        /// Gets or sets the hours part of the elapsed work time.
+        /// Sets a task ID.
         /// </summary>
-        public uint Hours { get; set; }
+        /// <param name="newValue">The setting value.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="newValue"/> is <c>null</c>.</exception>
+        /// <returns><c>true</c> if the given value is set, otherwise, <c>false</c>.</returns>
+        bool SetTaskId(string newValue);
 
         /// <summary>
-        /// Gets or sets the minutes part of the elapsed work time.
+        /// Sets a hours part of the elapsed work time.
         /// </summary>
-        public uint Miniutes { get; set; }
+        /// <param name="newValue">The setting value.</param>
+        /// <returns><c>true</c> if the given value is set, otherwise, <c>false</c>.</returns>
+        bool SetHours(uint newValue);
+
+        /// <summary>
+        /// sets the minutes part of the elapsed work time.
+        /// </summary>
+        /// <param name="newValue">The setting value.</param>
+        /// <returns><c>true</c> if the given value is set, otherwise, <c>false</c>.</returns>
+        bool SetMiniutes(uint newValue);
+
+        /// <summary>
+        /// Added one hour.
+        /// </summary>
+        void IncrementHours();
+
+        /// <summary>
+        /// Added one minute.
+        /// </summary>
+        void IncrementMinutes();
+
+        #endregion
     }
 }

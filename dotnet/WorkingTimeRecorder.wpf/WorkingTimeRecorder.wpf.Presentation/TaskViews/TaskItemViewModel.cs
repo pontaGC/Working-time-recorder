@@ -80,14 +80,14 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
 
         private void OnElapsedWorkTimeChanged(object? sender, ElapsedWorkTimeChangedEventArgs e)
         {
-            this.ElapsedWorkTime = GetDisplayElapsedWorkTime(e.After.Hours, e.After.Miniuts);
+            this.ElapsedWorkTime = GetDisplayElapsedWorkTime(e.After.Hours, e.After.Miniutes);
         }
 
         #endregion
 
         private static string GetDisplayElapsedWorkTime(uint hours, uint minutes)
         {
-            return $"{hours}:{minutes}";
+            return $"{hours}:{minutes:D2}";
         }
 
         #endregion

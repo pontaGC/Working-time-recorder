@@ -3,7 +3,7 @@
     /// <summary>
     /// The snapshot of the <see cref="ElapsedWorkTime"/>.
     /// </summary>
-    public class ElapsedWorkTimeValueObject
+    public class ElapsedWorkTimeValueObject : IReadOnlyElapsedWorkTIme
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ElapsedWorkTimeValueObject"/> class.
@@ -17,7 +17,7 @@
 
             this.TaskId = source.TaskId;
             this.Hours = source.Hours;
-            this.Miniuts = source.Miniutes;
+            this.Miniutes = source.Miniutes;
         }
 
         /// <summary>
@@ -33,22 +33,16 @@
 
             this.TaskId = taskId;
             this.Hours = hours;
-            this.Miniuts = minutes;
+            this.Miniutes = minutes;
         }
 
-        /// <summary>
-        /// Gets a task ID.
-        /// </summary>
+        /// <inheritdoc />
         public string TaskId { get; }
 
-        /// <summary>
-        /// Gets the hours part of the elapsed work time.
-        /// </summary>
+        /// <inheritdoc />
         public uint Hours { get; }
 
-        /// <summary>
-        /// Gets the minutes part of the elapsed work time.
-        /// </summary>
-        public uint Miniuts { get; }
+        /// <inheritdoc />
+        public uint Miniutes { get; }
     }
 }

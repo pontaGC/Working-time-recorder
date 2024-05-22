@@ -2,11 +2,19 @@
 
 namespace WorkingTimeRecorder.Core.Models.Tasks
 {
+    /// <summary>
+    /// The elapsed work time changed event args.
+    /// </summary>
     public class ElapsedWorkTimeChangedEventArgs : EventArgs
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ElapsedWorkTimeChangedEventArgs"/> class.
+        /// </summary>
+        /// <param name="before">The before form.</param>
+        /// <param name="after">The after form.</param>
         public ElapsedWorkTimeChangedEventArgs(
-            ElapsedWorkTimeValueObject before,
-            ElapsedWorkTimeValueObject after)
+            IReadOnlyElapsedWorkTIme before,
+            IReadOnlyElapsedWorkTIme after)
         {
             ArgumentNullException.ThrowIfNull(before);
             ArgumentNullException.ThrowIfNull(after);
@@ -15,10 +23,16 @@ namespace WorkingTimeRecorder.Core.Models.Tasks
             this.After = after;
         }
 
+        /// <summary>
+        /// Gets the elapsed work time before changing.
+        /// </summary>
         [NotNull]
-        public ElapsedWorkTimeValueObject Before { get; }
+        public IReadOnlyElapsedWorkTIme Before { get; }
 
+        /// <summary>
+        /// Gets the elapsed work time after changing.
+        /// </summary>
         [NotNull]
-        public ElapsedWorkTimeValueObject After { get; }
+        public IReadOnlyElapsedWorkTIme After { get; }
     }
 }

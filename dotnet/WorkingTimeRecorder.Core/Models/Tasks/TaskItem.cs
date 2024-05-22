@@ -28,7 +28,7 @@ namespace WorkingTimeRecorder.Core.Models.Tasks
             ArgumentNullException.ThrowIfNull(id);
 
             this.Id = id;
-            this.ElapsedWorkTime = new ElapsedWorkTime() { TaskId = id, };
+            this.ElapsedWorkTime = new ElapsedWorkTime(id);
         }
 
         #endregion
