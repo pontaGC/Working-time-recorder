@@ -78,6 +78,20 @@
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
 
+            <!--Recording target-->
+            <DataGridTemplateColumn Header="{markup:Localize Id={x:Static shared:WTRTextKeys.RecordingTarget}, DefaultText={x:Static shared:WTRTextKeys.DefaultRecordingTarget}}"
+                                    Width="Auto"
+                                    MinWidth="50"
+                                    MaxWidth="100">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <RadioButton Style="{StaticResource RecordingTargetRadioButtonStyle}"
+                                     GroupName="RecordingTargetGroup"
+                                     IsChecked="{Binding IsRecordingTarget, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
         </DataGrid.Columns>
     </DataGrid>
 </UserControl>

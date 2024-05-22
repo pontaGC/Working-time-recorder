@@ -41,5 +41,13 @@
             <Setter Property="ToolTip" Value="{Binding Path=Text, RelativeSource={RelativeSource Self}}" />
         </Style.Setters>
     </Style>
+    
+    <!--Recording target style-->
+    <Style x:Key="RecordingTargetRadioButtonStyle" TargetType="RadioButton">
+        <Style.Setters>
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style.Setters>
+    </Style>
 
 </ResourceDictionary>

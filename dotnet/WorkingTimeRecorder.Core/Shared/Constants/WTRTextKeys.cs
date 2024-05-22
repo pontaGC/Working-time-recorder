@@ -14,5 +14,7 @@
         public const string DefaultElapsedWorkTime = "Elapsed work time";
         public const string ManHours = "WorkingTimeRecorder.ManHours";
         public const string DefaultManHours = "Man-hours (h)";
+        public const string RecordingTarget = "WorkingTimeRecorder.RecordingTarget";
+        public const string DefaultRecordingTarget = "Recording Target";
     }
 }

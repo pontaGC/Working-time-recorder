@@ -11,6 +11,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         #region Fields
 
         private int no;
+        private bool isRecordingTarget;
         private string name = string.Empty;
         private string elapsedWorkTime = TaskConstants.ZeroWorkingTime;
         private double manHours = TaskConstants.ZeroMonHours;
@@ -70,6 +71,15 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         {
             get => this.manHours;
             set => this.SetProperty(ref this.manHours, value);
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating this task item is the target which is the subject to elapsed time recording.
+        /// </summary>
+        public bool IsRecordingTarget
+        {
+            get => this.isRecordingTarget;
+            set => this.SetProperty(ref this.isRecordingTarget, value);
         }
 
         #endregion

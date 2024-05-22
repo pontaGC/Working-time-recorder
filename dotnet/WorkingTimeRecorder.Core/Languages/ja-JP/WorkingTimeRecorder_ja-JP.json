@@ -19,6 +19,10 @@
     {
       "Id": "WorkingTimeRecorder.UnhandledExceptionOccuurred",
       "Text": "予期せぬエラーが発生しました。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.RecordingTarget",
+      "Text": "記録対象"
     }
   ]
 }
