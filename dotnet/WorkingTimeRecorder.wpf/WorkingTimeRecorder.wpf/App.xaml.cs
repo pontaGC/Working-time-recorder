@@ -11,6 +11,9 @@ using WorkingTimeRecorder.Core.Shared;
 using WorkingTimeRecorder.Core;
 using WorkingTimeRecorder.Core.Languages;
 using SharedLibraries.Extensions;
+using WorkingTimeRecorder.Core.Models.Tasks;
+using WorkingTimeRecorder.wpf.Presentation.Core.Dialogs;
+using System.Globalization;
 
 namespace WorkingTimeRecorder.wpf
 {
@@ -19,11 +22,22 @@ namespace WorkingTimeRecorder.wpf
     /// </summary>
     public partial class App
     {
+        #region Fields
+
+        private readonly IIoCContainer container;
+
+        #endregion
+
         #region Constructors
 
         static App()
         {
             Config = ConfigurationFactory.Create();
+        }
+
+        public App()
+        {
+            this.container = ContainerFactory.Create();
         }
 
         #endregion
@@ -44,11 +58,12 @@ namespace WorkingTimeRecorder.wpf
         {
             this.RegisterAppUnhandledExceptionHandler();
 
-            var container = ContainerFactory.Create();
-            RegisterDependencies(container, new WTRCoreDependencyRegistrant());
-            RegisterDependencies(container, new PresentationDependencyRegistrant());
+            this.Properties.Add(AppSettingsKeys.AppConfig, Config);
 
-            SetCulture(container.Resolve<ICultureSetter>());
+            RegisterDependencies(this.container, new WTRCoreDependencyRegistrant());
+            RegisterDependencies(this.container, new PresentationDependencyRegistrant());
+
+            InitializeAppSettings(this.container);
 
             var mainWindowFactory = container.Resolve<IMainWindowFactory>();
             var mainWindow = mainWindowFactory.Create();
@@ -60,10 +75,46 @@ namespace WorkingTimeRecorder.wpf
             registrant.Register(container);
         }
 
+        private static void InitializeAppSettings(IIoCContainer container)
+        {
+            var cultureSetter = container.Resolve<ICultureSetter>();
+            var dialogs = container.Resolve<IDialogs>();
+            var wtrSystem = container.Resolve<IWTRSystem>();
+
+            SetCulture(cultureSetter);
+            SetManHoursPerPersonDay(dialogs, wtrSystem.LanguageLocalizer);
+        }
+
         private static void SetCulture(ICultureSetter cultureSetter)
         {
             var appCulture = Config.GetCulture() ?? CultureNameConstants.DefaultCultureName; ;
             cultureSetter.SetCulture(appCulture);
+        }
+
+        private static void SetManHoursPerPersonDay(IDialogs dialogs, ILanguageLocalizer languageLocalizer)
+        { 
+            var personDay = Config.GetPersonDay(out var personDayString);
+            if (personDay.HasValue)
+            {
+                Tasks.PersonDay = personDay.Value;
+                return;
+            }
+
+            Tasks.PersonDay = ManHoursConstants.DefaultPersonDay;
+
+            var messageFormat = languageLocalizer.Localize(
+                "WorkingTimeRecorder.appsettings.InvalidPersonDayFormat",
+                "PersonDay value ({0}) in appsettings.json is invalid.\nThe default value of Man-hours per person day, {1} (h) , is used.");
+            var errorMessage = string.Format(
+                CultureInfo.InvariantCulture,
+                messageFormat,
+                personDayString,
+                ManHoursConstants.DefaultPersonDay);
+            dialogs.MessageBox.Show(
+                errorMessage,
+                languageLocalizer.LocalizeAppTitle(),
+                MessageBoxButtons.OK,
+                MessageBoxImages.Warning);
         }
 
         #region Unhandled exception handlers

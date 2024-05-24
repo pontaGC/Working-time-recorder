@@ -8,6 +8,11 @@ namespace WorkingTimeRecorder.Core.Models.Tasks
     [Serializable]
     public class Tasks : Entity
     {
+        /// <summary>
+        /// Gets a man-hours per person-day.
+        /// </summary>
+        public static double PersonDay { get; set; }
+
         /// <inheritdoc />
         public override string Id { get; protected set; }
 

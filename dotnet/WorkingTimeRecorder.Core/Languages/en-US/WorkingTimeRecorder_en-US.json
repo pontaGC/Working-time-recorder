@@ -17,12 +17,16 @@
       "Text": "Man-hours (h)"
     },
     {
+      "Id": "WorkingTimeRecorder.RecordingTarget",
+      "Text": "Recording Target"
+    },
+    {
       "Id": "WorkingTimeRecorder.UnhandledExceptionOccuurred",
       "Text": "The unexpected error has occurred."
     },
     {
-      "Id": "WorkingTimeRecorder.RecordingTarget",
-      "Text": "Recording Target"
+      "Id": "WorkingTimeRecorder.appsettings.InvalidPersonDayFormat",
+      "Text": "PersonDay value ({0}) in appsettings.json is invalid.\nThe default value of Man-hours per person day, {1} (h) , is used."
     }
   ]
 }

@@ -17,12 +17,16 @@
       "Text": "工数 (h)"
     },
     {
+      "Id": "WorkingTimeRecorder.RecordingTarget",
+      "Text": "記録対象"
+    },
+    {
       "Id": "WorkingTimeRecorder.UnhandledExceptionOccuurred",
       "Text": "予期せぬエラーが発生しました。"
     },
     {
-      "Id": "WorkingTimeRecorder.RecordingTarget",
-      "Text": "記録対象"
+      "Id": "WorkingTimeRecorder.appsettings.InvalidPersonDayFormat",
+      "Text": "appsettings.jsonに設定されたPersonDayの値({0})が不正です。\\n既定値の1人日の工数{1}(h)を使用します。"
     }
   ]
 }
