@@ -152,11 +152,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
                 DialogIcon = owner?.Icon ?? Application.Current?.MainWindow?.Icon,
             };
 
-            var dialogView = new MessageBoxView()
-            {
-                Owner = owner,
-                DataContext = viewModel,
-            };
+            var dialogView = CreateMessageBoxView(owner, viewModel);
 
             var beforeCursor = owner?.Cursor;
             try
@@ -171,6 +167,25 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs.MessageBox
                     Mouse.OverrideCursor = beforeCursor;
                 }
             }
+        }
+
+        private static MessageBoxView CreateMessageBoxView(Window? ownerWindow, object dataContext)
+        {
+            if (ownerWindow is null)
+            {
+                return new MessageBoxView()
+                {
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                    DataContext = dataContext,
+                };
+            }
+
+            return new MessageBoxView()
+            {
+                Owner = ownerWindow,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                DataContext = dataContext,
+            };
         }
 
         private MessageBoxSettings CreateDefaultDialogSettings(MessageBoxButtons button)
