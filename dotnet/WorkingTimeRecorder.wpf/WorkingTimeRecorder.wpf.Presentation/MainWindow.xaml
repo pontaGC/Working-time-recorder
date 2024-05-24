@@ -13,8 +13,20 @@
         Height="450" Width="800"
         d:DataContext="{d:DesignInstance local:MainWindowViewModel, IsDesignTimeCreatable=False}">
     <Grid>
-        <taskview:TaskView DataContext="{Binding TaskList, Mode=OneWay}" />
-        <Button
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--Main menu-->
+        <Menu Grid.Row="0">
+            <MenuItem Header="{markup:Localize Id={x:Static shared:WTRTextKeys.SettingsMenuItem},DefaultText={x:Static shared:WTRTextKeys.DefaultSettingsMenuItem}}">
+                <MenuItem Header="{markup:Localize Id={x:Static shared:WTRTextKeys.LanguageSettingMenuItem},DefaultText={x:Static shared:WTRTextKeys.DefaultLanguageSettingMenuItem}}" />
+                <MenuItem Header="{markup:Localize Id={x:Static shared:WTRTextKeys.PersonDayMenuItem},DefaultText={x:Static shared:WTRTextKeys.DefaultPersonDayMenuItem}}" />
+            </MenuItem>
+        </Menu>
+        <taskview:TaskView Grid.Row="1" DataContext="{Binding TaskList, Mode=OneWay}" />
+        <Button Grid.Row="2"
             Width="100" Height="40"
             Content="Dummy" Command="{Binding DummyCommand, Mode=OneTime}" />
     </Grid>

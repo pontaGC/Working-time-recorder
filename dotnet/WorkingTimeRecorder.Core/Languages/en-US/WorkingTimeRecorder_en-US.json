@@ -21,6 +21,18 @@
       "Text": "Recording Target"
     },
     {
+      "Id": "WorkingTimeRecorder.MenuItem.Settings",
+      "Text": "Settings"
+    },
+    {
+      "Id": "WorkingTimeRecorder.MenuItem.Settings.Languages",
+      "Text": "Languages"
+    },
+    {
+      "Id": "WorkingTimeRecorder.MenuItem.Settings.PersonDay",
+      "Text": "Man-hours per person day"
+    },
+    {
       "Id": "WorkingTimeRecorder.UnhandledExceptionOccuurred",
       "Text": "The unexpected error has occurred."
     },

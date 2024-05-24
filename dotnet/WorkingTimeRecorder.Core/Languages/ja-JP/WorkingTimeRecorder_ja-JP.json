@@ -21,6 +21,18 @@
       "Text": "記録対象"
     },
     {
+      "Id": "WorkingTimeRecorder.MenuItem.Settings",
+      "Text": "設定"
+    },
+    {
+      "Id": "WorkingTimeRecorder.MenuItem.Settings.Languages",
+      "Text": "言語"
+    },
+    {
+      "Id": "WorkingTimeRecorder.MenuItem.Settings.PersonDay",
+      "Text": "1人日の工数"
+    },
+    {
       "Id": "WorkingTimeRecorder.UnhandledExceptionOccuurred",
       "Text": "予期せぬエラーが発生しました。"
     },
