@@ -23,6 +23,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <local:MessageBoxImageConverter x:Key="MessageBoxImageConverter" />
+            <local:MessageBoxImageVisibilityConverter x:Key="MessageBoxImageVisibilityConverter" />
         </ResourceDictionary>
     </Window.Resources>
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
@@ -41,7 +42,8 @@
             <Viewbox VerticalAlignment="Top"
                      Margin="0, 0, 10, 0"
                      Width="30"
-                     Height="30">
+                     Height="30"
+                     Visibility="{Binding MessageBoxImage, Converter={StaticResource MessageBoxImageVisibilityConverter}, Mode=OneWay}">
                 <ContentPresenter Content="{Binding MessageBoxImage, Mode=OneTime, Converter={StaticResource MessageBoxImageConverter}}" />
             </Viewbox>
             <!--Text-->
