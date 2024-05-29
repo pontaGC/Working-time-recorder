@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 
 namespace SharedLibraries.Logging
 {
@@ -85,7 +86,7 @@ namespace SharedLibraries.Logging
                 }
             }
 
-            throw new ArgumentException($"The logger is not found (logger name: {loggerName})", nameof(loggerName));
+            return EmptyLogger.Instance;
         }
 
         /// <inheritdoc />
