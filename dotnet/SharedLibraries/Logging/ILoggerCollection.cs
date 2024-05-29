@@ -1,7 +1,7 @@
 ﻿namespace SharedLibraries.Logging
 {
     /// <summary>
-    /// The logger collection.
+    /// The logger collection. This is thread-safe and read-only.
     /// </summary>
     public interface ILoggerCollection : IReadOnlyCollection<ILogger>
     {

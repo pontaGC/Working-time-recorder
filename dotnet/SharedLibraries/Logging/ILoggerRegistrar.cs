@@ -1,9 +1,9 @@
 ﻿namespace SharedLibraries.Logging
 {
     /// <summary>
-    /// Reponsible for stocking the registered logger providers.
+    /// Reponsible for stocking the registered logger.
     /// </summary>
-    public interface ILoggerProviderRegistrar
+    public interface ILoggerRegistrar
     {
         /// <summary>
         /// Registers a logger provider.

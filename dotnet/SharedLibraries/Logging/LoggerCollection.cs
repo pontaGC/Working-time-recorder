@@ -5,7 +5,7 @@ namespace SharedLibraries.Logging
     /// <summary>
     /// The logger collection. This is a read-only collection.
     /// </summary>
-    public class LoggerCollection : ILoggerCollection, ILoggerProviderRegistrar
+    public class LoggerCollection : ILoggerCollection, ILoggerRegistrar
     {
         #region Fields
 
@@ -45,7 +45,7 @@ namespace SharedLibraries.Logging
         #region Explict interface implementation
 
         /// <inheritdoc />
-        void ILoggerProviderRegistrar.Register(ILoggerProvider loggerProvider)
+        void ILoggerRegistrar.Register(ILoggerProvider loggerProvider)
         {
             if (loggerProvider is null)
             {
