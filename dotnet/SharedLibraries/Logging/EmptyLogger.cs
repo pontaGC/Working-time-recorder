@@ -1,7 +1,7 @@
 ﻿namespace SharedLibraries.Logging
 {
     /// <summary>
-    /// The logger which does nothing.
+    /// The logger which does nothing. This instance is singleton.
     /// </summary>
     public sealed class EmptyLogger : ILogger
     {
@@ -11,6 +11,9 @@
 
         private static readonly Lazy<EmptyLogger> lazyInstance = new Lazy<EmptyLogger>();
 
+        /// <summary>
+        /// Gets a singleton instance.
+        /// </summary>
         public static EmptyLogger Instance => lazyInstance.Value;
 
         /// <inheritdoc />
