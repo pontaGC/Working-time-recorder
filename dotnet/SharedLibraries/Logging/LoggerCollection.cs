@@ -54,8 +54,11 @@ namespace SharedLibraries.Logging
 
             lock (this.syncRoot)
             {
-                var loggers = loggerProvider.Provide();
-                this.logggers.Add(loggers.Name, loggers);
+                var logger = loggerProvider.Provide();
+                if (!this.logggers.TryAdd(logger.Name, logger))
+                {
+                    this.logggers[logger.Name] = logger;
+                }
             }
         }
 
