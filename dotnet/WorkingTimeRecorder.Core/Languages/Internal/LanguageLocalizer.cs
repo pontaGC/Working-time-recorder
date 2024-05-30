@@ -39,13 +39,15 @@ namespace WorkingTimeRecorder.Core.Languages.Internal
                     if (this.appCultureInfo is null)
                     {
                         this.appCultureInfo = new AppCultureInfo(CultureInfo.CreateSpecificCulture(CultureNameConstants.DefaultCultureName));
-                        Debug.Fail("The culture information has not been initialized.");
                     }
 
                     return this.appCultureInfo;
                 }
             }
         }
+
+        /// <inheritdoc />
+        public string NextCultureName { get; set; }
 
         #endregion
 
