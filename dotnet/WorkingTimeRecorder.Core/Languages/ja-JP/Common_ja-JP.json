@@ -15,6 +15,18 @@
     {
       "Id": "No",
       "Text": "いいえ"
+    },
+    {
+      "Id": "Information",
+      "Text": "情報"
+    },
+    {
+      "Id": "Warning",
+      "Text": "警告"
+    },
+    {
+      "Id": "Error",
+      "Text": "エラー"
     }
   ]
 }

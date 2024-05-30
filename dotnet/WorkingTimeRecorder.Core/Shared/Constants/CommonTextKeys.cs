@@ -13,5 +13,12 @@
         public const string DefaultYes = "Yes";
         public const string No = "No";
         public const string DefaultNo = "No";
+
+        public const string Information = "Information";
+        public const string DefaultInformation = "Information";
+        public const string Warning = "Warning";
+        public const string DefaultWarning = "Warning";
+        public const string Error = "Error";
+        public const string DefaultError = "Error";
     }
 }
