@@ -37,6 +37,12 @@ namespace WorkingTimeRecorder.Core.Injectors
         }
 
         /// <inheritdoc />
+        void IIoCContainer.RegisterAll<TService, TImplementation>(InstanceLifeStyle lifeStyle)
+        {
+            this.container.Collection.Append<TService, TImplementation>(LifeStyles[lifeStyle]);
+        }
+
+        /// <inheritdoc />
         void IIoCContainer.RegisterInstance<TInstance>(TInstance instance) where TInstance : class
         {
             this.container.RegisterInstance<TInstance>(instance);

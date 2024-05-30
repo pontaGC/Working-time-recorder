@@ -23,6 +23,16 @@
            where TImplementation : class;
 
         /// <summary>
+        /// Registers an implementation type to a collection of the interface.
+        /// </summary>
+        /// <typeparam name="TService">The interface or base type that can be used to retrieve the instances.</typeparam>
+        /// <typeparam name="TImplementation">The implementation type of <c>TInterface</c>.</typeparam>
+        /// <param name="lifeStyle">The life style of a registered instance. Default value is transient.</param>
+        void RegisterAll<TService, TImplementation>(InstanceLifeStyle lifeStyle = InstanceLifeStyle.Transient)
+            where TService : class
+            where TImplementation : class, TService;
+
+        /// <summary>
         /// Registers a single instance that will be returned when an instance of type.
         /// </summary>
         /// <typeparam name="TInstance">The type of instance to register.</typeparam>
