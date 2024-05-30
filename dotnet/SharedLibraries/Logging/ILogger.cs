@@ -1,4 +1,6 @@
-﻿namespace SharedLibraries.Logging
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace SharedLibraries.Logging
 {
     /// <summary>
     /// Responsible for logging.
@@ -8,6 +10,7 @@
         /// <summary>
         /// Gets a logger name as ID of loggers.
         /// </summary>
+        [NotNull]
         string Name { get; }
 
         /// <summary>
