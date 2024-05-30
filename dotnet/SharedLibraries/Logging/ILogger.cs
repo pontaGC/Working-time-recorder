@@ -14,6 +14,12 @@ namespace SharedLibraries.Logging
         string Name { get; }
 
         /// <summary>
+        /// Notifies a log message without log severity (severity is <c>None</c>.
+        /// </summary>
+        /// <param name="message">The log message.</param>
+        void Log(string message);
+
+        /// <summary>
         /// Notifies a log message.
         /// </summary>
         /// <param name="severity">The log severity.</param>

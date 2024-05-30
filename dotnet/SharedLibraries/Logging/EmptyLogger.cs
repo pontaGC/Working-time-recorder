@@ -3,9 +3,10 @@
     /// <summary>
     /// The logger which does nothing. This instance is singleton.
     /// </summary>
-    public sealed class EmptyLogger : ILogger
+    public sealed class EmptyLogger : LoggerBase
     {
         private EmptyLogger()
+            : base("Logger.Empty")
         {
         }
 
@@ -17,10 +18,7 @@
         public static EmptyLogger Instance => lazyInstance.Value;
 
         /// <inheritdoc />
-        public string Name => "Logger.Empty";
-
-        /// <inheritdoc />
-        public void Log(Severity severity, string message)
+        public override void Log(Severity severity, string message)
         {
         }
     }
