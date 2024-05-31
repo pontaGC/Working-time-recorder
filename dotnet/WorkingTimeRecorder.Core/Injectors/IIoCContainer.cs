@@ -42,6 +42,14 @@
             where TInstance : class;
 
         /// <summary>
+        /// Gets all registered instances of the interface.
+        /// </summary>
+        /// <typeparam name="TInstance">The type of the requested instance.</typeparam>
+        /// <returns>A sequence of instances of the requested interface</returns>
+        IEnumerable<TInstance> GetAllInstances<TInstance>()
+            where TInstance : class;
+
+        /// <summary>
         /// Resolves an instance that has been registered.
         /// </summary>
         /// <typeparam name="TInterface">The interface or base type that can be used to retrieve the instances.</typeparam>

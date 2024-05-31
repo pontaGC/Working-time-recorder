@@ -49,6 +49,12 @@ namespace WorkingTimeRecorder.Core.Injectors
         }
 
         /// <inheritdoc />
+        IEnumerable<TInstance> IIoCContainer.GetAllInstances<TInstance>() where TInstance : class
+        {
+            return this.container.GetAllInstances<TInstance>();
+        }
+
+        /// <inheritdoc />
         TInterface IIoCContainer.Resolve<TInterface>() where TInterface : class
         {
             return this.container.GetInstance<TInterface>();
