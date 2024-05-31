@@ -19,7 +19,8 @@
         /// Registers a new instances of the implementation type which life style is transient.
         /// </summary>
         /// <typeparam name="TImplementation">The implementation type.</typeparam>
-        void Register<TImplementation>()
+        /// <param name="lifeStyle">The life style of a registered instance. Default value is transient.</param>
+        void Register<TImplementation>(InstanceLifeStyle lifeStyle = InstanceLifeStyle.Transient)
            where TImplementation : class;
 
         /// <summary>

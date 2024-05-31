@@ -31,9 +31,9 @@ namespace WorkingTimeRecorder.Core.Injectors
         }
 
         /// <inheritdoc />
-        void IIoCContainer.Register<TImplementation>() where TImplementation : class
+        void IIoCContainer.Register<TImplementation>(InstanceLifeStyle lifeStyle) where TImplementation : class
         {
-            this.container.Register<TImplementation>();
+            this.container.Register<TImplementation>(LifeStyles[lifeStyle]);
         }
 
         /// <inheritdoc />
