@@ -10,7 +10,7 @@
         {
         }
 
-        private static readonly Lazy<EmptyLogger> lazyInstance = new Lazy<EmptyLogger>();
+        private static readonly Lazy<EmptyLogger> lazyInstance = new Lazy<EmptyLogger>(() => new EmptyLogger());
 
         /// <summary>
         /// Gets a singleton instance.
