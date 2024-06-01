@@ -5,6 +5,7 @@ using System.Windows.Markup;
 using System.Windows.Threading;
 
 using WorkingTimeRecorder.Core.Icons;
+using WorkingTimeRecorder.wpf.Presentation.Core.Extensions;
 using WorkingTimeRecorder.wpf.Presentation.Core.Icons;
 
 namespace WorkingTimeRecorder.wpf.Presentation.Icons
@@ -42,7 +43,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Icons
         {
             if (this.IconImages.TryGetValue(iconKey, out var iconElement))
             {
-                return iconElement;
+                return iconElement.Copy();
             }
 
             var icon = this.LoadIcon<UIElement>(iconKey);
@@ -52,7 +53,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Icons
             }
 
             this.AddOrUpdateIcon(iconKey, icon);
-            return icon;
+            return icon.Copy();
         }
 
         #endregion
