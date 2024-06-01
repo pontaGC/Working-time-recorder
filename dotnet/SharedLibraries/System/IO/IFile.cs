@@ -89,6 +89,41 @@
         /// <exception>See <see href="https://learn.microsoft.com/en-us/dotnet/api/system.io.file.open?view=net-8.0"/>.</exception>
         FileStream OpenRead(string filePath);
 
+        /// <summary>
+        /// Opens or create a file on the specified path as read-only.
+        /// </summary>
+        /// <param name="filePath">The file path to create a stream.</param>
+        /// <returns>A file stream contained by the specified <c>filePath</c>.</returns>
+        /// <exception>See <see href="https://learn.microsoft.com/en-us/dotnet/api/system.io.file.open?view=net-8.0"/>.</exception>
+        FileStream OpenOrCreate(string filePath);
+
+        /// <summary>
+        /// Opens or create a file on the specified path as read-only.
+        /// </summary>
+        /// <param name="filePath">The file path to create a stream.</param>
+        /// <param name="access">
+        /// A bitwise combination of the enumeration values that determines how the file can be accessed by the <see cref="FileStream"/> object.
+        /// This also determines the values returned by the <c>CanRead</c> and <c>CanWrite</c> properties of the <see cref="FileStream"/> object.
+        /// <c>CanSeek</c> is true if path specifies a disk file.
+        /// </param>
+        /// <returns>A file stream contained by the specified <c>filePath</c>.</returns>
+        /// <exception>See <see href="https://learn.microsoft.com/en-us/dotnet/api/system.io.file.open?view=net-8.0"/>.</exception>
+        FileStream OpenOrCreate(string filePath, FileAccess access);
+
+        /// <summary>
+        /// Opens or create a file on the specified path as read-only.
+        /// </summary>
+        /// <param name="filePath">The file path to create a stream.</param>
+        /// <param name="access">
+        /// A bitwise combination of the enumeration values that determines how the file can be accessed by the <see cref="FileStream"/> object.
+        /// This also determines the values returned by the <c>CanRead</c> and <c>CanWrite</c> properties of the <see cref="FileStream"/> object.
+        /// <c>CanSeek</c> is true if path specifies a disk file.
+        /// </param>
+        /// <param name="share">A bitwise combination of the enumeration values that determines how the file will be shared by processes.</param>
+        /// <returns>A file stream contained by the specified <c>filePath</c>.</returns>
+        /// <exception>See <see href="https://learn.microsoft.com/en-us/dotnet/api/system.io.file.open?view=net-8.0"/>.</exception>
+        FileStream OpenOrCreate(string filePath, FileAccess access, FileShare share);
+
         #endregion
 
         #region Delete

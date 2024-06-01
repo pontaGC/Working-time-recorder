@@ -62,6 +62,24 @@ namespace SharedLibraries.Internals.System.IO
             return RetryHelper.InvokeWithRetry(() => File.OpenRead(filePath));
         }
 
+        /// <inheritdoc />
+        public FileStream OpenOrCreate(string filePath)
+        {
+            return RetryHelper.InvokeWithRetry(() => File.Open(filePath, FileMode.OpenOrCreate));
+        }
+
+        /// <inheritdoc />
+        public FileStream OpenOrCreate(string filePath, FileAccess access)
+        {
+            return RetryHelper.InvokeWithRetry(() => File.Open(filePath, FileMode.OpenOrCreate, access));
+        }
+
+        /// <inheritdoc />
+        public FileStream OpenOrCreate(string filePath, FileAccess access, FileShare share)
+        {
+            return RetryHelper.InvokeWithRetry(() => File.Open(filePath, FileMode.OpenOrCreate, access, share));
+        }
+
         #endregion
 
         #region Delete
