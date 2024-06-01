@@ -73,7 +73,7 @@
                         <TextBox Style="{StaticResource ManHoursTextBoxStyle}"
                                  MinWidth="50"
                                  MaxWidth="100"
-                                 Text="{Binding ManHours, StringFormat=F2, Mode=OneWay}" />
+                                 Text="{Binding ManHours, StringFormat={x:Static shared:ManHoursConstants.StringFormat}, Mode=OneWay}" />
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
