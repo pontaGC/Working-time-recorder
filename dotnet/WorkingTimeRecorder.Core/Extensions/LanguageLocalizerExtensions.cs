@@ -64,5 +64,38 @@ namespace WorkingTimeRecorder.Core.Extensions
         {
             return @this.Localize(CommonTextKeys.No, CommonTextKeys.DefaultNo);
         }
+
+        /// <summary>
+        /// Gets the localized text of "Information" key.
+        /// </summary>
+        /// <param name="this">The instance.</param>
+        /// <returns>The localized text.</returns>
+        [DebuggerStepThrough]
+        public static string LocalizeInformation(this ILanguageLocalizer @this)
+        {
+            return @this.Localize(CommonTextKeys.Information, CommonTextKeys.DefaultInformation);
+        }
+
+        /// <summary>
+        /// Gets the localized text of "Warning" key.
+        /// </summary>
+        /// <param name="this">The instance.</param>
+        /// <returns>The localized text.</returns>
+        [DebuggerStepThrough]
+        public static string LocalizeWarning(this ILanguageLocalizer @this)
+        {
+            return @this.Localize(CommonTextKeys.Warning, CommonTextKeys.DefaultWarning);
+        }
+
+        /// <summary>
+        /// Gets the localized text of "Error" key.
+        /// </summary>
+        /// <param name="this">The instance.</param>
+        /// <returns>The localized text.</returns>
+        [DebuggerStepThrough]
+        public static string LocalizeError(this ILanguageLocalizer @this)
+        {
+            return @this.Localize(CommonTextKeys.Error, CommonTextKeys.DefaultError);
+        }
     }
 }

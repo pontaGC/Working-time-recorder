@@ -21,6 +21,18 @@
       "Text": "記録対象"
     },
     {
+      "Id": "WorkingTimeRecorder.LanguageSetting.Title",
+      "Text": "言語設定"
+    },
+    {
+      "Id": "WorkingTimeRecorder.LanguageSetting.SelectDisplayLanguage",
+      "Text": "表示したい言語を選択してください。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.LanguageSetting.NeedToRestartToolToDisplaySelectedLanguage",
+      "Text": "表示言語の変更を実行するためには、再起動が必要です。"
+    },
+    {
       "Id": "WorkingTimeRecorder.MenuItem.Settings",
       "Text": "設定"
     },
@@ -37,8 +49,16 @@
       "Text": "予期せぬエラーが発生しました。"
     },
     {
+      "Id": "WorkingTimeRecorder.appsettings.FailedToRead",
+      "Text": "appsettings.jsonの読み込みに失敗しました。アプリケーションを起動できません。\n\n{0}"
+    },
+    {
       "Id": "WorkingTimeRecorder.appsettings.InvalidPersonDayFormat",
-      "Text": "appsettings.jsonに設定されたPersonDayの値({0})が不正です。\\n既定値の1人日の工数{1}(h)を使用します。"
+      "Text": "appsettings.jsonに設定されたPersonDayの値({0})が不正です。既定値の1人日の工数({1})を使用します。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.appsettings.FailedSaveFile",
+      "Text": "appsettings.jsonの保存に失敗しました。"
     }
   ]
 }

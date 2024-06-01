@@ -1,19 +1,26 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Threading;
 
+using SharedLibraries.Extensions;
+using SharedLibraries.Logging;
+
 using Microsoft.Extensions.Configuration;
+
 using WorkingTimeRecorder.Core.Extensions;
 using WorkingTimeRecorder.wpf.Presentation;
 using WorkingTimeRecorder.wpf.Presentation.Core;
 using WorkingTimeRecorder.Core.Injectors;
-using WorkingTimeRecorder.Core.Shared;
 using WorkingTimeRecorder.Core;
 using WorkingTimeRecorder.Core.Languages;
-using SharedLibraries.Extensions;
 using WorkingTimeRecorder.Core.Models.Tasks;
 using WorkingTimeRecorder.wpf.Presentation.Core.Dialogs;
-using System.Globalization;
+using WorkingTimeRecorder.Core.Configurations;
+using WorkingTimeRecorder.Core.Shared;
 
 namespace WorkingTimeRecorder.wpf
 {
@@ -32,7 +39,21 @@ namespace WorkingTimeRecorder.wpf
 
         static App()
         {
-            Config = ConfigurationFactory.Create();
+            Config = ConfigurationFactory.Create(
+                (exception) =>
+                {
+                    MessageBox.Show(
+                        exception.GetMessageWithInnerEx(Environment.NewLine),
+                        WTRTextKeys.DefaultTitle,
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Stop);
+                });
+
+            if (Config is null)
+            {
+                // Do not execute application.
+                Environment.Exit(-1);
+            }
         }
 
         public App()
@@ -53,17 +74,27 @@ namespace WorkingTimeRecorder.wpf
 
         #region Methods
 
+        #region Startup
+
         /// <inheritdoc />
         protected override void OnStartup(StartupEventArgs e)
-        {
+        {         
             this.RegisterAppUnhandledExceptionHandler();
-
-            this.Properties.Add(AppSettingsKeys.AppConfig, Config);
 
             RegisterDependencies(this.container, new WTRCoreDependencyRegistrant());
             RegisterDependencies(this.container, new PresentationDependencyRegistrant());
 
-            InitializeAppSettings(this.container);
+            RegisterLoggers(container);
+
+            var appSettings = Config.GetAppSettings(this.ShowAppSettingsReadError);
+            if (appSettings is null)
+            {
+                Environment.Exit(1);
+                return;
+            }
+
+            var wtrSystem = this.container.Resolve<IWTRSystem>();
+            SetAppSettings(appSettings, wtrSystem);
 
             var mainWindowFactory = container.Resolve<IMainWindowFactory>();
             var mainWindow = mainWindowFactory.Create();
@@ -75,47 +106,180 @@ namespace WorkingTimeRecorder.wpf
             registrant.Register(container);
         }
 
-        private static void InitializeAppSettings(IIoCContainer container)
+        private static void RegisterLoggers(IIoCContainer container)
         {
-            var cultureSetter = container.Resolve<ICultureSetter>();
-            var dialogs = container.Resolve<IDialogs>();
-            var wtrSystem = container.Resolve<IWTRSystem>();
+            var loggerRegistrar = container.Resolve<ILoggerRegistrar>();
 
-            SetCulture(cultureSetter);
-            SetManHoursPerPersonDay(dialogs, wtrSystem.LanguageLocalizer);
+            foreach(var loggerProvider in container.GetAllInstances<ILoggerProvider>())
+            {
+                loggerRegistrar.Register(loggerProvider);
+            }
         }
 
-        private static void SetCulture(ICultureSetter cultureSetter)
+        private void ShowAppSettingsReadError(Exception errorException)
         {
-            var appCulture = Config.GetCulture() ?? CultureNameConstants.DefaultCultureName; ;
+            // Tries to load culture only in order to localize message
+            try
+            {
+                var culture = Config.GetCulture();
+                var cultureSetter = this.container.Resolve<ICultureSetter>();
+                cultureSetter.SetCulture(culture);
+            }
+            catch { }
+
+            var wtrSystem = this.container.Resolve<IWTRSystem>();
+            var dialogs = this.container.Resolve<IDialogs>();
+
+            var errorMessageFormat = wtrSystem.LanguageLocalizer.Localize(
+                "WorkingTimeRecorder.appsettings.FailedToRead",
+                "Failed to load appsettings.json. Unable to start application.\n\n{0}");
+            var errorMessage = string.Format(
+                CultureInfo.InvariantCulture,
+                errorMessageFormat,
+                errorException.GetMessageWithInnerEx(Environment.NewLine));
+
+            dialogs.MessageBox.Show(
+                errorMessage,
+                wtrSystem.LanguageLocalizer.LocalizeAppTitle(),
+                MessageBoxButtons.OK,
+                MessageBoxImages.Error);
+        }
+
+        private static void SetAppSettings(AppSettings appSettings, IWTRSystem wtrSystem)
+        {
+            SetCulture(appSettings, wtrSystem.CultureSetter);
+            SetManHoursPerPersonDay(appSettings, wtrSystem.LoggerCollection, wtrSystem.LanguageLocalizer);
+        }
+
+        private static void SetCulture(AppSettings appSettings, ICultureSetter cultureSetter)
+        {
+            var appCulture = appSettings.Culture ?? CultureNameConstants.DefaultCultureName;
             cultureSetter.SetCulture(appCulture);
         }
 
-        private static void SetManHoursPerPersonDay(IDialogs dialogs, ILanguageLocalizer languageLocalizer)
-        { 
-            var personDay = Config.GetPersonDay(out var personDayString);
-            if (personDay.HasValue)
+        private static void SetManHoursPerPersonDay(
+            AppSettings appSettings,
+            ILoggerCollection loggerCollection,
+            ILanguageLocalizer languageLocalizer)
+        {
+            var personDay = appSettings.PersonDay;
+            if (ManHoursConstants.MinimumPersonDay < personDay && personDay <= ManHoursConstants.MaxPersonDay)
             {
-                Tasks.PersonDay = personDay.Value;
+                Tasks.PersonDay = Math.Round(personDay, ManHoursConstants.NumberOfDecimalPoints);
                 return;
             }
 
             Tasks.PersonDay = ManHoursConstants.DefaultPersonDay;
 
+            // Notify of using default man-hours per person day
             var messageFormat = languageLocalizer.Localize(
                 "WorkingTimeRecorder.appsettings.InvalidPersonDayFormat",
-                "PersonDay value ({0}) in appsettings.json is invalid.\nThe default value of Man-hours per person day, {1} (h) , is used.");
+                "PersonDay value ({0}) in appsettings.json is invalid. The default value of man-hours per person day ({1}) is used.");
             var errorMessage = string.Format(
                 CultureInfo.InvariantCulture,
                 messageFormat,
-                personDayString,
+                personDay,
                 ManHoursConstants.DefaultPersonDay);
-            dialogs.MessageBox.Show(
-                errorMessage,
-                languageLocalizer.LocalizeAppTitle(),
-                MessageBoxButtons.OK,
-                MessageBoxImages.Warning);
+
+            var logger = loggerCollection.Resolve(LogConstants.OutputWindow);
+            logger.Log(Severity.Warning, errorMessage);
         }
+
+        #endregion
+
+        #region Exit
+
+        /// <inheritdoc />
+        protected override void OnExit(ExitEventArgs e)
+        {
+            this.SaveAppSettngs();
+            base.OnExit(e);
+        }
+
+        private void SaveAppSettngs()
+        {
+            var appSettings = Config.GetAppSettings(e => { });
+            if (appSettings is null)
+            {
+                appSettings = new AppSettings()
+                {
+                    IsModified = true,
+                    Culture = CultureNameConstants.DefaultCultureName,
+                    PersonDay = ManHoursConstants.DefaultPersonDay,
+                };
+            }
+            else
+            {
+                this.SetAppSettingsToSave(appSettings);
+            }
+
+            if (!appSettings.IsModified)
+            {
+                return;
+            }
+
+            try
+            {
+                var appSettingsFilePath = GetAppSettingsFilePath();
+                appSettings.SaveFile(appSettingsFilePath, GetAppSettingsJsonSerializerOptions());
+            }
+            catch (AppSettingsSaveFailureException e)
+            {
+                var wtrSystem = this.container.Resolve<IWTRSystem>();
+                MessageBox.Show(
+                    e.GetMessageWithInnerEx(Environment.NewLine),
+                    wtrSystem.LanguageLocalizer.LocalizeAppTitle(),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+
+        private void SetAppSettingsToSave(AppSettings appSettings)
+        {
+            var isModified = false;
+            var wtrSystem = this.container.Resolve<IWTRSystem>();
+
+            // Sets culture
+            var nextCultureName = wtrSystem.CultureSetter.NextCultureName;
+            if (string.IsNullOrEmpty(appSettings.Culture))
+            {
+                // Sets default culture just in case
+                appSettings.Culture = nextCultureName ?? CultureNameConstants.DefaultCultureName;
+                isModified = true;
+            }
+            else if (!string.IsNullOrEmpty(nextCultureName) && appSettings.Culture != nextCultureName)
+            {
+                appSettings.Culture = nextCultureName;
+                isModified = true;
+            }
+
+            // Sets man-hours per person-day
+            if (appSettings.PersonDay != Tasks.PersonDay)
+            {
+                appSettings.PersonDay = Tasks.PersonDay;
+                isModified = true;
+            }
+
+            // Sets modified flag
+            appSettings.IsModified = isModified;
+        }
+
+        private static JsonSerializerOptions GetAppSettingsJsonSerializerOptions()
+        {
+            return new JsonSerializerOptions()
+            {
+                WriteIndented = true,
+            };
+        }
+
+        private static string GetAppSettingsFilePath()
+        {
+            var exeAssembly = Assembly.GetExecutingAssembly();
+            var directoryPath = Path.GetDirectoryName(exeAssembly.Location);
+            return Path.Combine(directoryPath, "appsettings.json");
+        }
+
+        #endregion
 
         #region Unhandled exception handlers
 
@@ -185,7 +349,7 @@ namespace WorkingTimeRecorder.wpf
                 return mainMessage;
             }
 
-            return $"{mainMessage}\r\n{ex.GetMessageWithInnerEx()}";
+            return $"{mainMessage}\r\n{ex.GetMessageWithInnerEx(Environment.NewLine)}";
         }
 
         #endregion

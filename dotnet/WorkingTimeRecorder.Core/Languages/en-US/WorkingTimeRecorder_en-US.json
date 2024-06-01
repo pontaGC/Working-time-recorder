@@ -21,6 +21,18 @@
       "Text": "Recording Target"
     },
     {
+      "Id": "WorkingTimeRecorder.LanguageSetting.Title",
+      "Text": "Language setting"
+    },
+    {
+      "Id": "WorkingTimeRecorder.LanguageSetting.SelectDisplayLanguage",
+      "Text": "Please select a display language."
+    },
+    {
+      "Id": "WorkingTimeRecorder.LanguageSetting.NeedToRestartToolToDisplaySelectedLanguage",
+      "Text": "A reboot is required to change the display language."
+    },
+    {
       "Id": "WorkingTimeRecorder.MenuItem.Settings",
       "Text": "Settings"
     },
@@ -37,8 +49,16 @@
       "Text": "The unexpected error has occurred."
     },
     {
+      "Id": "WorkingTimeRecorder.appsettings.FailedToRead",
+      "Text": "Failed to load appsettings.json. Unable to start application.\n\n{0}"
+    },
+    {
       "Id": "WorkingTimeRecorder.appsettings.InvalidPersonDayFormat",
-      "Text": "PersonDay value ({0}) in appsettings.json is invalid.\nThe default value of Man-hours per person day, {1} (h) , is used."
+      "Text": "PersonDay value ({0}) in appsettings.json is invalid. The default value of man-hours per person day ({1}) is used."
+    },
+    {
+      "Id": "WorkingTimeRecorder.appsettings.FailedSaveFile",
+      "Text": "Failed to save appsettings.json."
     }
   ]
 }

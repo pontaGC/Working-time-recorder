@@ -8,26 +8,35 @@
         xmlns:markup="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Markup;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
         xmlns:local="clr-namespace:WorkingTimeRecorder.wpf.Presentation"
         xmlns:taskview="clr-namespace:WorkingTimeRecorder.wpf.Presentation.TaskViews"
+        xmlns:outputWindow="clr-namespace:WorkingTimeRecorder.wpf.Presentation.OutputWindows"
         mc:Ignorable="d"
         Title="{markup:Localize Id={x:Static shared:WTRTextKeys.Title},DefaultText={x:Static shared:WTRTextKeys.DefaultTitle}}"
         Height="450" Width="800"
         d:DataContext="{d:DesignInstance local:MainWindowViewModel, IsDesignTimeCreatable=False}">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WorkingTimeRecorder.wpf.Presentation.Core;component/Styles/MenuStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>          
+        </ResourceDictionary>
+    </Window.Resources>
+    <DockPanel>
         <!--Main menu-->
-        <Menu Grid.Row="0">
-            <MenuItem Header="{markup:Localize Id={x:Static shared:WTRTextKeys.SettingsMenuItem},DefaultText={x:Static shared:WTRTextKeys.DefaultSettingsMenuItem}}">
-                <MenuItem Header="{markup:Localize Id={x:Static shared:WTRTextKeys.LanguageSettingMenuItem},DefaultText={x:Static shared:WTRTextKeys.DefaultLanguageSettingMenuItem}}" />
-                <MenuItem Header="{markup:Localize Id={x:Static shared:WTRTextKeys.PersonDayMenuItem},DefaultText={x:Static shared:WTRTextKeys.DefaultPersonDayMenuItem}}" />
-            </MenuItem>
-        </Menu>
-        <taskview:TaskView Grid.Row="1" DataContext="{Binding TaskList, Mode=OneWay}" />
-        <Button Grid.Row="2"
-            Width="100" Height="40"
-            Content="Dummy" Command="{Binding DummyCommand, Mode=OneTime}" />
-    </Grid>
+        <Menu DockPanel.Dock="Top"
+              Style="{StaticResource MainMenuStyle}"
+              ItemsSource="{Binding MainMenuItems, Mode=OneTime}" />
+
+        <taskview:TaskView DockPanel.Dock="Top" Grid.Row="1" DataContext="{Binding TaskList, Mode=OneWay}" />
+        <Button DockPanel.Dock="Top"
+                Width="100"
+                Height="40"
+                Content="Dummy" Command="{Binding DummyCommand, Mode=OneTime}" />
+        <outputWindow:OutputWindow x:Name="OutputWindow"
+                                   DockPanel.Dock="Bottom"
+                                   Height="150"
+                                   MinHeight="50"                                   
+                                   Width="Auto"
+                                   VerticalAlignment="Bottom"
+                                   DataContext="{Binding OutputWindow, Mode=OneWay}" />
+    </DockPanel>
 </Window>

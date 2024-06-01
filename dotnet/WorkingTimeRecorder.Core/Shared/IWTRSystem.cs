@@ -1,4 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+
+using SharedLibraries.Logging;
+
 using WorkingTimeRecorder.Core.Languages;
 
 namespace WorkingTimeRecorder.Core.Shared
@@ -15,6 +18,20 @@ namespace WorkingTimeRecorder.Core.Shared
         /// </summary>
         [NotNull]
         ILanguageLocalizer LanguageLocalizer { get; }
+
+        /// <summary>
+        /// Gets a culture setter.
+        /// </summary>
+        ICultureSetter CultureSetter { get; }
+
+        #endregion
+
+        #region Logging
+
+        /// <summary>
+        /// Gets a collection of loggers.
+        /// </summary>
+        ILoggerCollection LoggerCollection { get; }
 
         #endregion
     }

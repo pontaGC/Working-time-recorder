@@ -6,6 +6,11 @@
     public interface ICultureSetter
     {
         /// <summary>
+        /// Gets or sets the next culture name to display the language user selected after rebooting the tool.
+        /// </summary>
+        string NextCultureName { get; set; }
+
+        /// <summary>
         /// Sets a new culture.
         /// </summary>
         /// <param name="cultureName">The name of culture to set.</param>

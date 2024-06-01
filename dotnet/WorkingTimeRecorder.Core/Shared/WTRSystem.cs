@@ -1,4 +1,6 @@
-﻿using WorkingTimeRecorder.Core.Languages;
+﻿using SharedLibraries.Logging;
+
+using WorkingTimeRecorder.Core.Languages;
 using WorkingTimeRecorder.Core.Languages.Internal;
 
 namespace WorkingTimeRecorder.Core.Shared
@@ -23,14 +25,26 @@ namespace WorkingTimeRecorder.Core.Shared
         #region Globalization
 
         /// <inheritdoc />
-        public ILanguageLocalizer LanguageLocalizer => lazyLanguageLocalizer.Value;
+        public ILanguageLocalizer LanguageLocalizer => this.lazyLanguageLocalizer.Value;
+
+        /// <inheritdoc />
+        public ICultureSetter CultureSetter => this.lazyLanguageLocalizer.Value;
+
+        private readonly Lazy<LanguageLocalizer> lazyLanguageLocalizer = new Lazy<LanguageLocalizer>(() => new LanguageLocalizer());
+
+        #endregion
+
+        #region Logging
+
+        /// <inheritdoc />
+        public ILoggerCollection LoggerCollection => this.lazyLoggerCollection.Value;
 
         /// <summary>
-        /// Gets a culture setter.
+        /// Gets a logger registrar.
         /// </summary>
-        internal ICultureSetter CultureSetter => lazyLanguageLocalizer.Value;
+        internal ILoggerRegistrar LoggerRegistrar => this.lazyLoggerCollection.Value;
 
-        private static readonly Lazy<LanguageLocalizer> lazyLanguageLocalizer = new Lazy<LanguageLocalizer>(() => new LanguageLocalizer());
+        private readonly Lazy<LoggerCollection> lazyLoggerCollection = new Lazy<LoggerCollection>();
 
         #endregion
     }

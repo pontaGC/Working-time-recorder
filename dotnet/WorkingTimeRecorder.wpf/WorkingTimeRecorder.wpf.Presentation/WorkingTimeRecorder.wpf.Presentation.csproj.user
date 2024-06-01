@@ -2,15 +2,24 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="AppSettings\Languages\LanguageSettingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="TaskViews\TaskView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="AppSettings\Languages\LanguageSettingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Dialogs\MessageBox\MessageBoxView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="OutputWindows\OutputWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TaskViews\TaskView.xaml">
