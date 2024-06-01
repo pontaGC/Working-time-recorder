@@ -31,12 +31,21 @@
                 Width="100"
                 Height="40"
                 Content="Dummy" Command="{Binding DummyCommand, Mode=OneTime}" />
-        <outputWindow:OutputWindow x:Name="OutputWindow"
-                                   DockPanel.Dock="Bottom"
-                                   Height="150"
-                                   MinHeight="50"                                   
-                                   Width="Auto"
-                                   VerticalAlignment="Bottom"
-                                   DataContext="{Binding OutputWindow, Mode=OneWay}" />
+        <StackPanel x:Name="OutputWindowPanel"
+                    DockPanel.Dock="Bottom" 
+                    VerticalAlignment="Bottom">
+            <Label Grid.Row="0"
+                   Height="Auto"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Top"
+                   Background="LightSteelBlue"
+                   Content="{markup:Localize Id={x:Static shared:WTRTextKeys.OutputWindowTitle}, DefaultText={x:Static shared:WTRTextKeys.DefaultOutputWindowTitle}}" />
+            <outputWindow:OutputWindow x:Name="OutputWindow"
+                                       Grid.Row="1"
+                                       Height="150"
+                                       MinHeight="50"                                   
+                                       Width="Auto"
+                                       DataContext="{Binding OutputWindow, Mode=OneWay}" />
+        </StackPanel>
     </DockPanel>
 </Window>

@@ -21,6 +21,10 @@
       "Text": "Recording Target"
     },
     {
+      "Id": "WorkingTimeRecorder.OutputWindow.Title",
+      "Text": "Output"
+    },
+    {
       "Id": "WorkingTimeRecorder.LanguageSetting.Title",
       "Text": "Language setting"
     },

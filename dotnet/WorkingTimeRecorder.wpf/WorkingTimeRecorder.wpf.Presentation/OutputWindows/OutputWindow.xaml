@@ -16,9 +16,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="0"
+        <ListBox x:Name="MessageListBox"
+                 Grid.Row="0"
                  HorizontalContentAlignment="Left"
                  VerticalContentAlignment="Top"
+                 Background="AliceBlue"
                  SelectionMode="Single"
                  SelectedItem="{Binding SelectedMessage, Mode=OneWayToSource}"
                  ItemsSource="{Binding Messages, Mode=OneTime}"
@@ -34,7 +36,7 @@
                                  Width="11"
                                  Height="11"
                                  Visibility="{Binding Severity, Converter={StaticResource OutputWindowSeverityVisibilityConverter}, Mode=OneTime}">
-                            <ContentPresenter Content="{Binding Severity, Mode=OneTime, Converter={StaticResource OutputWindowSeverityImageConverter}}" />
+                            <ContentPresenter x:Name="MessageImage" Content="{Binding Severity, Mode=OneTime, Converter={StaticResource OutputWindowSeverityImageConverter}}" />
                         </Viewbox>
                         <!--Message text-->
                         <TextBox BorderThickness="0"

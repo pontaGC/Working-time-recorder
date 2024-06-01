@@ -21,6 +21,10 @@
       "Text": "記録対象"
     },
     {
+      "Id": "WorkingTimeRecorder.OutputWindow.Title",
+      "Text": "出力"
+    },
+    {
       "Id": "WorkingTimeRecorder.LanguageSetting.Title",
       "Text": "言語設定"
     },

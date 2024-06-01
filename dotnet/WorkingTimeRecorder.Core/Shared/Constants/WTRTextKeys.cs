@@ -17,16 +17,11 @@
         public const string RecordingTarget = "WorkingTimeRecorder.RecordingTarget";
         public const string DefaultRecordingTarget = "Recording Target";
 
+        public const string OutputWindowTitle = "WorkingTimeRecorder.OutputWindow.Title";
+        public const string DefaultOutputWindowTitle = "Output";
+
         public const string LanguageSettingTitle = "WorkingTimeRecorder.LanguageSetting.Title";
         public const string DefaultLanguageSettingTitle = "Language setting";
-    //{
-    //  "Id": "WorkingTimeRecorder.LanguageSetting.SelectDisplayLanguage",
-    //  "Text": "Please select a display language."
-    //},
-    //{
-    //"Id": "WorkingTimeRecorder.LanguageSetting.NeedToRestartToolToDisplaySelectedLanguage",
-    //  "Text": "A reboot is required to change the display language."
-    //},
 
         // Menu items
         public const string SettingsMenuItem = "WorkingTimeRecorder.MenuItem.Settings";
