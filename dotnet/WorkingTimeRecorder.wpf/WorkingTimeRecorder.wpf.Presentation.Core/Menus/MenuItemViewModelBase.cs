@@ -10,6 +10,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Menus
     /// <summary>
     /// The base view-model of the menu item.
     /// </summary>
+    /// <remarks>It is recommended to have <see cref="IMenuItemBuilder"/> generate an instance of the imeplementation class.</remarks>
     public abstract class MenuItemViewModelBase : ViewModelBase
     {
         private bool isEnabled = true;
