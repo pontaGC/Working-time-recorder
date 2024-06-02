@@ -5,12 +5,18 @@
     <Compile Update="AppSettings\Languages\LanguageSettingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="AppSettings\PersonDay\ManHoursPersonDaySettingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="TaskViews\TaskView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AppSettings\Languages\LanguageSettingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AppSettings\PersonDay\ManHoursPersonDaySettingView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Dialogs\MessageBox\MessageBoxView.xaml">

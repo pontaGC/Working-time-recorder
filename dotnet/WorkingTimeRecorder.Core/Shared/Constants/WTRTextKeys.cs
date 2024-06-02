@@ -23,6 +23,9 @@
         public const string LanguageSettingTitle = "WorkingTimeRecorder.LanguageSetting.Title";
         public const string DefaultLanguageSettingTitle = "Language setting";
 
+        public const string ManHoursPersonDaySettingTitle = "WorkingTimeRecorder.ManHoursPerPersonDaySetting.Title";
+        public const string DefaultManHoursPersonDaySettingTitle = "Setting: Man-hours per person day";
+
         // Menu items
         public const string SettingsMenuItem = "WorkingTimeRecorder.MenuItem.Settings";
         public const string DefaultSettingsMenuItem = "Settings";

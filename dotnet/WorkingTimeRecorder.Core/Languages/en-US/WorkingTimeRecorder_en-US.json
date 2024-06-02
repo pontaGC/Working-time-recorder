@@ -37,6 +37,10 @@
       "Text": "A reboot is required to change the display language."
     },
     {
+      "Id": "WorkingTimeRecorder.ManHoursPerPersonDaySetting.Title",
+      "Text": "Setting: Man-hours per person day"
+    },
+    {
       "Id": "WorkingTimeRecorder.MenuItem.Settings",
       "Text": "Settings"
     },

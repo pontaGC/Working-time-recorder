@@ -1,0 +1,21 @@
+﻿<Window x:Class="WorkingTimeRecorder.wpf.Presentation.AppSettings.PersonDay.ManHoursPersonDaySettingView"
+        x:ClassModifier="internal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorkingTimeRecorder.wpf.Presentation.AppSettings.PersonDay"
+        xmlns:markup="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Markup;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
+        xmlns:shared="clr-namespace:WorkingTimeRecorder.Core.Shared;assembly=WorkingTimeRecorder.Core"
+        xmlns:behaviors="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Behaviors;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
+        behaviors:CloseWindowBehavior.Close="{Binding DialogResult, Mode=OneWay}"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        Title="{markup:Localize Id={x:Static shared:WTRTextKeys.ManHoursPersonDaySettingTitle}, DefaultText={x:Static shared:WTRTextKeys.DefaultManHoursPersonDaySettingTitle}}"
+        Height="200" Width="400"
+        d:Width="600"
+        d:DataContext="{d:DesignInstance local:ManHoursPersonDaySettingViewModel, IsDesignTimeCreatable=False}">
+    <Grid>
+        
+    </Grid>
+</Window>

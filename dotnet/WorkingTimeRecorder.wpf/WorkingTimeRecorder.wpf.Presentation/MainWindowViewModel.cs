@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+
 using Prism.Commands;
+
 using WorkingTimeRecorder.Core.Models.Tasks;
 using WorkingTimeRecorder.Core.Mvvm;
 using WorkingTimeRecorder.Core.Shared;
@@ -75,7 +72,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
             this.TaskList.TaskItems.Add(dummyItem2vm);
             this.TaskList.TaskItems.Add(dummyItem3vm);
 
-            this.BuildMainMenuItems();
+            this.BuildMainMenuItems(new MainMenuItemBuilder(this.wtrSystem, this.dialogs));
 
             this.DummyCommand = new DelegateCommand(this.DummyAction);
         }
@@ -101,15 +98,10 @@ namespace WorkingTimeRecorder.wpf.Presentation
 
         public ICommand DummyCommand { get; }
 
-        private void BuildMainMenuItems()
+        private void BuildMainMenuItems(IMenuItemBuilder menuItemBuilder)
         {
-            // Settings menu items
-            var rootSettingItem = new EmptyCommandMenuItemViewModel()
-            {
-                Header = this.wtrSystem.LanguageLocalizer.Localize(WTRTextKeys.SettingsMenuItem, WTRTextKeys.DefaultSettingsMenuItem),
-            };
-            rootSettingItem.SubItems.Add(new LanguageSettingMenuItemViewModel(this.wtrSystem, this.dialogs));
-            this.MainMenuItems.Add(rootSettingItem);
+            var menuItems = menuItemBuilder.Build();
+            this.MainMenuItems.AddRange(menuItems);
         }
 
         private int dummyCount;

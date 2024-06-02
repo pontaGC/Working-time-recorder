@@ -37,6 +37,10 @@
       "Text": "表示言語の変更を実行するためには、再起動が必要です。"
     },
     {
+      "Id": "WorkingTimeRecorder.ManHoursPerPersonDaySetting.Title",
+      "Text": "設定: 1人日の工数"
+    },
+    {
       "Id": "WorkingTimeRecorder.MenuItem.Settings",
       "Text": "設定"
     },
