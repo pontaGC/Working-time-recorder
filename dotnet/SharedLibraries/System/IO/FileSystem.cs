@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
+
 using SharedLibraries.Internals.System.IO;
 
 namespace SharedLibraries.System.IO
