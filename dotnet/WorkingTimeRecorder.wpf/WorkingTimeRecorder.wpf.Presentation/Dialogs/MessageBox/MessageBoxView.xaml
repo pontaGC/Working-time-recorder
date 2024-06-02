@@ -16,7 +16,7 @@
         SizeToContent="WidthAndHeight"
         MinWidth="250"
         MaxWidth="450"
-        MinHeight="200"
+        MinHeight="150"
         ResizeMode="NoResize"
         d:DesignHeight="200" d:DesignWidth="450"
         d:DataContext="{d:DesignInstance local:MessageBoxViewModel, IsDesignTimeCreatable=False}">
@@ -94,8 +94,6 @@
                     Content="{markup:Localize Id={x:Static shared:CommonTextKeys.Cancel}, DefaultText={x:Static shared:CommonTextKeys.DefaultCancel}}"
                     Command="{Binding CancelCommand, Mode=OneTime}"
                     Visibility="{Binding CancelButtonVisibility, Mode=OneTime}" />
-
         </StackPanel>
-
     </Grid>
 </Window>
