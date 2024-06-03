@@ -47,10 +47,7 @@ namespace SharedLibraries.Logging
         /// <inheritdoc />
         void ILoggerRegistrar.Register(ILoggerProvider loggerProvider)
         {
-            if (loggerProvider is null)
-            {
-                throw new ArgumentNullException(nameof(loggerProvider));
-            }
+            ArgumentNullException.ThrowIfNull(loggerProvider);
 
             lock (this.syncRoot)
             {
