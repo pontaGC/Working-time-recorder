@@ -16,7 +16,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.AppSettings
         #region Fields
 
         private readonly IDialogs dialogs;
-        private readonly IWTRSystem wtrSystem;
+        private readonly IWTRSvc wtrSvc;
 
         #endregion
 
@@ -25,11 +25,11 @@ namespace WorkingTimeRecorder.wpf.Presentation.AppSettings
         /// <summary>
         /// Initializes a new instance of the <see cref="SetLanguageCommand"/> class.
         /// </summary>
-        /// <param name="wtrSystem">The WTR system.</param>
+        /// <param name="wtrSvc">The WTR service.</param>
         /// <param name="dialogs">The dialogs.</param>
-        public SetLanguageCommand(IWTRSystem wtrSystem, IDialogs dialogs)
+        public SetLanguageCommand(IWTRSvc wtrSvc, IDialogs dialogs)
         {
-            this.wtrSystem = wtrSystem;
+            this.wtrSvc = wtrSvc;
             this.dialogs = dialogs;
         }
 
@@ -58,14 +58,14 @@ namespace WorkingTimeRecorder.wpf.Presentation.AppSettings
         /// <inheritdoc />
         protected override bool CanExecute(object parameter)
         {
-            var currentCultureName = this.wtrSystem.LanguageLocalizer.CurrentCulture.Name;
+            var currentCultureName = this.wtrSvc.LanguageLocalizer.CurrentCulture.Name;
             return currentCultureName != this.SelectedCultureName;
         }
 
         /// <inheritdoc />
         protected override void Execute(object parameter)
         {
-            this.wtrSystem.CultureSetter.NextCultureName = this.SelectedCultureName;
+            this.wtrSvc.CultureSetter.NextCultureName = this.SelectedCultureName;
 
             var ownerWindow = parameter as Window;
             this.ShowNotifyNeedToReboot(ownerWindow);
@@ -75,13 +75,13 @@ namespace WorkingTimeRecorder.wpf.Presentation.AppSettings
 
         private MessageBoxResults ShowNotifyNeedToReboot(Window? ownerWindow)
         {
-            var message = this.wtrSystem.LanguageLocalizer.Localize(
+            var message = this.wtrSvc.LanguageLocalizer.Localize(
                 "WorkingTimeRecorder.LanguageSetting.NeedToRestartToolToDisplaySelectedLanguage",
                 "A reboot is required to change the display language.");
             return this.dialogs.MessageBox.Show(
                 ownerWindow,
                 message,
-                this.wtrSystem.LanguageLocalizer.LocalizeAppTitle(),
+                this.wtrSvc.LanguageLocalizer.LocalizeAppTitle(),
                 MessageBoxButtons.OK,
                 MessageBoxImages.None);
         }

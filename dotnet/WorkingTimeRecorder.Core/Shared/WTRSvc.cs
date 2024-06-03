@@ -6,19 +6,19 @@ using WorkingTimeRecorder.Core.Languages.Internal;
 namespace WorkingTimeRecorder.Core.Shared
 {
     /// <summary>
-    /// The implementation of the <see cref="IWTRSystem"/>.
+    /// The implementation of the <see cref="IWTRSvc"/>.
     /// </summary>
-    public sealed class WTRSystem : IWTRSystem
+    public sealed class WTRSvc : IWTRSvc
     {
         #region Singleton instance constructors
 
-        static WTRSystem()
+        static WTRSvc()
         {
         }
 
-        private WTRSystem() { }
+        private WTRSvc() { }
 
-        public static WTRSystem Instance { get; } = new WTRSystem();
+        public static WTRSvc Instance { get; } = new WTRSvc();
 
         #endregion
 

@@ -17,7 +17,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.MainMenuItems
     {
         #region Fields
 
-        private readonly IWTRSystem wtrSytem;
+        private readonly IWTRSvc wtrSvc;
         private readonly IDialogs dialogs;
 
         #endregion
@@ -27,14 +27,14 @@ namespace WorkingTimeRecorder.wpf.Presentation.MainMenuItems
         /// <summary>
         /// Initializes a new instance of the <see cref="LanguageSettingMenuItemViewModel"/> class.
         /// </summary>
-        /// <param name="wtrSystem">The wtr system.</param>
+        /// <param name="wtrSvc">The wtr service.</param>
         /// <param name="dialogs">The dialogs.</param>
-        public LanguageSettingMenuItemViewModel(IWTRSystem wtrSystem, IDialogs dialogs)
+        public LanguageSettingMenuItemViewModel(IWTRSvc wtrSvc, IDialogs dialogs)
         {
-            this.wtrSytem = wtrSystem;
+            this.wtrSvc = wtrSvc;
             this.dialogs = dialogs;
 
-            this.Header = wtrSystem.LanguageLocalizer.Localize(WTRTextKeys.LanguageSettingMenuItem, WTRTextKeys.DefaultLanguageSettingMenuItem);
+            this.Header = wtrSvc.LanguageLocalizer.Localize(WTRTextKeys.LanguageSettingMenuItem, WTRTextKeys.DefaultLanguageSettingMenuItem);
             this.Command = new DelegateCommand(this.ExecuteLanguageSetting);
         }
 
@@ -51,7 +51,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.MainMenuItems
 
         private void ExecuteLanguageSetting()
         {
-            var settingViewModel = new LanguageSettingViewModel(this.wtrSytem, this.dialogs);
+            var settingViewModel = new LanguageSettingViewModel(this.wtrSvc, this.dialogs);
             var settingWindow = new LanguageSettingView()
             {
                 Owner = Application.Current.MainWindow,

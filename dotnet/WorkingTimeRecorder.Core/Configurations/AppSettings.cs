@@ -16,7 +16,7 @@ namespace WorkingTimeRecorder.Core.Configurations
     public sealed class AppSettings : IAppSettings
     {
         [JsonIgnore]
-        private readonly IWTRSystem wtrSystem = WTRSystem.Instance;
+        private readonly IWTRSvc wtrSvc = WTRSvc.Instance;
 
         /// <summary>
         /// Gets or sets a value indicating whether changes of app settings must be saved or not.
@@ -58,7 +58,7 @@ namespace WorkingTimeRecorder.Core.Configurations
             catch (Exception exception)
             {
                 const string MessageKey = "WorkingTimeRecorder.appsettings.FailedSaveFile";
-                var message = this.wtrSystem.LanguageLocalizer.Localize(MessageKey, MessageKey);
+                var message = this.wtrSvc.LanguageLocalizer.Localize(MessageKey, MessageKey);
                 throw new AppSettingsSaveFailureException(message, exception);
             }
         }

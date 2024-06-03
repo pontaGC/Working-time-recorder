@@ -19,10 +19,10 @@ namespace WorkingTimeRecorder.wpf.Presentation.MainMenuItems
         /// <summary>
         /// Initializes a new instance of the <see cref="ManHoursPersonDaySettingMenuItemViewModel" /> class.
         /// </summary>
-        /// <param name="wtrSystem">The wtr system.</param>
-        public ManHoursPersonDaySettingMenuItemViewModel(IWTRSystem wtrSystem)
+        /// <param name="wtrSvc">The wtr service.</param>
+        public ManHoursPersonDaySettingMenuItemViewModel(IWTRSvc wtrSvc)
         {
-            this.Header = wtrSystem.LanguageLocalizer.Localize(WTRTextKeys.PersonDayMenuItem, WTRTextKeys.DefaultPersonDayMenuItem);
+            this.Header = wtrSvc.LanguageLocalizer.Localize(WTRTextKeys.PersonDayMenuItem, WTRTextKeys.DefaultPersonDayMenuItem);
             this.Command = new DelegateCommand(this.ExecuteManHoursPersonDaySetting);
         }
 

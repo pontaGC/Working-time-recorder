@@ -9,7 +9,7 @@ namespace WorkingTimeRecorder.Core.Shared
     /// <summary>
     /// The singleton services in WTR (Working time recorder) system.
     /// </summary>
-    public interface IWTRSystem
+    public interface IWTRSvc
     {
         #region Globalization
 

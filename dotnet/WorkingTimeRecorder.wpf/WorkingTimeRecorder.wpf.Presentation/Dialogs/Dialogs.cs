@@ -9,10 +9,10 @@ namespace WorkingTimeRecorder.wpf.Presentation.Dialogs
         /// <summary>
         /// Initializes a new instance of the <see cref="Dialogs"/> class.
         /// </summary>
-        /// <param name="wtrSystem">The WTR system.</param>
-        public Dialogs(IWTRSystem wtrSystem)
+        /// <param name="wtrSvc">The WTR service.</param>
+        public Dialogs(IWTRSvc wtrSvc)
         {
-            this.MessageBox = new MessageBox.MessageBox(wtrSystem.LanguageLocalizer);
+            this.MessageBox = new MessageBox.MessageBox(wtrSvc.LanguageLocalizer);
         }
 
         /// <summary>

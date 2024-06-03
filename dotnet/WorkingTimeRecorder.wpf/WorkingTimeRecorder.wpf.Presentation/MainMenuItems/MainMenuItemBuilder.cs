@@ -13,7 +13,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.MainMenuItems
     {
         #region Fields
 
-        private readonly IWTRSystem wtrSystem;
+        private readonly IWTRSvc wtrSvc;
         private readonly IDialogs dialogs;
 
         #endregion
@@ -23,11 +23,11 @@ namespace WorkingTimeRecorder.wpf.Presentation.MainMenuItems
         /// <summary>
         /// Initializes a new instance of the <see cref="MainMenuItemBuilder"/> class.
         /// </summary>
-        /// <param name="wtrSystem">The wtr system.</param>
+        /// <param name="wtrSvc">The wtr service.</param>
         /// <param name="dialogs">The dialogs.</param>
-        public MainMenuItemBuilder(IWTRSystem wtrSystem, IDialogs dialogs)
+        public MainMenuItemBuilder(IWTRSvc wtrSvc, IDialogs dialogs)
         {
-            this.wtrSystem = wtrSystem;
+            this.wtrSvc = wtrSvc;
             this.dialogs = dialogs;
         }
 
@@ -50,14 +50,14 @@ namespace WorkingTimeRecorder.wpf.Presentation.MainMenuItems
         {
             var rootSettingItem = new EmptyCommandMenuItemViewModel()
             {
-                Header = this.wtrSystem.LanguageLocalizer.Localize(WTRTextKeys.SettingsMenuItem, WTRTextKeys.DefaultSettingsMenuItem),
+                Header = this.wtrSvc.LanguageLocalizer.Localize(WTRTextKeys.SettingsMenuItem, WTRTextKeys.DefaultSettingsMenuItem),
             };
 
             // Language
-            rootSettingItem.SubItems.Add(new LanguageSettingMenuItemViewModel(this.wtrSystem, this.dialogs));
+            rootSettingItem.SubItems.Add(new LanguageSettingMenuItemViewModel(this.wtrSvc, this.dialogs));
 
             // Man-hours per person day
-            rootSettingItem.SubItems.Add(new ManHoursPersonDaySettingMenuItemViewModel(this.wtrSystem));
+            rootSettingItem.SubItems.Add(new ManHoursPersonDaySettingMenuItemViewModel(this.wtrSvc));
 
             return rootSettingItem;
         }

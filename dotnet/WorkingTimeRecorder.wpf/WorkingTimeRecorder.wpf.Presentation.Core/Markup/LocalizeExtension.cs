@@ -14,7 +14,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Markup
     {
         #region Fields
 
-        private static readonly ILanguageLocalizer LanguageLocalizer = WTRSystem.Instance.LanguageLocalizer;
+        private static readonly ILanguageLocalizer LanguageLocalizer = WTRSvc.Instance.LanguageLocalizer;
 
         #endregion
 

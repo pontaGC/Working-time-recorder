@@ -93,8 +93,8 @@ namespace WorkingTimeRecorder.wpf
                 return;
             }
 
-            var wtrSystem = this.container.Resolve<IWTRSystem>();
-            SetAppSettings(appSettings, wtrSystem);
+            var wtrSvc = this.container.Resolve<IWTRSvc>();
+            SetAppSettings(appSettings, wtrSvc);
 
             var mainWindowFactory = container.Resolve<IMainWindowFactory>();
             var mainWindow = mainWindowFactory.Create();
@@ -127,10 +127,10 @@ namespace WorkingTimeRecorder.wpf
             }
             catch { }
 
-            var wtrSystem = this.container.Resolve<IWTRSystem>();
+            var wtrSvc = this.container.Resolve<IWTRSvc>();
             var dialogs = this.container.Resolve<IDialogs>();
 
-            var errorMessageFormat = wtrSystem.LanguageLocalizer.Localize(
+            var errorMessageFormat = wtrSvc.LanguageLocalizer.Localize(
                 "WorkingTimeRecorder.appsettings.FailedToRead",
                 "Failed to load appsettings.json. Unable to start application.\n\n{0}");
             var errorMessage = string.Format(
@@ -140,15 +140,15 @@ namespace WorkingTimeRecorder.wpf
 
             dialogs.MessageBox.Show(
                 errorMessage,
-                wtrSystem.LanguageLocalizer.LocalizeAppTitle(),
+                wtrSvc.LanguageLocalizer.LocalizeAppTitle(),
                 MessageBoxButtons.OK,
                 MessageBoxImages.Error);
         }
 
-        private static void SetAppSettings(AppSettings appSettings, IWTRSystem wtrSystem)
+        private static void SetAppSettings(AppSettings appSettings, IWTRSvc wtrSvc)
         {
-            SetCulture(appSettings, wtrSystem.CultureSetter);
-            SetManHoursPerPersonDay(appSettings, wtrSystem.LoggerCollection, wtrSystem.LanguageLocalizer);
+            SetCulture(appSettings, wtrSvc.CultureSetter);
+            SetManHoursPerPersonDay(appSettings, wtrSvc.LoggerCollection, wtrSvc.LanguageLocalizer);
         }
 
         private static void SetCulture(AppSettings appSettings, ICultureSetter cultureSetter)
@@ -225,10 +225,10 @@ namespace WorkingTimeRecorder.wpf
             }
             catch (AppSettingsSaveFailureException e)
             {
-                var wtrSystem = this.container.Resolve<IWTRSystem>();
+                var wtrSvc = this.container.Resolve<IWTRSvc>();
                 MessageBox.Show(
                     e.GetMessageWithInnerEx(Environment.NewLine),
-                    wtrSystem.LanguageLocalizer.LocalizeAppTitle(),
+                    wtrSvc.LanguageLocalizer.LocalizeAppTitle(),
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
@@ -237,10 +237,10 @@ namespace WorkingTimeRecorder.wpf
         private void SetAppSettingsToSave(AppSettings appSettings)
         {
             var isModified = false;
-            var wtrSystem = this.container.Resolve<IWTRSystem>();
+            var wtrSvc = this.container.Resolve<IWTRSvc>();
 
             // Sets culture
-            var nextCultureName = wtrSystem.CultureSetter.NextCultureName;
+            var nextCultureName = wtrSvc.CultureSetter.NextCultureName;
             if (string.IsNullOrEmpty(appSettings.Culture))
             {
                 // Sets default culture just in case
@@ -296,7 +296,7 @@ namespace WorkingTimeRecorder.wpf
 
         private void OnAppDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            var localizer = WTRSystem.Instance.LanguageLocalizer;
+            var localizer = WTRSvc.Instance.LanguageLocalizer;
 
             MessageBox.Show(
                 GetUnhandledErrorMessage(localizer, e.Exception),
@@ -311,7 +311,7 @@ namespace WorkingTimeRecorder.wpf
 
         private void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
         {
-            var localizer = WTRSystem.Instance.LanguageLocalizer;
+            var localizer = WTRSvc.Instance.LanguageLocalizer;
             var exception = e.Exception.InnerException;
 
             MessageBox.Show(
@@ -327,7 +327,7 @@ namespace WorkingTimeRecorder.wpf
 
         private void OnCurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var localizer = WTRSystem.Instance.LanguageLocalizer;
+            var localizer = WTRSvc.Instance.LanguageLocalizer;
             var exception = e.ExceptionObject as Exception;
 
             MessageBox.Show(

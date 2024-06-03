@@ -10,13 +10,13 @@ namespace WorkingTimeRecorder.wpf.Presentation
     /// <inheritdoc />
     internal sealed class MainWindowFactory : IMainWindowFactory
     {
-        private readonly IWTRSystem wtrSystem;
+        private readonly IWTRSvc wtrSvc;
         private readonly IDialogs dialogs;
         private readonly IOutputWindowRegistrar outputWindowRegistrar;
 
-        public MainWindowFactory(IWTRSystem wtrSystem, IDialogs dialogs, IOutputWindowRegistrar outputWindowRegistrar)
+        public MainWindowFactory(IWTRSvc wtrSvc, IDialogs dialogs, IOutputWindowRegistrar outputWindowRegistrar)
         {
-            this.wtrSystem = wtrSystem;
+            this.wtrSvc = wtrSvc;
             this.dialogs = dialogs;
             this.outputWindowRegistrar = outputWindowRegistrar;
         }
@@ -24,7 +24,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
         /// <inheritdoc />
         public Window Create()
         {
-            var viewModel = new MainWindowViewModel(this.wtrSystem, this.dialogs)
+            var viewModel = new MainWindowViewModel(this.wtrSvc, this.dialogs)
             {
                 OutputWindow = new OutputWindowViewModel(),
             };

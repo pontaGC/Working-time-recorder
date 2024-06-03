@@ -19,7 +19,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
     /// </summary>
     internal class MainWindowViewModel : ViewModelBase
     {
-        private readonly IWTRSystem wtrSystem;
+        private readonly IWTRSvc wtrSvc;
         private readonly IDialogs dialogs;
 
         private OutputWindowViewModel outputWindow;
@@ -28,9 +28,9 @@ namespace WorkingTimeRecorder.wpf.Presentation
         private readonly TaskItem dummyItem2;
         private readonly TaskItem dummyItem3;
 
-        public MainWindowViewModel(IWTRSystem wtrSystem, IDialogs dialogs)
+        public MainWindowViewModel(IWTRSvc wtrSvc, IDialogs dialogs)
         {
-            this.wtrSystem = wtrSystem;
+            this.wtrSvc = wtrSvc;
             this.dialogs = dialogs;
 
             this.TaskList = new TaskViewModel();
@@ -72,7 +72,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
             this.TaskList.TaskItems.Add(dummyItem2vm);
             this.TaskList.TaskItems.Add(dummyItem3vm);
 
-            this.BuildMainMenuItems(new MainMenuItemBuilder(this.wtrSystem, this.dialogs));
+            this.BuildMainMenuItems(new MainMenuItemBuilder(this.wtrSvc, this.dialogs));
 
             this.DummyCommand = new DelegateCommand(this.DummyAction);
         }
@@ -113,7 +113,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
 
             var recordingTargets = this.TaskList.TaskItems.Where(x => x.IsRecordingTarget).ToArray();
 
-            var logger = this.wtrSystem.LoggerCollection.Resolve(LogConstants.OutputWindow);
+            var logger = this.wtrSvc.LoggerCollection.Resolve(LogConstants.OutputWindow);
             logger.Log(SharedLibraries.Logging.Severity.Information, dummyCount.ToString());
 
             ++dummyCount;

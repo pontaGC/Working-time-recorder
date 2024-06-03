@@ -9,10 +9,10 @@ namespace WorkingTimeRecorder.Core
         /// <inheritdoc />
         public void Register(IIoCContainer container)
         {
-            container.RegisterInstance<IWTRSystem>(WTRSystem.Instance);
+            container.RegisterInstance<IWTRSvc>(WTRSvc.Instance);
 
             // Internal accessibility instances
-            container.RegisterInstance(WTRSystem.Instance.LoggerRegistrar);
+            container.RegisterInstance(WTRSvc.Instance.LoggerRegistrar);
         }
     }
 }

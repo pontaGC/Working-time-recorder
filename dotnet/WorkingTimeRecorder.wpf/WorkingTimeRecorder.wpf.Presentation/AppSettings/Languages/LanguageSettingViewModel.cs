@@ -30,18 +30,18 @@ namespace WorkingTimeRecorder.wpf.Presentation.AppSettings
         /// <summary>
         /// Initializes a new instance of the <see cref="LanguageSettingViewModel"/> class.
         /// </summary>
-        /// <param name="wtrSystem">The wtr system.</param>
+        /// <param name="wtrSvc">The wtr service.</param>
         /// <param name="dialogs">The dialogs.</param>
-        public LanguageSettingViewModel(IWTRSystem wtrSystem, IDialogs dialogs)
+        public LanguageSettingViewModel(IWTRSvc wtrSvc, IDialogs dialogs)
         {
             this.cultureNames = new ObservableCollection<string>(CultureNameConstants.AllNames);
             this.CultureNames = new ReadOnlyObservableCollection<string>(this.cultureNames);
 
-            this.setLanguageCommand = new SetLanguageCommand(wtrSystem, dialogs);
+            this.setLanguageCommand = new SetLanguageCommand(wtrSvc, dialogs);
             this.setLanguageCommand.Completed += this.OnSetLanguageCompleted;
             this.cancelCommand = new DelegateCommand(this.Cancel);
 
-            this.SelectedCultureName = wtrSystem.LanguageLocalizer.CurrentCulture.Name;
+            this.SelectedCultureName = wtrSvc.LanguageLocalizer.CurrentCulture.Name;
         }
 
         #endregion

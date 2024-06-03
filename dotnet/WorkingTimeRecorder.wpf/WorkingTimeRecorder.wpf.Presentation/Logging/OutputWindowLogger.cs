@@ -12,19 +12,19 @@ namespace WorkingTimeRecorder.wpf.Presentation.Logging
     internal sealed class OutputWindowLogger : LoggerBase
     {
         private readonly IOutputWindowController outputWindowController;
-        private readonly IWTRSystem wtrSystem;
+        private readonly IWTRSvc wtrSvc;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OutputWindowLogger"/> class.
         /// </summary>
-        /// <param name="wtrSystem">The wtr system.</param>
+        /// <param name="wtrSvc">The wtr svc.</param>
         /// <param name="outputWindowController">The output window controller.</param>
         public OutputWindowLogger(
-            IWTRSystem wtrSystem,
+            IWTRSvc wtrSvc,
             IOutputWindowController outputWindowController)
             : base(LogConstants.OutputWindow)
         {
-            this.wtrSystem = wtrSystem;
+            this.wtrSvc = wtrSvc;
             this.outputWindowController = outputWindowController;
         }
 
@@ -45,15 +45,15 @@ namespace WorkingTimeRecorder.wpf.Presentation.Logging
             switch (severity)
             {
                 case Severity.Information:
-                    return this.wtrSystem.LanguageLocalizer.LocalizeInformation();
+                    return this.wtrSvc.LanguageLocalizer.LocalizeInformation();
 
                 case Severity.Warning:
-                    return this.wtrSystem.LanguageLocalizer.LocalizeWarning();
+                    return this.wtrSvc.LanguageLocalizer.LocalizeWarning();
 
                 case Severity.Error:
                 case Severity.Alert:
                 case Severity.Fatal:
-                    return this.wtrSystem.LanguageLocalizer.LocalizeError();
+                    return this.wtrSvc.LanguageLocalizer.LocalizeError();
 
                 default:
                     return string.Empty;
