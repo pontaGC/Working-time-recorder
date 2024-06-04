@@ -11,4 +11,10 @@
     <ProjectReference Include="..\..\WorkingTimeRecorder.Core\WorkingTimeRecorder.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Controls\OkCancelButtons.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

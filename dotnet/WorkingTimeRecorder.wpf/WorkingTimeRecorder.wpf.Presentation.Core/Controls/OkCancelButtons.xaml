@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="WorkingTimeRecorder.wpf.Presentation.Core.Controls.OkCancelButtons"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:shared="clr-namespace:WorkingTimeRecorder.Core.Shared;assembly=WorkingTimeRecorder.Core"
+             xmlns:markup="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Markup"
+             xmlns:converters="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="200"
+             x:Name="OkCancelButtonControl">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <UniformGrid x:Name="ButtonPanel" Columns="2">
+        <!--OK button-->
+        <Button x:Name="OkButton"
+                Margin="7.5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="80"
+                Height="Auto"
+                IsDefault="{Binding IsOkButtonDefault, ElementName=OkCancelButtonControl, Mode=OneWay}"
+                Content="{markup:Localize Id={x:Static shared:CommonTextKeys.Ok}, DefaultText={x:Static shared:CommonTextKeys.DefaultOk}}"
+                Command="{Binding OkCommand, ElementName=OkCancelButtonControl, Mode=OneWay}"
+                CommandParameter="{Binding OkCommandParameter, ElementName=OkCancelButtonControl, Mode=OneWay}" />
+        <!--Cancel button-->
+        <Button x:Name="CancelButton"
+                Margin="7.5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="80"
+                Height="Auto"
+                IsCancel="True"                
+                IsDefault="{Binding Path=IsDefault, ElementName=OkButton, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"
+                Content="{markup:Localize Id={x:Static shared:CommonTextKeys.Cancel}, DefaultText={x:Static shared:CommonTextKeys.DefaultCancel}}"
+                Command="{Binding CancelCommand, ElementName=OkCancelButtonControl, Mode=OneWay}"
+                CommandParameter="{Binding CancelCommandParameter, ElementName=OkCancelButtonControl, Mode=OneWay}" />
+    </UniformGrid>    
+</UserControl>

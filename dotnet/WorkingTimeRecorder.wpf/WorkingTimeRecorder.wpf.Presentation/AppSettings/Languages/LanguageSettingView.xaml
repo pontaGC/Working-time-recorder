@@ -8,6 +8,7 @@
         xmlns:markup="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Markup;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
         xmlns:shared="clr-namespace:WorkingTimeRecorder.Core.Shared;assembly=WorkingTimeRecorder.Core"
         xmlns:behaviors="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Behaviors;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
+        xmlns:corecontrol="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Controls;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
         behaviors:CloseWindowBehavior.Close="{Binding DialogResult, Mode=OneWay}"
@@ -47,29 +48,10 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-
-        <UniformGrid Grid.Row="2" Columns="2"
-                     VerticalAlignment="Bottom"
-                     HorizontalAlignment="Center">
-            <!--Ok button-->
-            <Button Margin="7.5"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom"
-                    Width="80"
-                    Height="Auto"
-                    IsDefault="True"
-                    Content="{markup:Localize Id={x:Static shared:CommonTextKeys.Ok}, DefaultText={x:Static shared:CommonTextKeys.DefaultOk}}"                Command="{Binding SetLanguageCommand, Mode=OneTime}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
-            <!--Cancel button-->
-            <Button Margin="7.5"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom"
-                    Width="80"
-                    Height="Auto"
-                    IsCancel="True"
-                    Content="{markup:Localize Id={x:Static shared:CommonTextKeys.Cancel}, DefaultText={x:Static shared:CommonTextKeys.DefaultCancel}}"
-                    Command="{Binding CancelCommand, Mode=OneTime}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
-        </UniformGrid>
+        <corecontrol:OkCancelButtons Grid.Row="2"
+                                     VerticalAlignment="Bottom"
+                                     HorizontalAlignment="Center"
+                                     OkCommand="{Binding SetLanguageCommand, Mode=OneTime}"
+                                     CancelCommand="{Binding CancelCommand, Mode=OneTime}" />
     </Grid>
 </Window>
