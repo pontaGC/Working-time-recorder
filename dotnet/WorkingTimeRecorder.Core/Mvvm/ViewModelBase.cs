@@ -14,7 +14,7 @@ namespace WorkingTimeRecorder.Core.Mvvm
         /// <summary>
         /// Occurs when a property value changes.
         /// </summary>
-        event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
+        event PropertyChangedEventHandler? INotifyPropertyChanged.PropertyChanged
         {
             add => this.propertyChangedInternalEvent += value;
             remove => this.propertyChangedInternalEvent -= value;
@@ -23,7 +23,7 @@ namespace WorkingTimeRecorder.Core.Mvvm
         /// <summary>
         /// Occurs when a property value changes.
         /// </summary>
-        private PropertyChangedEventHandler propertyChangedInternalEvent;
+        private PropertyChangedEventHandler? propertyChangedInternalEvent;
 
         #endregion
 
@@ -33,7 +33,7 @@ namespace WorkingTimeRecorder.Core.Mvvm
         /// Gets a notification when a property value changes.
         /// </summary>
         public IObservable<PropertyChangedEventArgs> PropertyChanged
-            => Observable.FromEvent<PropertyChangedEventHandler, PropertyChangedEventArgs>(
+            => Observable.FromEvent<PropertyChangedEventHandler?, PropertyChangedEventArgs>(
                 h => (s, e) => h(e),
                 h => this.propertyChangedInternalEvent += h,
                 h => this.propertyChangedInternalEvent -= h);
