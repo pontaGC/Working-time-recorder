@@ -58,6 +58,35 @@ namespace SharedLibraries.Extensions
         }
 
         /// <summary>
+        /// Creates an array from a <see cref="IEnumerable{T}"/>. If the sequence is <c>null</c>, creates an empty array.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the source enumerable.</typeparam>
+        /// <param name="source">An <see cref="IEnumerable{T}"/> to create an array from.</param>
+        /// <returns>An array that contains the elements from the input sequence, if the <c>source</c> is not <c>null</c>. Otherwise; An empty array, <c>Array.Empty()</c>.</returns>
+        [DebuggerStepThrough]
+        public static TSource[] ToArraySafe<TSource>(this IEnumerable<TSource> source)
+        {
+            if (source is null)
+            {
+                return Array.Empty<TSource>();
+            }
+
+            return source.ToArray();
+        }
+
+        /// <summary>
+        /// Creates a list from a <see cref="IEnumerable{T}"/>. If the sequence is <c>null</c>, creates an empty list.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the source enumerable.</typeparam>
+        /// <param name="source">An <see cref="IEnumerable{T}"/> to create a list from.</param>
+        /// <returns>A list that contains the elements from the input sequence, if the <c>source</c> is not <c>null</c>. Otherwise; A empty list.</returns>
+        [DebuggerStepThrough]
+        public static List<TSource> ToListSafe<TSource>(this IEnumerable<TSource> source)
+        {
+            return (source ?? Enumerable.Empty<TSource>()).ToList();
+        }
+
+        /// <summary>
         /// Invokes the specified action for elements in the sequence.
         /// </summary>
         /// <typeparam name="T">The type of the source enumerable.</typeparam>
