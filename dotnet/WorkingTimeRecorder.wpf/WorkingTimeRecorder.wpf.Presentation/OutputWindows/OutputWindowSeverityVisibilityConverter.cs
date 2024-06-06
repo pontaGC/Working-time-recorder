@@ -18,10 +18,10 @@ namespace WorkingTimeRecorder.wpf.Presentation.OutputWindows
             var severity = (Severity)value;
             if (severity == Severity.None)
             {
-                return Visibility.Hidden;
+                return VisibilityBoxes.Hidden;
             }
 
-            return Visibility.Visible;
+            return VisibilityBoxes.Visible;
         }
 
         /// <inheritdoc />

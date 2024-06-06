@@ -2,8 +2,6 @@
 using System.Windows;
 using System.Windows.Data;
 
-using SharedLibraries.System;
-
 namespace WorkingTimeRecorder.wpf.Presentation.Core.Converters
 {
     /// <summary>

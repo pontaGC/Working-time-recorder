@@ -1,6 +1,5 @@
-﻿namespace SharedLibraries.System
+﻿namespace System
 {
-    // 
     // Defines Known boxed values.
     // Ref. https://referencesource.microsoft.com/#WindowsBase/Base/MS/Internal/KnownBoxes.cs
 
