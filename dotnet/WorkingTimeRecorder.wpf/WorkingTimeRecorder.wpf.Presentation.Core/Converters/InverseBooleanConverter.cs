@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Data;
 
-using SharedLibraries.KnownBoxes;
+using SharedLibraries.System;
 
 namespace WorkingTimeRecorder.wpf.Presentation.Core.Converters
 {
@@ -29,7 +29,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Converters
                 return DependencyProperty.UnsetValue;
             }
 
-            return (bool)value ? BooleanBoxes.False : BooleanBoxes.True;
+            return ((bool)value).ToObject();
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Converters
                 return Binding.DoNothing;
             }
 
-            return (bool)value ? BooleanBoxes.False : BooleanBoxes.True;
+            return ((bool)value).ToObject();
         }
     }
 }
