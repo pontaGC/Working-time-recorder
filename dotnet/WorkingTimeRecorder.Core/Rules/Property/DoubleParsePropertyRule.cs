@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 
 using SharedLibraries.Rules;
-
+using SharedLibraries.Utils;
 using WorkingTimeRecorder.Core.Languages;
 using WorkingTimeRecorder.Core.Shared;
 
@@ -55,8 +55,7 @@ namespace WorkingTimeRecorder.Core.Rules.Property
         public bool Apply(T @object)
         {
             var value = this.getProperty(@object);
-            var formatProvider = this.Culture ?? CultureInfo.InvariantCulture;
-            return double.TryParse(value, NumberStyles.Number, formatProvider, out _);
+            return NumberParseHelper.TryDoubleParse(value, out var _);
         }
 
         private string GetErrorMessage()
