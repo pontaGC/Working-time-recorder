@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingTimeRecorder.wpf.Pre
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingTimeRecorder.Core", "..\WorkingTimeRecorder.Core\WorkingTimeRecorder.Core.csproj", "{0F1C6EFC-0140-47D2-9558-5DD47A32615D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedLibraries", "..\SharedLibraries\SharedLibraries.csproj", "{77B0DEA0-4116-45EB-8FE9-E042C3E1649B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedLibraries", "..\SharedLibraries\SharedLibraries.csproj", "{77B0DEA0-4116-45EB-8FE9-E042C3E1649B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

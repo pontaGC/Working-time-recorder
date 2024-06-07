@@ -8,14 +8,32 @@
         xmlns:markup="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Markup;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
         xmlns:shared="clr-namespace:WorkingTimeRecorder.Core.Shared;assembly=WorkingTimeRecorder.Core"
         xmlns:behaviors="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Behaviors;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
+        xmlns:corecontrol="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Controls;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
         behaviors:CloseWindowBehavior.Close="{Binding DialogResult, Mode=OneWay}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
         Title="{markup:Localize Id={x:Static shared:WTRTextKeys.ManHoursPersonDaySettingTitle}, DefaultText={x:Static shared:WTRTextKeys.DefaultManHoursPersonDaySettingTitle}}"
-        Height="200" Width="400"
-        d:Width="600"
+        Height="100" Width="300"
+        MinHeight="120"
+        MinWidth="250"
+        d:Width="400"
+        d:Height="Auto"
         d:DataContext="{d:DesignInstance local:ManHoursPersonDaySettingViewModel, IsDesignTimeCreatable=False}">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <local:InputManHoursPersonDayArea x:Name="InputManHoursPersonDayArea"
+                                          Grid.Row="0"
+                                          Margin="0,5,10,20"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center" />
+        <corecontrol:OkCancelButtons Grid.Row="1"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Bottom"
+                                     OkCommand="{Binding SetPersonDayCommand, Mode=OneTime}"
+                                     OkCommandParameter="{Binding InputPersonDay, Mode=OneWay}"
+                                     CancelCommand="{Binding CancelCommand, Mode=OneTime}" />
     </Grid>
 </Window>

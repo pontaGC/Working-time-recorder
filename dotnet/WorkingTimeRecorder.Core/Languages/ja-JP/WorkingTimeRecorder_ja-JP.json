@@ -67,6 +67,18 @@
     {
       "Id": "WorkingTimeRecorder.appsettings.FailedSaveFile",
       "Text": "appsettings.jsonの保存に失敗しました。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.TextFieldRequired",
+      "Text": "項目が未入力です。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.DoubleParse",
+      "Text": "数値を入力してください。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.OverRange",
+      "Text": "設定可能な範囲は、{0} ~ {1}です。"
     }
   ]
 }

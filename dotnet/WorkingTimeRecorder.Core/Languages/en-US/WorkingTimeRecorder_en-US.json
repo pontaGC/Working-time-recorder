@@ -67,6 +67,18 @@
     {
       "Id": "WorkingTimeRecorder.appsettings.FailedSaveFile",
       "Text": "Failed to save appsettings.json."
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.TextFieldRequired",
+      "Text": "The Text field is required."
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.DoubleParse",
+      "Text": "Please enter a number."
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.OverRange",
+      "Text": "The configurable range is {0} ~ {1}."
     }
   ]
 }

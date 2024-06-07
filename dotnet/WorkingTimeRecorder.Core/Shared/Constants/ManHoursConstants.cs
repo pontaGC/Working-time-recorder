@@ -11,5 +11,7 @@
 
         public const int NumberOfDecimalPoints = 2;
         public const string StringFormat = "F2";
+
+        public const string Unit = "h";
     }
 }

@@ -14,6 +14,12 @@ namespace WorkingTimeRecorder.wpf.Presentation.MainMenuItems
     /// </summary>
     internal sealed class ManHoursPersonDaySettingMenuItemViewModel : MenuItemViewModelBase
     {
+        #region Fields
+
+        private readonly IWTRSvc wtrSvc;
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -22,6 +28,8 @@ namespace WorkingTimeRecorder.wpf.Presentation.MainMenuItems
         /// <param name="wtrSvc">The wtr service.</param>
         public ManHoursPersonDaySettingMenuItemViewModel(IWTRSvc wtrSvc)
         {
+            this.wtrSvc = wtrSvc;
+
             this.Header = wtrSvc.LanguageLocalizer.Localize(WTRTextKeys.PersonDayMenuItem, WTRTextKeys.DefaultPersonDayMenuItem);
             this.Command = new DelegateCommand(this.ExecuteManHoursPersonDaySetting);
         }
@@ -39,7 +47,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.MainMenuItems
 
         private void ExecuteManHoursPersonDaySetting()
         {
-            var settingViewModel = new ManHoursPersonDaySettingViewModel();
+            var settingViewModel = new ManHoursPersonDaySettingViewModel(this.wtrSvc);
             var settingView = new ManHoursPersonDaySettingView()
             {
                 Owner = Application.Current.MainWindow,
