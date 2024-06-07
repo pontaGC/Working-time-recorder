@@ -12,6 +12,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <converters:CommandParameterConverter x:Key="CommandParameterConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
     <UniformGrid x:Name="ButtonPanel" Columns="2">
@@ -25,7 +26,8 @@
                 IsDefault="{Binding IsOkButtonDefault, ElementName=OkCancelButtonControl, Mode=OneWay}"
                 Content="{markup:Localize Id={x:Static shared:CommonTextKeys.Ok}, DefaultText={x:Static shared:CommonTextKeys.DefaultOk}}"
                 Command="{Binding OkCommand, ElementName=OkCancelButtonControl, Mode=OneWay}"
-                CommandParameter="{Binding OkCommandParameter, ElementName=OkCancelButtonControl, Mode=OneWay}" />
+                CommandParameter="{Binding OkCommandParameter, ElementName=OkCancelButtonControl, Mode=OneWay,
+                                           Converter={StaticResource CommandParameterConverter}, ConverterParameter={x:Reference Name=DummyLabel}}" />
         <!--Cancel button-->
         <Button x:Name="CancelButton"
                 Margin="7.5"
@@ -37,6 +39,10 @@
                 IsDefault="{Binding Path=IsDefault, ElementName=OkButton, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"
                 Content="{markup:Localize Id={x:Static shared:CommonTextKeys.Cancel}, DefaultText={x:Static shared:CommonTextKeys.DefaultCancel}}"
                 Command="{Binding CancelCommand, ElementName=OkCancelButtonControl, Mode=OneWay}"
-                CommandParameter="{Binding CancelCommandParameter, ElementName=OkCancelButtonControl, Mode=OneWay}" />
+                CommandParameter="{Binding CancelCommandParameter, ElementName=OkCancelButtonControl, Mode=OneWay,
+                                           Converter={StaticResource CommandParameterConverter}, ConverterParameter={x:Reference Name=DummyLabel}}" />
+
+        <!--This label is to get owner window-->
+        <Label x:Name="DummyLabel" Visibility="Collapsed"/>
     </UniformGrid>    
 </UserControl>

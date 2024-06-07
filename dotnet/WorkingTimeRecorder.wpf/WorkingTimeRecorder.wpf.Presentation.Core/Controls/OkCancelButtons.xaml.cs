@@ -54,7 +54,6 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Controls
             this.InitializeComponent();
 
             this.Loaded += this.OnLoaded;
-            this.Unloaded += this.OnUnloaded;
         }
 
         #endregion
@@ -115,25 +114,8 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Controls
 
         private void OnLoaded(object? obj, RoutedEventArgs args)
         {
-            var ancestorWindow = Window.GetWindow(this);
-
-            //  Since this loading is completed after custom data binding is completed,
-            //  NULL check is executed not to unbind custom data binding 
-            if (this.OkCommandParameter is null)
-            {
-                this.OkCommandParameter = ancestorWindow;
-            }
-
-            if (this.CancelCommandParameter is null)
-            {
-                this.CancelCommandParameter = ancestorWindow;
-            }
-        }
-
-        private void OnUnloaded(object? obj, RoutedEventArgs args)
-        {
-            this.OkCommandParameter = null;
-            this.CancelCommandParameter = null;
+            this.OkCommandParameter ??= CommandParameter.Empty;
+            this.CancelCommandParameter ??= CommandParameter.Empty;
         }
 
         #endregion

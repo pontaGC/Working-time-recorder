@@ -4,6 +4,7 @@ using Prism.Commands;
 
 using WorkingTimeRecorder.Core.Extensions;
 using WorkingTimeRecorder.Core.Shared;
+using WorkingTimeRecorder.wpf.Presentation.Core;
 using WorkingTimeRecorder.wpf.Presentation.Core.Dialogs;
 
 namespace WorkingTimeRecorder.wpf.Presentation.AppSettings
@@ -67,8 +68,8 @@ namespace WorkingTimeRecorder.wpf.Presentation.AppSettings
         {
             this.wtrSvc.CultureSetter.NextCultureName = this.SelectedCultureName;
 
-            var ownerWindow = parameter as Window;
-            this.ShowNotifyNeedToReboot(ownerWindow);
+            var commandParameter = parameter as CommandParameter;
+            this.ShowNotifyNeedToReboot(commandParameter?.OwnerWidnow);
 
             this.Completed?.Invoke(this, EventArgs.Empty);
         }
