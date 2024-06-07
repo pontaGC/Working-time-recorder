@@ -8,9 +8,13 @@
              xmlns:converters="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="200"
-             x:Name="OkCancelButtonControl">
+             x:Name="OkCancelButtonControl"
+             Validation.ErrorTemplate="{DynamicResource ValidationErrorEmptyTemplate}">
     <UserControl.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/ValidationErrorTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <converters:CommandParameterConverter x:Key="CommandParameterConverter" />
         </ResourceDictionary>
