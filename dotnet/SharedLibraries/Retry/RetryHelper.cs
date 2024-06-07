@@ -132,7 +132,7 @@ namespace SharedLibraries.Retry
                         throw;
                     }
 
-                    Thread.Sleep(interval);
+                    Task.Delay(interval).Wait();
                 }
             }
 
@@ -162,7 +162,7 @@ namespace SharedLibraries.Retry
                 }
                 catch (Exception)
                 {
-                    Thread.Sleep(interval);
+                    Task.Delay(interval).Wait();
                 }
             }
 
