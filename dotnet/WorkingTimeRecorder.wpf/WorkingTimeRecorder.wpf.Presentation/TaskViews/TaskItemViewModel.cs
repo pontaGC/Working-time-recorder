@@ -22,6 +22,11 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaskItemViewModel"/> class.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="model"/> is <c>null</c>.</exception>
         public TaskItemViewModel(ITaskItem model)
         {
             ArgumentNullException.ThrowIfNull(model);
@@ -29,6 +34,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
             this.model = model;
             this.Name = model.Name;
             this.ElapsedWorkTime = GetDisplayElapsedWorkTime(model.ElapsedWorkTime.Hours, model.ElapsedWorkTime.Miniutes);
+            this.ManHours = model.ManHours;
 
             this.model.ElapsedWorkTime.ChangedEvent += this.OnElapsedWorkTimeChanged;
         }
@@ -91,6 +97,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         private void OnElapsedWorkTimeChanged(object? sender, ElapsedWorkTimeChangedEventArgs e)
         {
             this.ElapsedWorkTime = GetDisplayElapsedWorkTime(e.After.Hours, e.After.Miniutes);
+            this.ManHours = e.After.ConvertToManHours(Tasks.PersonDay);
         }
 
         #endregion

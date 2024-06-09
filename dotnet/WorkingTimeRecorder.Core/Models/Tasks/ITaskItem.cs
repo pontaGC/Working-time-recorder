@@ -5,6 +5,8 @@
     /// </summary>
     public interface ITaskItem
     {
+        #region Propeties
+
         /// <summary>
         /// Gets a task ID.
         /// </summary>
@@ -21,8 +23,10 @@
         public IElapsedWorkTime ElapsedWorkTime { get; set; }
 
         /// <summary>
-        /// Gets or sets man-hours of this task.
+        /// Gets a man-hours of this task.
         /// </summary>
-        public double ManHours { get; set; }
+        public double ManHours { get; }
+
+        #endregion
     }
 }
