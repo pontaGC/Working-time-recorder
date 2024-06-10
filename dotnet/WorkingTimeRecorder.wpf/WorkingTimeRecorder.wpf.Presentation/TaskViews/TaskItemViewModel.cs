@@ -62,7 +62,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
             {
                 if (this.SetProperty(ref this.name, value))
                 {
-                    this.model.Name = name;
+                    this.model.Name = value;
                 }
             }
         }
