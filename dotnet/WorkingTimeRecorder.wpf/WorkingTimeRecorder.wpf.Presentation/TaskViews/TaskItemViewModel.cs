@@ -58,7 +58,13 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         public string Name
         {
             get => this.name;
-            set => this.SetProperty(ref this.name, value);
+            set 
+            {
+                if (this.SetProperty(ref this.name, value))
+                {
+                    this.model.Name = name;
+                }
+            }
         }
 
         /// <summary>
