@@ -14,10 +14,11 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="TaskViewStyle.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/WorkingTimeRecorder.wpf.Presentation.Core;component/Styles/ValidationErrorTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    
+
     <!--Task list-->
     <DataGrid AutoGenerateColumns="False"
               ItemsSource="{Binding TaskItems, Mode=OneTime}"
@@ -43,7 +44,9 @@
                         <TextBox Style="{StaticResource TaskNameTextBoxStyle}"
                                  MinWidth="150"
                                  MaxWidth="300"
-                                 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+                                 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 ToolTip="{Binding Path=Text, RelativeSource={RelativeSource Self}}"
+                                 Validation.ErrorTemplate="{StaticResource ValidationErrorTextBlockTemplate}" />
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>

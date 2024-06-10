@@ -1,12 +1,14 @@
 ﻿using WorkingTimeRecorder.Core.Models.Tasks;
 using WorkingTimeRecorder.Core.Mvvm;
+using WorkingTimeRecorder.Core.Rules.Property;
+using WorkingTimeRecorder.Core.Shared;
 
 namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
 {
     /// <summary>
     /// The task item view-model.
     /// </summary>
-    internal class TaskItemViewModel : ViewModelBase
+    internal class TaskItemViewModel : ValidationViewModelBase<TaskItemViewModel>
     {
         #region Fields
 
@@ -16,6 +18,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         private string elapsedWorkTime = TaskConstants.ZeroWorkingTime;
         private double manHours = TaskConstants.ZeroMonHours;
 
+        private readonly IWTRSvc wtrSvc;
         private readonly ITaskItem model;
 
         #endregion
@@ -25,11 +28,17 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         /// <summary>
         /// Initializes a new instance of the <see cref="TaskItemViewModel"/> class.
         /// </summary>
+        /// <param name="wtrSvc">The wtr service.</param>
         /// <param name="model">The model.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="model"/> is <c>null</c>.</exception>
-        public TaskItemViewModel(ITaskItem model)
+        /// <exception cref="ArgumentNullException"><paramref name="wtrSvc"/> or <paramref name="model"/> is <c>null</c>.</exception>
+        public TaskItemViewModel(
+            IWTRSvc wtrSvc,
+            ITaskItem model)
         {
+            ArgumentNullException.ThrowIfNull(wtrSvc);
             ArgumentNullException.ThrowIfNull(model);
+
+            this.wtrSvc = wtrSvc;
 
             this.model = model;
             this.Name = model.Name;
@@ -37,6 +46,9 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
             this.ManHours = model.ManHours;
 
             this.model.ElapsedWorkTime.ChangedEvent += this.OnElapsedWorkTimeChanged;
+
+            this.RegisterRules();
+            this.ValidateAllProperties();
         }
 
         #endregion
@@ -111,6 +123,22 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         private static string GetDisplayElapsedWorkTime(uint hours, uint minutes)
         {
             return $"{hours}:{minutes:D2}";
+        }
+
+        private void RegisterRules()
+        {
+            this.RegisterNameRules();
+        }
+
+        private void RegisterNameRules()
+        {
+            var propertyName = nameof(this.Name);
+
+            this.AddRule(
+                new RequiredTextFieldPropertyRule<TaskItemViewModel>(
+                    this.wtrSvc.LanguageLocalizer,
+                    propertyName,
+                    x => x.Name));
         }
 
         #endregion

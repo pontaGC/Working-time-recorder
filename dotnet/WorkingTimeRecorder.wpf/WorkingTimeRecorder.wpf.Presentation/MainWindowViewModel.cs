@@ -40,7 +40,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
             };
             this.dummyItem.ElapsedWorkTime.SetHours(1);
             this.dummyItem.ElapsedWorkTime.SetHours(20);
-            var dummyItem = new TaskItemViewModel(this.dummyItem)
+            var dummyItem = new TaskItemViewModel(wtrSvc, this.dummyItem)
             {
                 No = 1,
                 IsRecordingTarget = true,
@@ -52,7 +52,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
             };
             this.dummyItem.ElapsedWorkTime.SetHours(1);
             this.dummyItem.ElapsedWorkTime.SetHours(20);
-            var dummyItem2vm = new TaskItemViewModel(this.dummyItem2)
+            var dummyItem2vm = new TaskItemViewModel(wtrSvc, this.dummyItem2)
             {
                 No = 2,
             };
@@ -63,7 +63,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
             };
             this.dummyItem.ElapsedWorkTime.SetHours(1);
             this.dummyItem.ElapsedWorkTime.SetHours(20);
-            var dummyItem3vm = new TaskItemViewModel(this.dummyItem3)
+            var dummyItem3vm = new TaskItemViewModel(wtrSvc, this.dummyItem3)
             {
                 No = 3,
             };
