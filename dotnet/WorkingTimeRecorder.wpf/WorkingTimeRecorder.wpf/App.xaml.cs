@@ -403,6 +403,7 @@ namespace WorkingTimeRecorder.wpf
                 using(var writer = new StreamWriter(fileStream, System.Text.Encoding.UTF8))
                 {
                     writer.WriteLine(DateTime.Now);
+                    writer.WriteLine(exception.InnerException is null ? exception.Message : $"{exception.Message}, {exception.InnerException.Message}");
                     writer.WriteLine(exception.StackTrace);
                 }
             }
