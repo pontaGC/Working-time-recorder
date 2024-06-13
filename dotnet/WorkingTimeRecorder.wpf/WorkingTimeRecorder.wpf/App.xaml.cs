@@ -8,6 +8,7 @@ using System.Windows.Threading;
 
 using SharedLibraries.Extensions;
 using SharedLibraries.Logging;
+using SharedLibraries.System.IO;
 
 using Microsoft.Extensions.Configuration;
 
@@ -74,12 +75,33 @@ namespace WorkingTimeRecorder.wpf
 
         #region Methods
 
+        /// <summary>
+        /// Gets a local app data folder path.
+        /// </summary>
+        /// <returns>A local app data folder path.</returns>
+        public static string GetLocalAppDataFolderPath()
+        {
+            var localAppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            return Path.Combine(localAppDataFolder, WTRTextKeys.DefaultTitle);
+        }
+
+        /// <summary>
+        /// Gets a system error log path.
+        /// </summary>
+        /// <returns>A file path of system error log.</returns>
+        public static string GetSystemErrorLogPath()
+        {
+            const string FileName = "WorkingTimeRecorder.SystemError.log";
+            return Path.Combine(GetLocalAppDataFolderPath(), FileName);
+        }
+
         #region Startup
 
         /// <inheritdoc />
         protected override void OnStartup(StartupEventArgs e)
         {         
             this.RegisterAppUnhandledExceptionHandler();
+            CreateLocalAppData();
 
             RegisterDependencies(this.container, new WTRCoreDependencyRegistrant());
             RegisterDependencies(this.container, new PresentationDependencyRegistrant());
@@ -183,6 +205,15 @@ namespace WorkingTimeRecorder.wpf
 
             var logger = loggerCollection.Resolve(LogConstants.OutputWindow);
             logger.Log(Severity.Warning, errorMessage);
+        }
+
+        private static void CreateLocalAppData()
+        {
+            var folderPath = GetLocalAppDataFolderPath();
+            if (!FileSystem.Directory.Exists(folderPath))
+            {
+                FileSystem.Directory.Create(folderPath);
+            }
         }
 
         #endregion
@@ -306,6 +337,8 @@ namespace WorkingTimeRecorder.wpf
 
             e.Handled = true;
 
+            LogUnhandledException(e.Exception);
+
             Environment.Exit(1);
         }
 
@@ -322,6 +355,8 @@ namespace WorkingTimeRecorder.wpf
 
             e.SetObserved();
 
+            LogUnhandledException(exception);
+
             Environment.Exit(1);
         }
 
@@ -335,6 +370,8 @@ namespace WorkingTimeRecorder.wpf
                 localizer.LocalizeAppTitle(),
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
+
+            LogUnhandledException(exception);
 
             Environment.Exit(1);
         }
@@ -350,6 +387,25 @@ namespace WorkingTimeRecorder.wpf
             }
 
             return $"{mainMessage}\r\n{ex.GetMessageWithInnerEx(Environment.NewLine)}";
+        }
+
+        private static void LogUnhandledException(Exception? exception)
+        {
+            if (string.IsNullOrEmpty(exception?.StackTrace))
+            {
+                return;
+            }
+
+            var logFilePath = GetSystemErrorLogPath();
+            using(var fileStream = FileSystem.File.OpenOrCreate(logFilePath, FileAccess.Write))
+            {
+                fileStream.Seek(fileStream.Length, SeekOrigin.Begin); // for appending text
+                using(var writer = new StreamWriter(fileStream, System.Text.Encoding.UTF8))
+                {
+                    writer.WriteLine(DateTime.Now);
+                    writer.WriteLine(exception.StackTrace);
+                }
+            }
         }
 
         #endregion
