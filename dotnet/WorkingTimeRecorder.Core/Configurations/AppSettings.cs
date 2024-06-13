@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 
 using Microsoft.Extensions.Configuration;
 
+using SharedLibraries.Extensions;
 using SharedLibraries.System.IO;
 
 using WorkingTimeRecorder.Core.Shared;
@@ -34,12 +35,7 @@ namespace WorkingTimeRecorder.Core.Configurations
         [ConfigurationKeyName("PersonDay")]
         public double PersonDay { get; set; }
 
-        /// <summary>
-        /// Saves app settings as json file.
-        /// </summary>
-        /// <param name="filePath">The file path to save.</param>
-        /// <param name="serializerOptions">The json serializer options.</param>
-        /// <exception cref="AppSettingsSaveFailureException">See <c>InnerException</c> for details of the error.</exception>
+        /// <inheritdoc />
         public void SaveFile(string filePath, JsonSerializerOptions serializerOptions)
         {
             try
@@ -61,6 +57,40 @@ namespace WorkingTimeRecorder.Core.Configurations
                 var message = this.wtrSvc.LanguageLocalizer.Localize(MessageKey, MessageKey);
                 throw new AppSettingsSaveFailureException(message, exception);
             }
+
+            try
+            {
+                // TODO: Search the following bug cause for details.
+                // When executing json serializing under certain conditions,
+                // there are times when there are one many right bracket
+
+                var fileContent = FileSystem.File.ReadAllText(filePath);
+                if (FixExtraCurlyBracketIfNeeded(fileContent, out var fixedFileContent))
+                {
+                    FileSystem.File.WriteAllText(filePath, fixedFileContent);
+                }
+            }
+            catch (Exception exception)
+            {
+                const string MessageKey = "WorkingTimeRecorder.appsettings.FailedSaveFile";
+                var message = this.wtrSvc.LanguageLocalizer.Localize(MessageKey, MessageKey);
+                throw new AppSettingsSaveFailureException(message, exception);
+            }
+        }
+
+        private static bool FixExtraCurlyBracketIfNeeded(string? fileContent, out string fixedContent)
+        {
+            fixedContent = fileContent ?? string.Empty;
+
+            var leftBracketCount = fileContent.CountCharacter('{');
+            var rightBracketCount = fileContent.CountCharacter('}');
+            if (leftBracketCount < rightBracketCount)
+            {
+                fixedContent = fileContent.RemoveEndOnce("}");
+                return true;
+            }
+
+            return false;
         }
 
         private sealed class AppSettingsSerializeObject

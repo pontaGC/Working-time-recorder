@@ -7,7 +7,7 @@ namespace SharedLibraries.Extensions
     /// <summary>
     /// Extension methods for <c>string</c> type.
     /// </summary>
-    public static class StringExtension
+    public static partial class StringExtension
     {
         /// <summary>
         /// Splits the given string with whitespace.
@@ -54,6 +54,30 @@ namespace SharedLibraries.Extensions
         public static bool EqulasOrdinalIgnoreCase(this string source, string other)
         {
             return string.Equals(source, other, StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
+        /// Removes one target string at end of the given string.
+        /// </summary>
+        /// <param name="source">The source string to remove.</param>
+        /// <param name="removeString">The removing target string.</param>
+        /// <returns>A new string after removing the <paramref name="removeString"/> at end.</returns>
+        [return: NotNull]
+        public static string RemoveEndOnce(this string? source, string removeString)
+        {
+            if (string.IsNullOrEmpty(source) || string.IsNullOrEmpty(removeString))
+            {
+                return string.Empty;
+            }
+
+            var lastIndex = source.LastIndexOf(removeString);
+            if (lastIndex < 0)
+            {
+                // Not found the removing target string
+                return source;
+            }
+
+            return source.Remove(lastIndex, removeString.Length);
         }
     }
 }

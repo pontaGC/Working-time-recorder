@@ -124,6 +124,14 @@
         /// <exception>See <see href="https://learn.microsoft.com/en-us/dotnet/api/system.io.file.open?view=net-8.0"/>.</exception>
         FileStream OpenOrCreate(string filePath, FileAccess access, FileShare share);
 
+        /// <summary>
+        /// Opens a text file, reads all the text in the file, and then closes the file.
+        /// </summary>
+        /// <param name="filePath">The path of file to read.</param>
+        /// <returns>A string containing all the text in the file.</returns>
+        /// <exception>See <see cref="https://learn.microsoft.com/en-us/dotnet/api/system.io.file.readalltext?view=net-8.0#system-io-file-readalltext(system-string)"/>.</exception>
+        string ReadAllText(string filePath);
+
         #endregion
 
         #region Delete
@@ -201,6 +209,15 @@
         /// <param name="filename">The new file name.</param>
         /// <returns>The modified path. If the change fails, returns an empty string.</returns>
         string ChangeFilename(string path, string filename);
+
+        /// <summary>
+        /// Creates a new file, writes the specified string to the file,
+        /// and then closes the file. If the target file already exists, it is truncated and overwritten.
+        /// </summary>
+        /// <param name="filePath">The path of file to read.</param>
+        /// <param name="fileContent">The file content.</param>
+        /// <exception>See <see cref="https://learn.microsoft.com/en-us/dotnet/api/system.io.file.writealltext?view=net-8.0#system-io-file-writealltext(system-string-system-string)"/>.</exception>
+        void WriteAllText(string filePath, string fileContent);
 
         #endregion
 

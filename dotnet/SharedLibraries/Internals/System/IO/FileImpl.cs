@@ -80,6 +80,12 @@ namespace SharedLibraries.Internals.System.IO
             return RetryHelper.InvokeWithRetry(() => File.Open(filePath, FileMode.OpenOrCreate, access, share));
         }
 
+        /// <inheritdoc />
+        public string ReadAllText(string filePath)
+        {
+            return RetryHelper.InvokeWithRetry(() => File.ReadAllText(filePath));
+        }
+
         #endregion
 
         #region Delete
@@ -143,6 +149,12 @@ namespace SharedLibraries.Internals.System.IO
             }
 
             return Path.Combine(directoryName, filename);
+        }
+
+        /// <inheritdoc />
+        public void WriteAllText(string filePath, string fileContent)
+        {
+            RetryHelper.InvokeWithRetry(() => File.WriteAllText(filePath, fileContent));
         }
 
         #endregion
