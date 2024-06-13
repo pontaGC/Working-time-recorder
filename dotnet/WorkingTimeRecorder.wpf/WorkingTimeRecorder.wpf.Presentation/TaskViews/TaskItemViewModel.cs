@@ -133,12 +133,21 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         private void RegisterNameRules()
         {
             var propertyName = nameof(this.Name);
+            var languageLocalizer = this.wtrSvc.LanguageLocalizer;
 
             this.AddRule(
                 new RequiredTextFieldPropertyRule<TaskItemViewModel>(
-                    this.wtrSvc.LanguageLocalizer,
+                    languageLocalizer,
                     propertyName,
                     x => x.Name));
+
+            this.AddRule(
+                new StringLengthPropertyRule<TaskItemViewModel>(
+                    languageLocalizer,
+                    propertyName,
+                    x => x.Name,
+                    1,
+                    TaskConstants.MaxNameLength));
         }
 
         #endregion

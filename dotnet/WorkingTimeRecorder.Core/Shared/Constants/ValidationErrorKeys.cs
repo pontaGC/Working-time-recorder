@@ -11,5 +11,7 @@
         public const string DefaultDoubleParse = "Please enter a number.";
         public const string OverRange = "WorkingTimeRecorder.Validation.Error.OverRange";
         public const string DefaultOverRange = "The configurable range is {0} ~ {1}.";
+        public const string OverStringLength = "WorkingTimeRecorder.Validation.Error.OverStringLength";
+        public const string DefaultOverStringLength = "Please enter the number of characters between {0} and {1}.";
     }
 }

@@ -79,6 +79,10 @@
     {
       "Id": "WorkingTimeRecorder.Validation.Error.OverRange",
       "Text": "設定可能な範囲は、{0} ~ {1}です。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.OverStringLength",
+      "Text": "{0}以上{1}以下の文字数で入力してください。"
     }
   ]
 }
