@@ -12,23 +12,46 @@ namespace WorkingTimeRecorder.Core.Rules.Property
     /// <typeparam name="T">The type of an object which has the property to validate.</typeparam>
     public class StringLengthPropertyRule<T> : IPropertyRule<T>
     {
+        private const int DefaultMinLength = 1;
+
         private readonly ILanguageLocalizer languageLocalizer;
         private readonly Func<T, string> getProperty;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RangePropertyRule{T, TComparable}"/> class.
+        /// Initializes a new instance of the <see cref="StringLengthPropertyRule{T}"/> class.
         /// </summary>
         /// <param name="languageLocalizer">The language localizer.</param>
         /// <param name="propertyName">The property name.</param>
         /// <param name="getProperty">The function to get the property value.</param>
-        /// <param name="minLength">The minimum length of text.</param>
+        /// <param name="maxLength">The maximum length of text.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="languageLocalizer"/> or <paramref name="propertyName"/> or <paramref name="getProperty"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentException"><paramref name="propertyName"/> is an empty string.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// <paramref name="maxLength"/> is less than to <c>1</c>.
+        /// </exception>
+        public StringLengthPropertyRule(
+            ILanguageLocalizer languageLocalizer,
+            string propertyName,
+            Func<T, string> getProperty,
+            int maxLength)
+            : this(languageLocalizer, propertyName, getProperty, DefaultMinLength, maxLength)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StringLengthPropertyRule{T}"/> class.
+        /// </summary>
+        /// <param name="languageLocalizer">The language localizer.</param>
+        /// <param name="propertyName">The property name.</param>
+        /// <param name="getProperty">The function to get the property value.</param>
+        /// <param name="minLength">The minimum length of text. The default value is <c>1</c>.</param>
         /// <param name="maxLength">The maximum length of text.</param>
         /// <exception cref="ArgumentNullException"><paramref name="languageLocalizer"/> or <paramref name="propertyName"/> or <paramref name="getProperty"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentException"><paramref name="propertyName"/> is an empty string.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="minLength"/> is negative.
         /// -or-
-        /// <paramref name="maxLength"/> is less than or equal to <paramref name="minLength"/>.
+        /// <paramref name="maxLength"/> is less than <paramref name="minLength"/>.
         /// </exception>
         public StringLengthPropertyRule(
             ILanguageLocalizer languageLocalizer,
@@ -41,7 +64,7 @@ namespace WorkingTimeRecorder.Core.Rules.Property
             ArgumentException.ThrowIfNullOrEmpty(propertyName);
             ArgumentNullException.ThrowIfNull(getProperty);
             ArgumentOutOfRangeException.ThrowIfNegative(minLength);
-            ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(maxLength, minLength);
+            ArgumentOutOfRangeException.ThrowIfLessThan(maxLength, minLength);
 
             this.languageLocalizer = languageLocalizer;
             this.PropertyName = propertyName;
@@ -78,8 +101,14 @@ namespace WorkingTimeRecorder.Core.Rules.Property
 
         protected virtual string GetErrorMessage(T @object)
         {
-            var messageFormat = this.languageLocalizer.Localize(ValidationErrorKeys.OverStringLength, ValidationErrorKeys.DefaultOverStringLength);
-            return string.Format(CultureInfo.InvariantCulture, messageFormat, this.MinLength, this.MaxLength);
+            if (this.MinLength == DefaultMinLength)
+            {
+                var messageFormat1 = this.languageLocalizer.Localize(ValidationErrorKeys.OverMaxStringLength, ValidationErrorKeys.DefaultOverMaxStringLength);
+                return string.Format(CultureInfo.InvariantCulture, messageFormat1, this.MaxLength);
+            }
+
+            var messageFormat2 = this.languageLocalizer.Localize(ValidationErrorKeys.OverStringLength, ValidationErrorKeys.DefaultOverStringLength);
+            return string.Format(CultureInfo.InvariantCulture, messageFormat2, this.MinLength, this.MaxLength);
         }
     }
 }

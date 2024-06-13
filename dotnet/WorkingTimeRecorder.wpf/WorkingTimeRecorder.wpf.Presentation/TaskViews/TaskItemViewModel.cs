@@ -146,7 +146,6 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
                     languageLocalizer,
                     propertyName,
                     x => x.Name,
-                    1,
                     TaskConstants.MaxNameLength));
         }
 

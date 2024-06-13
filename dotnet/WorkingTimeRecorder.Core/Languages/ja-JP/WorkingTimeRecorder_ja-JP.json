@@ -83,6 +83,10 @@
     {
       "Id": "WorkingTimeRecorder.Validation.Error.OverStringLength",
       "Text": "{0}以上{1}以下の文字数で入力してください。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.OverMaxStringLength",
+      "Text": "{0}以下の文字数で入力してください。"
     }
   ]
 }

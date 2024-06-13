@@ -13,5 +13,7 @@
         public const string DefaultOverRange = "The configurable range is {0} ~ {1}.";
         public const string OverStringLength = "WorkingTimeRecorder.Validation.Error.OverStringLength";
         public const string DefaultOverStringLength = "Please enter the number of characters between {0} and {1}.";
+        public const string OverMaxStringLength = "WorkingTimeRecorder.Validation.Error.OverMaxStringLength";
+        public const string DefaultOverMaxStringLength = "Please enter {0} characters or less.";
     }
 }

@@ -83,6 +83,10 @@
     {
       "Id": "WorkingTimeRecorder.Validation.Error.OverStringLength",
       "Text": "Please enter the number of characters between {0} and {1}."
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.OverMaxStringLength",
+      "Text": "Please enter {0} characters or less."
     }
   ]
 }
