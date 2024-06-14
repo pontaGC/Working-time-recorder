@@ -65,7 +65,7 @@
             <Button x:Name="AffirmativeButton"
                     BorderBrush="Transparent"
                     Margin="0, 0, 10, 0"
-                    MinWidth="80" Height="40"
+                    MinWidth="80" Height="30"
                     IsDefault="{Binding IsAffirmativeButtonDefault, Mode=OneTime}"
                     VerticalContentAlignment="Center"
                     Content="{Binding AffirmativeButtonText, Mode=OneTime}"
