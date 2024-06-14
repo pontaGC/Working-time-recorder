@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"             
              xmlns:local="clr-namespace:WorkingTimeRecorder.wpf.Presentation.TaskViews"
+             xmlns:behavior="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Behaviors;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
              xmlns:markup="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Markup;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
              xmlns:shared="clr-namespace:WorkingTimeRecorder.Core.Shared;assembly=WorkingTimeRecorder.Core"
              mc:Ignorable="d" 
@@ -36,7 +37,8 @@
                   CanUserSortColumns="False"
                   CanUserReorderColumns="False"
                   VirtualizingPanel.IsVirtualizing="True"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto">
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  behavior:CommandBindingsBehavior.CommandBindings="{Binding CommandBindings, Mode=OneTime}">
             <DataGrid.Columns>
                 <!--Task No.-->
                 <DataGridTemplateColumn Header="No." Width="Auto">

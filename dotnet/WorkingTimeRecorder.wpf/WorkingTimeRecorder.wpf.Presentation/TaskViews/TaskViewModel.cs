@@ -55,11 +55,18 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
 
             this.addItemCommand = new DelegateCommand(this.AddItem);
             this.deleteItemCommand = new DelegateCommand(this.DeleteItem, this.CanDeleteItem);
+
+            this.RegisterCommandBindings();
         }
 
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Gets a collection of the command binding.
+        /// </summary>
+        public CommandBindingCollection CommandBindings { get; } = new CommandBindingCollection();
 
         /// <summary>
         /// Gets a selected task item.
@@ -192,6 +199,15 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         private void OnTaskItemViewModelsChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
             this.deleteItemCommand.RaiseCanExecuteChanged();
+        }
+
+        private void RegisterCommandBindings()
+        {
+            var deleteCommandBindinds = new CommandBinding(
+                ApplicationCommands.Delete,
+                (sender, args) => this.deleteItemCommand.Execute(),
+                (sender, args) => args.CanExecute = this.deleteItemCommand.CanExecute());
+            this.CommandBindings.Add(deleteCommandBindinds);
         }
 
         #endregion
