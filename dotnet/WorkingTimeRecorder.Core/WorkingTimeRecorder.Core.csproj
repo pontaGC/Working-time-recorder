@@ -13,6 +13,8 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
+    <None Remove="Icons\Resources\Add.xaml" />
+    <None Remove="Icons\Resources\Delete.xaml" />
     <None Remove="Icons\Resources\StatusHelp.xaml" />
     <None Remove="Icons\Resources\StatusInformation.xaml" />
     <None Remove="Icons\Resources\StatusWarning.xaml" />
@@ -34,6 +36,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SharedLibraries\SharedLibraries.csproj" />
+    <EmbeddedResource Include="Icons\Resources\Add.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\Resources\Delete.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="Icons\Resources\StatusError.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

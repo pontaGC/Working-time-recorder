@@ -8,8 +8,13 @@
     {
         public static readonly IReadOnlyCollection<string> AllKeys =
         [
+            Add,
+            Delete,
             StatusError, StatusHelp, StatusInformation, StatusWarning,
         ];
+
+        public const string Add = "Add";
+        public const string Delete = "Delete";
 
         public const string StatusError = "StatusError";
         public const string StatusHelp = "StatusHelp";

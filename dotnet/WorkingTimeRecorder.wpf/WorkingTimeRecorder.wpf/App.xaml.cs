@@ -104,9 +104,11 @@ namespace WorkingTimeRecorder.wpf
             CreateLocalAppData();
 
             RegisterDependencies(this.container, new WTRCoreDependencyRegistrant());
+            RegisterDependencies(this.container, new PresentationCoreDependencyRegistrant());
             RegisterDependencies(this.container, new PresentationDependencyRegistrant());
 
             RegisterLoggers(container);
+            InitializeModules(container);
 
             var appSettings = Config.GetAppSettings(this.ShowAppSettingsReadError);
             if (appSettings is null)
@@ -135,6 +137,14 @@ namespace WorkingTimeRecorder.wpf
             foreach(var loggerProvider in container.GetAllInstances<ILoggerProvider>())
             {
                 loggerRegistrar.Register(loggerProvider);
+            }
+        }
+
+        private static void InitializeModules(IIoCContainer container)
+        {
+            foreach(var initializer in container.GetAllInstances<IModuleInitializer>())
+            {
+                initializer.Initialize();
             }
         }
 

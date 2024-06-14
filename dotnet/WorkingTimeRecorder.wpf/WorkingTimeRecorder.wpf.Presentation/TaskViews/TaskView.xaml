@@ -18,83 +18,121 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-
-    <!--Task list-->
-    <DataGrid AutoGenerateColumns="False"
-              ItemsSource="{Binding TaskItems, Mode=OneTime}"
-              VirtualizingPanel.IsVirtualizing="True">
-        <DataGrid.Columns>
-            <!--Task No.-->
-            <DataGridTemplateColumn Header="No." Width="Auto">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <TextBox Style="{StaticResource TaskNoTextBoxStyle}"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <!--Task list-->
+        <DataGrid Grid.Row="0"
+                  AutoGenerateColumns="False"                  
+                  ItemsSource="{Binding TaskItems, Mode=OneTime}"
+                  VirtualizingPanel.IsVirtualizing="True"
+                  CanUserAddRows="True"
+                  CanUserDeleteRows="True"
+                  CanUserResizeColumns="False"
+                  CanUserResizeRows="False"
+                  CanUserSortColumns="False">
+            <DataGrid.Columns>
+                <!--Task No.-->
+                <DataGridTemplateColumn Header="No." Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Style="{StaticResource TaskNoTextBoxStyle}"
                                  Text="{Binding No, Mode=OneWay}" />
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-            <!--Task name-->
-            <DataGridTemplateColumn Header="{markup:Localize Id={x:Static shared:WTRTextKeys.TaskName}, DefaultText={x:Static shared:WTRTextKeys.DefaultTaskName}}"
-                                    Width="Auto"
-                                    MinWidth="150"
-                                    MaxWidth="300">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <TextBox Style="{StaticResource TaskNameTextBoxStyle}"
-                                 MinWidth="150"
-                                 MaxWidth="300"
-                                 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 ToolTip="{Binding Path=Text, RelativeSource={RelativeSource Self}}"
-                                 Validation.ErrorTemplate="{StaticResource ValidationErrorTextBlockTemplate}" />
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
+                <!--Task name-->
+                <DataGridTemplateColumn Header="{markup:Localize Id={x:Static shared:WTRTextKeys.TaskName}, DefaultText={x:Static shared:WTRTextKeys.DefaultTaskName}}"
+                                        Width="Auto"
+                                        MinWidth="150"
+                                        MaxWidth="300">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Style="{StaticResource TaskNameTextBoxStyle}"
+                                     MinWidth="150"
+                                     MaxWidth="300"
+                                     Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     ToolTip="{Binding Path=Text, RelativeSource={RelativeSource Self}}"
+                                     Validation.ErrorTemplate="{StaticResource ValidationErrorTextBlockTemplate}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-            <!--Elapsed work time-->
-            <DataGridTemplateColumn Header="{markup:Localize Id={x:Static shared:WTRTextKeys.ElapsedWorkTime}, DefaultText={x:Static shared:WTRTextKeys.DefaultElapsedWorkTime}}"
-                                    Width="Auto"
-                                    MinWidth="50"
-                                    MaxWidth="100">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <TextBox Style="{StaticResource ElapsedWorkTimeTextBoxStyle}"
-                                 MinWidth="50"
-                                 MaxWidth="100"
-                                 Text="{Binding ElapsedWorkTime, Mode=OneWay}" />
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
+                <!--Elapsed work time-->
+                <DataGridTemplateColumn Header="{markup:Localize Id={x:Static shared:WTRTextKeys.ElapsedWorkTime}, DefaultText={x:Static shared:WTRTextKeys.DefaultElapsedWorkTime}}"
+                                        Width="Auto"
+                                        MinWidth="50"
+                                        MaxWidth="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Style="{StaticResource ElapsedWorkTimeTextBoxStyle}"
+                                     MinWidth="50"
+                                     MaxWidth="100"
+                                     Text="{Binding ElapsedWorkTime, Mode=OneWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-            <!--Man-hours-->
-            <DataGridTemplateColumn Header="{markup:Localize Id={x:Static shared:WTRTextKeys.ManHours}, DefaultText={x:Static shared:WTRTextKeys.DefaultManHours}}"
-                                    Width="Auto"
-                                    MinWidth="50"
-                                    MaxWidth="100">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <TextBox Style="{StaticResource ManHoursTextBoxStyle}"
-                                 MinWidth="50"
-                                 MaxWidth="100"
-                                 Text="{Binding ManHours, StringFormat={x:Static shared:ManHoursConstants.StringFormat}, Mode=OneWay}" />
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
+                <!--Man-hours-->
+                <DataGridTemplateColumn Header="{markup:Localize Id={x:Static shared:WTRTextKeys.ManHours}, DefaultText={x:Static shared:WTRTextKeys.DefaultManHours}}"
+                                        Width="Auto"
+                                        MinWidth="50"
+                                        MaxWidth="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Style="{StaticResource ManHoursTextBoxStyle}"
+                                     MinWidth="50"
+                                     MaxWidth="100"
+                                     Text="{Binding ManHours, StringFormat={x:Static shared:ManHoursConstants.StringFormat}, Mode=OneWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-            <!--Recording target-->
-            <DataGridTemplateColumn Header="{markup:Localize Id={x:Static shared:WTRTextKeys.RecordingTarget}, DefaultText={x:Static shared:WTRTextKeys.DefaultRecordingTarget}}"
-                                    Width="Auto"
-                                    MinWidth="50"
-                                    MaxWidth="100">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <RadioButton Style="{StaticResource RecordingTargetRadioButtonStyle}"
-                                     GroupName="RecordingTargetGroup"
-                                     IsChecked="{Binding IsRecordingTarget, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
+                <!--Recording target-->
+                <DataGridTemplateColumn Header="{markup:Localize Id={x:Static shared:WTRTextKeys.RecordingTarget}, DefaultText={x:Static shared:WTRTextKeys.DefaultRecordingTarget}}"
+                                        Width="Auto"
+                                        MinWidth="50"
+                                        MaxWidth="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <RadioButton Style="{StaticResource RecordingTargetRadioButtonStyle}"
+                                         GroupName="RecordingTargetGroup"
+                                         IsChecked="{Binding IsRecordingTarget, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-        </DataGrid.Columns>
-    </DataGrid>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--Add/Delete datagrid row buttons-->
+        <StackPanel Grid.Row="1"
+                    x:Name="ButtonPanel"
+                    Orientation="Horizontal">
+            <StackPanel.Resources>
+                <ResourceDictionary>
+                    <Style x:Key="AddDeleteRowButtonStyle" TargetType="{x:Type Button}">
+                        <Style.Setters>
+                            <Setter Property="Width" Value="30" />
+                            <Setter Property="Height" Value="30" />
+                        </Style.Setters>
+                    </Style>
+                </ResourceDictionary>
+            </StackPanel.Resources>
+            <Button x:Name="AddRowButton"
+                    Style="{StaticResource AddDeleteRowButtonStyle}">
+                <Button.Content>
+                    <ContentPresenter Content="{markup:Icon Key={x:Static shared:IconKeys.Add}}" />
+                </Button.Content>
+            </Button>
+            <Button x:Name="DeleteRowButton"
+                    Style="{StaticResource AddDeleteRowButtonStyle}">
+                <Button.Content>
+                    <ContentPresenter Content="{markup:Icon Key={x:Static shared:IconKeys.Delete}}" />
+                </Button.Content>
+            </Button>
+        </StackPanel>
+    </Grid>
 </UserControl>
