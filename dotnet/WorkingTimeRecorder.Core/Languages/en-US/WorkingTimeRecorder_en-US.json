@@ -29,6 +29,10 @@
       "Text": "Deleted an item. (No.: {0}, Task name: {1}, Man-hours: {2})"
     },
     {
+      "Id": "WorkingTimeRecorder.Task.ConfirmDeleteItem",
+      "Text": "Deleted items cannot be recovered.\nAre you sure you want to delete the selected item?"
+    },
+    {
       "Id": "WorkingTimeRecorder.OutputWindow.Title",
       "Text": "Output"
     },

@@ -59,7 +59,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
             this.dummyItem3.ElapsedWorkTime.SetHours(20);
             this.tasksModel.Items.Add(dummyItem3);
 
-            this.TaskList = new TaskViewModel(this.tasksModel, wtrSvc);
+            this.TaskList = new TaskViewModel(this.tasksModel, wtrSvc, dialogs);
 
             this.BuildMainMenuItems(new MainMenuItemBuilder(this.wtrSvc, this.dialogs));
 

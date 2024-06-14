@@ -29,6 +29,10 @@
       "Text": "アイテムを削除しました。(No.: {0}, タスク名: {1}, 工数: {2})"
     },
     {
+      "Id": "WorkingTimeRecorder.Task.ConfirmDeleteItem",
+      "Text": "削除したアイテムは元に戻せません。\n選択中のアイテムを削除しますか?"
+    },
+    {
       "Id": "WorkingTimeRecorder.OutputWindow.Title",
       "Text": "出力"
     },

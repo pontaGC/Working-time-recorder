@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+
 using Prism.Commands;
+
 using SharedLibraries.Extensions;
 using SharedLibraries.Logging;
+
 using WorkingTimeRecorder.Core.Models.Tasks;
 using WorkingTimeRecorder.Core.Mvvm;
 using WorkingTimeRecorder.Core.Shared;
@@ -19,6 +16,9 @@ using WorkingTimeRecorder.wpf.Presentation.Core.Dialogs;
 
 namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
 {
+    /// <summary>
+    /// The view-model for task view.
+    /// </summary>
     internal class TaskViewModel : ViewModelBase
     {
         #region Fields
@@ -28,7 +28,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
 
         private readonly Tasks tasksModel;
         private readonly DelegateCommand addItemCommand;
-        private readonly DelegateCommand deleteItemCommand;
+        private readonly DelegateCommand<Window> deleteItemCommand;
 
         private TaskItemViewModel selectedItem;
 
@@ -41,20 +41,23 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="wtrSvc">The wtr service.</param>
+        /// <param name="dialogs">The dialogs.</param>
         /// <exception cref="ArgumentNullException"><paramref name="model"/> or <paramref name="wtrSvc"/> is <c>null</c>.</exception>
-        public TaskViewModel(Tasks model, IWTRSvc wtrSvc)
+        public TaskViewModel(Tasks model, IWTRSvc wtrSvc, IDialogs dialogs)
         {
             ArgumentNullException.ThrowIfNull(model);
             ArgumentNullException.ThrowIfNull(wtrSvc);
+            ArgumentNullException.ThrowIfNull(dialogs);
 
             this.tasksModel = model;
             this.wtrSvc = wtrSvc;
+            this.dialogs = dialogs;
 
             this.ItemViewModels.AddRange(model.Items.Select(CreateTaskItemViewModel));
             this.ItemViewModels.CollectionChanged += this.OnTaskItemViewModelsChanged;
 
             this.addItemCommand = new DelegateCommand(this.AddItem);
-            this.deleteItemCommand = new DelegateCommand(this.DeleteItem, this.CanDeleteItem);
+            this.deleteItemCommand = new DelegateCommand<Window>(this.DeleteItem, param => this.CanDeleteItem());
 
             this.RegisterCommandBindings();
         }
@@ -138,8 +141,14 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
             return true;
         }
 
-        private void DeleteItem()
+        private void DeleteItem(Window ownerWindow)
         {
+            if (!this.ConfirmDeleteItem(ownerWindow))
+            {
+                // User denied
+                return;
+            }
+
             var selectedItemId = this.SelectedItem.Id;
             var deletingItemModel = this.tasksModel.Items.SingleOrDefaultSafe(x => x.Id == selectedItemId);
             if (deletingItemModel is null)
@@ -153,6 +162,20 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
                 this.DeleteSelecteItemViewModel(deletingItemViewModel);
                 this.NotifyDeletedItem(deletingItemViewModel);
             }
+        }
+
+        private bool ConfirmDeleteItem(Window ownerWindow)
+        {
+            var message = this.wtrSvc.LanguageLocalizer.Localize(
+                "WorkingTimeRecorder.Task.ConfirmDeleteItem",
+                "Deleted items cannot be recovered.\nAre you sure you want to delete the selected item?");
+            var messageBoxResult = this.dialogs.MessageBox.Show(
+                ownerWindow,
+                message,
+                ownerWindow.Title,
+                MessageBoxButtons.YesNo,
+                MessageBoxImages.Question);
+            return messageBoxResult == MessageBoxResults.Yes;
         }
 
         private void DeleteSelecteItemViewModel(TaskItemViewModel deletingItemViewModel)
@@ -205,8 +228,8 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         {
             var deleteCommandBindinds = new CommandBinding(
                 ApplicationCommands.Delete,
-                (sender, args) => this.deleteItemCommand.Execute(),
-                (sender, args) => args.CanExecute = this.deleteItemCommand.CanExecute());
+                (sender, args) => this.deleteItemCommand.Execute(Window.GetWindow(sender as DependencyObject)),
+                (sender, args) => args.CanExecute = this.deleteItemCommand.CanExecute(Window.GetWindow(sender as DependencyObject)));
             this.CommandBindings.Add(deleteCommandBindinds);
         }
 
