@@ -8,6 +8,6 @@
         /// <summary>
         /// Initializes a module.
         /// </summary>
-        public void Initialize();
+        void Initialize();
     }
 }
