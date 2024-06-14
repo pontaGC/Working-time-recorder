@@ -31,9 +31,10 @@
                   ItemsSource="{Binding ItemViewModels, Mode=OneTime}"
                   CanUserAddRows="True"
                   CanUserDeleteRows="True"
-                  CanUserResizeColumns="False"
+                  CanUserResizeColumns="True"
                   CanUserResizeRows="False"
                   CanUserSortColumns="False"
+                  CanUserReorderColumns="False"
                   VirtualizingPanel.IsVirtualizing="True"
                   ScrollViewer.VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
@@ -68,12 +69,12 @@
                 <DataGridTemplateColumn Header="{markup:Localize Id={x:Static shared:WTRTextKeys.ElapsedWorkTime}, DefaultText={x:Static shared:WTRTextKeys.DefaultElapsedWorkTime}}"
                                         Width="Auto"
                                         MinWidth="50"
-                                        MaxWidth="100">
+                                        MaxWidth="110">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Style="{StaticResource ElapsedWorkTimeTextBoxStyle}"
                                      MinWidth="50"
-                                     MaxWidth="100"
+                                     MaxWidth="110"
                                      Text="{Binding ElapsedWorkTime, Mode=OneWay}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
