@@ -113,6 +113,8 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
             var itemViewModel = CreateTaskItemViewModel(itemModel);
             this.ItemViewModels.Add(itemViewModel);
 
+            this.SelectedItem = itemViewModel;
+
             this.NotifyAddItem(itemViewModel);
         }
 
