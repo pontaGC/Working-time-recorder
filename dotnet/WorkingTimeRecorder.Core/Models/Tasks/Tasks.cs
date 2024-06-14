@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 using WorkingTimeRecorder.Core.Models.Entities;
 using WorkingTimeRecorder.Core.Shared;
@@ -14,6 +15,22 @@ namespace WorkingTimeRecorder.Core.Models.Tasks
         #region Fields
 
         private static double? personDay;
+
+        #endregion
+
+        #region Constructors
+
+        public Tasks()
+            : this (Guid.NewGuid().ToString())
+        {
+        }
+
+        public Tasks(string id)
+        {
+            ArgumentNullException.ThrowIfNull(id);
+
+            this.Id = id;
+        }
 
         #endregion
 
@@ -47,7 +64,7 @@ namespace WorkingTimeRecorder.Core.Models.Tasks
         /// <summary>
         /// Gets a collection of the task item.
         /// </summary>
-        public IList<TaskItem> Items { get; set; } = new List<TaskItem>();
+        public IList<TaskItem> Items { get; } = new List<TaskItem>();
 
         #endregion
 

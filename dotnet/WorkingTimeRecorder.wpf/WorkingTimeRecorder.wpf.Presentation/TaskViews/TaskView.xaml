@@ -24,15 +24,18 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <!--Task list-->
-        <DataGrid Grid.Row="0"
-                  AutoGenerateColumns="False"                  
-                  ItemsSource="{Binding TaskItems, Mode=OneTime}"
-                  VirtualizingPanel.IsVirtualizing="True"
+        <DataGrid x:Name="TaskListDataGrid"
+                  Grid.Row="0"
+                  AutoGenerateColumns="False"
+                  SelectedItem="{Binding SelectedItem}"
+                  ItemsSource="{Binding ItemViewModels, Mode=OneTime}"
                   CanUserAddRows="True"
                   CanUserDeleteRows="True"
                   CanUserResizeColumns="False"
                   CanUserResizeRows="False"
-                  CanUserSortColumns="False">
+                  CanUserSortColumns="False"
+                  VirtualizingPanel.IsVirtualizing="True"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <!--Task No.-->
                 <DataGridTemplateColumn Header="No." Width="Auto">
@@ -111,24 +114,19 @@
         <StackPanel Grid.Row="1"
                     x:Name="ButtonPanel"
                     Orientation="Horizontal">
-            <StackPanel.Resources>
-                <ResourceDictionary>
-                    <Style x:Key="AddDeleteRowButtonStyle" TargetType="{x:Type Button}">
-                        <Style.Setters>
-                            <Setter Property="Width" Value="30" />
-                            <Setter Property="Height" Value="30" />
-                        </Style.Setters>
-                    </Style>
-                </ResourceDictionary>
-            </StackPanel.Resources>
+            <!-- '+' button-->
             <Button x:Name="AddRowButton"
-                    Style="{StaticResource AddDeleteRowButtonStyle}">
+                    Style="{StaticResource EditTaskItemButtonStyle}"
+                    Command="{Binding AddItemCommand, Mode=OneTime}">
                 <Button.Content>
                     <ContentPresenter Content="{markup:Icon Key={x:Static shared:IconKeys.Add}}" />
                 </Button.Content>
             </Button>
+            <!--Garbage can button-->
             <Button x:Name="DeleteRowButton"
-                    Style="{StaticResource AddDeleteRowButtonStyle}">
+                    Style="{StaticResource EditTaskItemButtonStyle}"
+                    Command="{Binding DeleteItemCommand, Mode=OneTime}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
                 <Button.Content>
                     <ContentPresenter Content="{markup:Icon Key={x:Static shared:IconKeys.Delete}}" />
                 </Button.Content>

@@ -24,6 +24,8 @@ namespace WorkingTimeRecorder.wpf.Presentation
 
         private OutputWindowViewModel outputWindow;
 
+        private readonly Tasks tasksModel = new Tasks();
+
         private readonly TaskItem dummyItem;
         private readonly TaskItem dummyItem2;
         private readonly TaskItem dummyItem3;
@@ -33,44 +35,31 @@ namespace WorkingTimeRecorder.wpf.Presentation
             this.wtrSvc = wtrSvc;
             this.dialogs = dialogs;
 
-            this.TaskList = new TaskViewModel();
             this.dummyItem = new TaskItem()
             {
                 Name = "Dummy task",
             };
             this.dummyItem.ElapsedWorkTime.SetHours(1);
             this.dummyItem.ElapsedWorkTime.SetHours(20);
-            var dummyItem = new TaskItemViewModel(wtrSvc, this.dummyItem)
-            {
-                No = 1,
-                IsRecordingTarget = true,
-            };
+            this.tasksModel.Items.Add(this.dummyItem);
 
             this.dummyItem2 = new TaskItem()
             {
                 Name = "Dummy task2",
             };
-            this.dummyItem.ElapsedWorkTime.SetHours(1);
-            this.dummyItem.ElapsedWorkTime.SetHours(20);
-            var dummyItem2vm = new TaskItemViewModel(wtrSvc, this.dummyItem2)
-            {
-                No = 2,
-            };
+            this.dummyItem2.ElapsedWorkTime.SetHours(1);
+            this.dummyItem2.ElapsedWorkTime.SetHours(20);
+            this.tasksModel.Items.Add(dummyItem2);
 
             this.dummyItem3 = new TaskItem()
             {
                 Name = "Dummy task3",
             };
-            this.dummyItem.ElapsedWorkTime.SetHours(1);
-            this.dummyItem.ElapsedWorkTime.SetHours(20);
-            var dummyItem3vm = new TaskItemViewModel(wtrSvc, this.dummyItem3)
-            {
-                No = 3,
-            };
+            this.dummyItem3.ElapsedWorkTime.SetHours(1);
+            this.dummyItem3.ElapsedWorkTime.SetHours(20);
+            this.tasksModel.Items.Add(dummyItem3);
 
-            this.TaskList.TaskItems.Add(dummyItem);
-            this.TaskList.TaskItems.Add(dummyItem2vm);
-            this.TaskList.TaskItems.Add(dummyItem3vm);
+            this.TaskList = new TaskViewModel(this.tasksModel, wtrSvc);
 
             this.BuildMainMenuItems(new MainMenuItemBuilder(this.wtrSvc, this.dialogs));
 
@@ -111,7 +100,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
             this.dummyItem.ElapsedWorkTime.IncrementHours();
             this.dummyItem.ElapsedWorkTime.IncrementMinutes();
 
-            var recordingTargets = this.TaskList.TaskItems.Where(x => x.IsRecordingTarget).ToArray();
+            var recordingTargets = this.TaskList.ItemViewModels.Where(x => x.IsRecordingTarget).ToArray();
 
             var logger = this.wtrSvc.LoggerCollection.Resolve(LogConstants.OutputWindow);
             logger.Log(SharedLibraries.Logging.Severity.Information, dummyCount.ToString());

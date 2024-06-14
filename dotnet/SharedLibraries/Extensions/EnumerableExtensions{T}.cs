@@ -107,5 +107,43 @@ namespace SharedLibraries.Extensions
                 action.Invoke(element);
             }
         }
+
+        /// <summary>
+        /// Returns the only element of a sequence that satisfies a specified condition or a default value if no such element exists.
+        /// This method returns the default value if more than one element satisfies the condition.
+        /// </summary>
+        /// <typeparam name="T">The type of element.</typeparam>
+        /// <param name="source">The source enumerable.</param>
+        /// <param name="predicate">The function to test an element for a condition.</param>
+        /// <returns>
+        /// The single element of the input sequence that satisfies the condition,
+        /// or default(TSource) if no such element or more than one element satisfieds the condition is found.
+        /// </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="predicate"/> is <c>null</c>.</exception>
+        public static T? SingleOrDefaultSafe<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+
+            var foundFirst = false;
+            T? result = default;
+            foreach(var element in source)
+            {
+                if (predicate.Invoke(element))
+                {
+                    if (foundFirst)
+                    {
+                        // Found second eleemnt satisfies the condition
+                        return default;
+                    }
+
+                    foundFirst = true;
+                    result = element;
+                    continue;
+                }
+            }
+
+            return result;
+        }
     }
 }

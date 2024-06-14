@@ -56,6 +56,11 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         #region Properties
 
         /// <summary>
+        /// Gets ID of the model.
+        /// </summary>
+        public string Id => this.model.Id;
+
+        /// <summary>
         /// Gets or sets a task number.
         /// </summary>
         public int No

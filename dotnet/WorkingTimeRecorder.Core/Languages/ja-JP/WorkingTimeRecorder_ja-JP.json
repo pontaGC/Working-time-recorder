@@ -21,6 +21,14 @@
       "Text": "記録対象"
     },
     {
+      "Id": "WorkingTimeRecorder.Task.NotifyAddNewItem",
+      "Text": "新しいアイテムを追加しました。(No.: {0})"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Task.NotifyDeleteItem",
+      "Text": "アイテムを削除しました。(No.: {0}, タスク名: {1}, 工数: {2})"
+    },
+    {
       "Id": "WorkingTimeRecorder.OutputWindow.Title",
       "Text": "出力"
     },

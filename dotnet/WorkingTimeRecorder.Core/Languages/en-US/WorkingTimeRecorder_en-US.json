@@ -21,6 +21,14 @@
       "Text": "Recording Target"
     },
     {
+      "Id": "WorkingTimeRecorder.Task.NotifyAddNewItem",
+      "Text": "Added an item. (No.: {0})"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Task.NotifyDeleteItem",
+      "Text": "Deleted an item. (No.: {0}, Task name: {1}, Man-hours: {2})"
+    },
+    {
       "Id": "WorkingTimeRecorder.OutputWindow.Title",
       "Text": "Output"
     },
