@@ -24,5 +24,9 @@
         public const string StatusHelp = "StatusHelp";
         public const string StatusInformation = "StatusInformation";
         public const string StatusWarning = "StatusWarning";
+
+        public const string Run = "Run";
+        public const string Pause = "Pause";
+        public const string Stop = "Stop";
     }
 }

@@ -15,10 +15,13 @@
     <None Remove="appsettings.json" />
     <None Remove="Icons\Resources\Add.xaml" />
     <None Remove="Icons\Resources\Delete.xaml" />
+    <None Remove="Icons\Resources\Pause.xaml" />
     <None Remove="Icons\Resources\Redo.xaml" />
+    <None Remove="Icons\Resources\Run.xaml" />
     <None Remove="Icons\Resources\StatusHelp.xaml" />
     <None Remove="Icons\Resources\StatusInformation.xaml" />
     <None Remove="Icons\Resources\StatusWarning.xaml" />
+    <None Remove="Icons\Resources\Stop.xaml" />
     <None Remove="Icons\Resources\Undo.xaml" />
   </ItemGroup>
 
@@ -44,7 +47,13 @@
     <EmbeddedResource Include="Icons\Resources\Delete.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Icons\Resources\Pause.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="Icons\Resources\Redo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\Resources\Run.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Icons\Resources\StatusError.xaml">
@@ -57,6 +66,9 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Icons\Resources\StatusInformation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\Resources\Stop.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Icons\Resources\Undo.xaml">
