@@ -12,6 +12,7 @@
             Delete,
             Undo, Redo,
             StatusError, StatusHelp, StatusInformation, StatusWarning,
+            Run, Pause, Stop,
         ];
 
         public const string Add = "Add";
