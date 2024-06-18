@@ -23,6 +23,12 @@ namespace SharedLibraries.Internals.System.IO
         }
 
         /// <inheritdoc />
+        public bool HasExtension(string filename, string expectedFileExtension)
+        {
+            return Path.HasExtension(filename) && Path.GetExtension(filename) == expectedFileExtension;
+        }
+
+        /// <inheritdoc />
         public bool IsPathFullyQualified(string path)
         {
             return path is not null && Path.IsPathFullyQualified(path);

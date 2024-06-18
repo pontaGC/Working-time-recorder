@@ -1,4 +1,6 @@
-﻿namespace SharedLibraries.System.IO
+﻿using System.Diagnostics;
+
+namespace SharedLibraries.System.IO
 {
     /// <summary>
     /// Responsible for operating a file with retry design.
@@ -20,6 +22,14 @@
         /// <param name="filename">The file name to check.</param>
         /// <returns><c>true</c>, if <c>filename</c> includes a file extension. Otherwise; <c>false</c>.</returns>
         bool HasExtension(string filename);
+
+        /// <summary>
+        /// Checks whether or not the file has the specified file extension.
+        /// </summary>
+        /// <param name="fileName">The target file name (or path) to check.</param>
+        /// <param name="expectedFileExtension">The expected file extension.</param>
+        /// <returns><c>true</c>, if the <c>targetFileName</c>'s extension equals <c>expectedFileExtension</c>. Otherwise; <c>false</c>.</returns>
+        bool HasExtension(string fileName, string expectedFileExtension);
 
         /// <summary>
         /// Returns a value that indicates whether a file path is fully qualified.
