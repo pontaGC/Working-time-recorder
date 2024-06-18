@@ -8,7 +8,7 @@
              xmlns:behavior="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Behaviors;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
              xmlns:markup="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Markup;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
              xmlns:shared="clr-namespace:WorkingTimeRecorder.Core.Shared;assembly=WorkingTimeRecorder.Core"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance local:TaskViewModel, IsDesignTimeCreatable=False}">
     <UserControl.Resources>
@@ -23,6 +23,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <!--Task list-->
         <DataGrid x:Name="TaskListDataGrid"
@@ -36,6 +37,7 @@
                   CanUserResizeRows="False"
                   CanUserSortColumns="False"
                   CanUserReorderColumns="False"
+                  IsEnabled="{Binding CanTaskListEdited, Mode=OneWay}"
                   VirtualizingPanel.IsVirtualizing="True"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   behavior:CommandBindingsBehavior.CommandBindings="{Binding CommandBindings, Mode=OneTime}">
@@ -135,5 +137,7 @@
                 </Button.Content>
             </Button>
         </StackPanel>
+        <local:TimeRecordOperation Grid.Row="2"
+                                   HorizontalAlignment="Center" />
     </Grid>
 </UserControl>

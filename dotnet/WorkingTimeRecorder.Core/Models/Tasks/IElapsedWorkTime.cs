@@ -14,6 +14,15 @@
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// Gets a value indicating whether mearing work time is running or not.
+        /// </summary>
+        bool IsRunning { get; }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -47,6 +56,16 @@
         /// Added one minute.
         /// </summary>
         void IncrementMinutes();
+
+        /// <summary>
+        /// Starts mesuring time.
+        /// </summary>
+        void StartMesuringTime();
+
+        /// <summary>
+        /// Stops merusing time.
+        /// </summary>
+        void StopMesuringTime();
 
         #endregion
     }

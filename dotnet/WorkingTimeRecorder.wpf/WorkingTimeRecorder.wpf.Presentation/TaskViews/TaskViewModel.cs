@@ -29,7 +29,11 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         private readonly Tasks tasksModel;
         private readonly DelegateCommand addItemCommand;
         private readonly DelegateCommand<Window> deleteItemCommand;
+        private readonly DelegateCommand startRecordingWorkingTimeCommand;
+        private readonly DelegateCommand stopRecordingWorkingTimeCommand;
 
+        private bool canRunRecordingTime;
+        private bool canTaskListEdited;
         private TaskItemViewModel selectedItem;
 
         #endregion
@@ -56,8 +60,13 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
             this.ItemViewModels.AddRange(model.Items.Select(CreateTaskItemViewModel));
             this.ItemViewModels.CollectionChanged += this.OnTaskItemViewModelsChanged;
 
-            this.addItemCommand = new DelegateCommand(this.AddItem);
+            this.addItemCommand = new DelegateCommand(this.AddItem, this.CanAddItem);
             this.deleteItemCommand = new DelegateCommand<Window>(this.DeleteItem, param => this.CanDeleteItem());
+            this.startRecordingWorkingTimeCommand = new DelegateCommand(this.StartRecordingWorkingTime);
+            this.stopRecordingWorkingTimeCommand = new DelegateCommand(this.StopRecordingWorkingTime);
+
+            this.CanRunRecordingTime = true;
+            this.CanTaskListEdited = true;
 
             this.RegisterCommandBindings();
         }
@@ -65,6 +74,28 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Gets or sets a value indicating whether recording working time is executed or not.
+        /// </summary>
+        public bool CanRunRecordingTime 
+        {
+            get => this.canRunRecordingTime;
+            set => this.SetProperty(ref this.canRunRecordingTime, value);
+        }
+
+        public bool CanTaskListEdited
+        { 
+            get => this.canTaskListEdited;
+            set 
+            {
+                if (this.SetProperty(ref this.canTaskListEdited, value))
+                {
+                    this.addItemCommand.RaiseCanExecuteChanged();
+                    this.deleteItemCommand.RaiseCanExecuteChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Gets a collection of the command binding.
@@ -101,9 +132,26 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         /// </summary>
         public ICommand DeleteItemCommand => this.deleteItemCommand;
 
+        /// <summary>
+        /// Gets a command to start recording working time.
+        /// </summary>
+        public ICommand StartRecordingWorkingTimeCommand => this.startRecordingWorkingTimeCommand;
+
+        /// <summary>
+        /// Gets a command to stop recording working time.
+        /// </summary>
+        public ICommand StopRecordingWorkingTimeCommand => this.stopRecordingWorkingTimeCommand;
+
         #endregion
 
         #region Private Methods
+
+        #region Add command
+
+        private bool CanAddItem()
+        {
+            return this.CanTaskListEdited;
+        }
 
         private void AddItem()
         {
@@ -128,8 +176,17 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
             outputWindow.Log(Severity.Information, message);
         }
 
+        #endregion
+
+        #region Delete command
+
         private bool CanDeleteItem()
         {
+            if (!this.CanTaskListEdited)
+            {
+                return false;
+            }
+
             if (this.ItemViewModels.IsEmpty())
             {
                 return false;
@@ -209,6 +266,92 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
             outputWindow.Log(Severity.Information, message);
         }
 
+        #endregion
+
+        #region Start/Stop mesuring time command
+
+        private void StartRecordingWorkingTime()
+        {
+            var targetItemVm = this.GetRecordingTargetTaskItemViewModel();
+            if (targetItemVm is null)
+            {
+                return;
+            }
+
+            var startCommand = targetItemVm.StartRecordingWorkingTimeCommand;
+            if (!startCommand.CanExecute(null))
+            {
+                return;
+            }
+
+            startCommand.Execute(null);
+
+            this.CanRunRecordingTime = false;
+            this.CanTaskListEdited = false;
+
+            this.NotifyStartRecordingWorkingTime(targetItemVm);
+        }
+
+        private void NotifyStartRecordingWorkingTime(TaskItemViewModel itemViewModel)
+        {
+            const string MessageFormatKey = "WorkingTimeRecorder.Task.NotifyStartRecordingWorkTime";
+            var messageFormat = this.wtrSvc.LanguageLocalizer.Localize(MessageFormatKey, MessageFormatKey);
+            var message = string.Format(
+                CultureInfo.InvariantCulture,
+                messageFormat,
+                itemViewModel.No,
+                itemViewModel.Name,
+                GetCurrentDateTimeString());
+
+            var outputWindow = this.wtrSvc.LoggerCollection.Resolve(LogConstants.OutputWindow);
+            outputWindow.Log(Severity.Information, message);
+        }
+
+        private void StopRecordingWorkingTime()
+        {
+            var targetItemVm = this.GetRecordingTargetTaskItemViewModel();
+            if (targetItemVm is null)
+            {
+                return;
+            }
+
+            var stopCommand = targetItemVm.StopRecordingWorkingTimeCommand;
+            if (!stopCommand.CanExecute(null))
+            {
+                return;
+            }
+
+            stopCommand.Execute(null);
+
+            this.CanRunRecordingTime = true;
+            this.CanTaskListEdited = true;
+
+            this.NotifyStopRecordingWorkingTime(targetItemVm);
+        }
+
+        private void NotifyStopRecordingWorkingTime(TaskItemViewModel itemViewModel)
+        {
+            const string MessageFormatKey = "WorkingTimeRecorder.Task.NotifyStopRecordingWorkTime";
+            var messageFormat = this.wtrSvc.LanguageLocalizer.Localize(MessageFormatKey, MessageFormatKey);
+            var message = string.Format(
+                CultureInfo.InvariantCulture,
+                messageFormat,
+                itemViewModel.No,
+                itemViewModel.Name,
+                GetCurrentDateTimeString());
+
+            var outputWindow = this.wtrSvc.LoggerCollection.Resolve(LogConstants.OutputWindow);
+            outputWindow.Log(Severity.Information, message);
+        }
+
+        private TaskItemViewModel? GetRecordingTargetTaskItemViewModel()
+        {
+            var recordingTargetItemViewModel = this.ItemViewModels.SingleOrDefaultSafe(vm => vm.IsRecordingTarget);
+            return recordingTargetItemViewModel;
+        }
+
+        #endregion
+
         private TaskItemViewModel CreateTaskItemViewModel(TaskItem itemModel)
         {
             const int StartTaskNo = 1;
@@ -224,6 +367,13 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         private void OnTaskItemViewModelsChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
             this.deleteItemCommand.RaiseCanExecuteChanged();
+        }
+
+        private static string GetCurrentDateTimeString()
+        {
+            const string DateTimeFormat = "yyyy/MM/dd HH:mm";
+            var current = DateTime.Now; // This is local time
+            return $"{current.ToString(DateTimeFormat)} {TimeZoneInfo.Local.DisplayName}";
         }
 
         private void RegisterCommandBindings()

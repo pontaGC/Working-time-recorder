@@ -14,6 +14,9 @@
     <Compile Update="TaskViews\TaskView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="TaskViews\TimeRecordOperation.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AppSettings\Languages\LanguageSettingView.xaml">
@@ -38,6 +41,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TaskViews\TaskViewStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TaskViews\TimeRecordOperation.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

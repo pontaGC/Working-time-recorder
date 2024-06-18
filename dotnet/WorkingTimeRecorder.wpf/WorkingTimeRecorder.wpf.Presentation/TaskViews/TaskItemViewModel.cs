@@ -1,4 +1,9 @@
-﻿using WorkingTimeRecorder.Core.Models.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Windows.Input;
+
+using Prism.Commands;
+
+using WorkingTimeRecorder.Core.Models.Tasks;
 using WorkingTimeRecorder.Core.Mvvm;
 using WorkingTimeRecorder.Core.Rules.Property;
 using WorkingTimeRecorder.Core.Shared;
@@ -20,6 +25,9 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
 
         private readonly IWTRSvc wtrSvc;
         private readonly ITaskItem model;
+
+        private readonly DelegateCommand startRecordingTargetCommand;
+        private readonly DelegateCommand stopRecordingTargetCommand;
 
         #endregion
 
@@ -46,6 +54,9 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
             this.ManHours = model.ManHours;
 
             this.model.ElapsedWorkTime.ChangedEvent += this.OnElapsedWorkTimeChanged;
+
+            this.startRecordingTargetCommand = new DelegateCommand(this.StartRecordingWorkingTime, this.CanStartRecordingWorkingTime);
+            this.stopRecordingTargetCommand = new DelegateCommand(this.StopRecordingWorkingTime, this.CanStopRecordingWorkingTime);
 
             this.RegisterRules();
             this.ValidateAllProperties();
@@ -111,6 +122,18 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
             set => this.SetProperty(ref this.isRecordingTarget, value);
         }
 
+        /// <summary>
+        /// Gets a command to execute to start recording workingt time.
+        /// </summary>
+        [NotNull]
+        public ICommand StartRecordingWorkingTimeCommand => this.startRecordingTargetCommand;
+
+        /// <summary>
+        /// Gets a command to execute to stop recording workingt time.
+        /// </summary>
+        [NotNull]
+        public ICommand StopRecordingWorkingTimeCommand => this.stopRecordingTargetCommand;
+
         #endregion
 
         #region Private Methods
@@ -121,6 +144,52 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         {
             this.ElapsedWorkTime = GetDisplayElapsedWorkTime(e.After.Hours, e.After.Miniutes);
             this.ManHours = e.After.ConvertToManHours(Tasks.PersonDay);
+        }
+
+        #endregion
+
+        #region Commands
+
+        private bool CanStartRecordingWorkingTime()
+        {
+            if (!this.IsRecordingTarget)
+            {
+                return false;
+            }
+
+            if (this.model.ElapsedWorkTime.IsRunning)
+            {
+                // Already started
+                return false;
+            }
+
+            return true;
+        }
+
+        private void StartRecordingWorkingTime()
+        {
+            this.model.ElapsedWorkTime.StartMesuringTime();
+        }
+
+        private bool CanStopRecordingWorkingTime()
+        {
+            if (!this.IsRecordingTarget)
+            {
+                return false;
+            }
+
+            if (!this.model.ElapsedWorkTime.IsRunning)
+            {
+                // Not recording
+                return false;
+            }
+
+            return true;
+        }
+
+        private void StopRecordingWorkingTime()
+        {
+            this.model.ElapsedWorkTime.StopMesuringTime();
         }
 
         #endregion

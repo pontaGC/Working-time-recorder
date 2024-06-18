@@ -33,6 +33,14 @@
       "Text": "Deleted items cannot be recovered.\nAre you sure you want to delete the selected item?"
     },
     {
+      "Id": "WorkingTimeRecorder.Task.NotifyStartRecordingWorkTime",
+      "Text": "Recording working time has started. (No.: {0}, Task name: {1}, Start time: {2})"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Task.NotifyStopRecordingWorkTime",
+      "Text": "Recording working time was stopped. (No.: {0}, Task name: {1}, End time: {2})"
+    },
+    {
       "Id": "WorkingTimeRecorder.OutputWindow.Title",
       "Text": "Output"
     },
