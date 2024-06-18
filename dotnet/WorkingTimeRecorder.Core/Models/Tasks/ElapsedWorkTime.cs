@@ -155,9 +155,9 @@ namespace WorkingTimeRecorder.Core.Models.Tasks
                 return false;
             }
 
-            var before = new ElapsedWorkTimeValueObject(this);
+            var before = new ReadOnlyElapsedWorkTime(this);
             backingStore = newValue;
-            var after = new ElapsedWorkTimeValueObject(this);
+            var after = new ReadOnlyElapsedWorkTime(this);
 
             this.RaiseChangedEvent(new ElapsedWorkTimeChangedEventArgs(before, after));
             return true;
@@ -165,9 +165,9 @@ namespace WorkingTimeRecorder.Core.Models.Tasks
 
         private void IncrementTimeProperty(ref uint backingStore)
         {
-            var before = new ElapsedWorkTimeValueObject(this);
+            var before = new ReadOnlyElapsedWorkTime(this);
             backingStore += 1;
-            var after = new ElapsedWorkTimeValueObject(this);
+            var after = new ReadOnlyElapsedWorkTime(this);
 
             this.RaiseChangedEvent(new ElapsedWorkTimeChangedEventArgs(before, after));
         }
@@ -176,7 +176,7 @@ namespace WorkingTimeRecorder.Core.Models.Tasks
         {
             const double OneMinuteSeconds = 60;
 
-            var before = new ElapsedWorkTimeValueObject(this);
+            var before = new ReadOnlyElapsedWorkTime(this);
 
             var intervalMinutes = (TimerInterval / 1000) / OneMinuteSeconds;
             this.currentElapsedMinutes += intervalMinutes;
@@ -185,7 +185,7 @@ namespace WorkingTimeRecorder.Core.Models.Tasks
             this.Hours += currentElapsedTime.Hours;
             this.Miniutes += currentElapsedTime.Miniutes;
 
-            var after = new ElapsedWorkTimeValueObject(this);
+            var after = new ReadOnlyElapsedWorkTime(this);
 
             this.RaiseChangedEvent(new ElapsedWorkTimeChangedEventArgs(before, after));
         }
