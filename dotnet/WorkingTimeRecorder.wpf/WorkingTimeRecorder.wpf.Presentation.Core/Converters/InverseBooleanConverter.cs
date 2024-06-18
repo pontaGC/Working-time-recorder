@@ -27,7 +27,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Converters
                 return DependencyProperty.UnsetValue;
             }
 
-            return ((bool)value).ToObject();
+            return ((bool)value) ? BooleanBoxes.False : BooleanBoxes.True;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.Core.Converters
                 return Binding.DoNothing;
             }
 
-            return ((bool)value).ToObject();
+            return ((bool)value) ? BooleanBoxes.False : BooleanBoxes.True;
         }
     }
 }
