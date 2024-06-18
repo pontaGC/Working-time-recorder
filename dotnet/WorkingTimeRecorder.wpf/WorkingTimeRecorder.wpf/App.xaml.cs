@@ -22,6 +22,7 @@ using WorkingTimeRecorder.Core.Models.Tasks;
 using WorkingTimeRecorder.wpf.Presentation.Core.Dialogs;
 using WorkingTimeRecorder.Core.Configurations;
 using WorkingTimeRecorder.Core.Shared;
+using WorkingTimeRecorder.Core.Paths;
 
 namespace WorkingTimeRecorder.wpf
 {
@@ -76,23 +77,13 @@ namespace WorkingTimeRecorder.wpf
         #region Methods
 
         /// <summary>
-        /// Gets a local app data folder path.
-        /// </summary>
-        /// <returns>A local app data folder path.</returns>
-        public static string GetLocalAppDataFolderPath()
-        {
-            var localAppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            return Path.Combine(localAppDataFolder, WTRTextKeys.DefaultTitle);
-        }
-
-        /// <summary>
         /// Gets a system error log path.
         /// </summary>
         /// <returns>A file path of system error log.</returns>
         public static string GetSystemErrorLogPath()
         {
             const string FileName = "WorkingTimeRecorder.SystemError.log";
-            return Path.Combine(GetLocalAppDataFolderPath(), FileName);
+            return Path.Combine(SpecialFolderPathProvider.GetLocalAppDataFolderPath(), FileName);
         }
 
         #region Startup
@@ -219,7 +210,7 @@ namespace WorkingTimeRecorder.wpf
 
         private static void CreateLocalAppData()
         {
-            var folderPath = GetLocalAppDataFolderPath();
+            var folderPath = SpecialFolderPathProvider.GetLocalAppDataFolderPath();
             if (!FileSystem.Directory.Exists(folderPath))
             {
                 FileSystem.Directory.Create(folderPath);
