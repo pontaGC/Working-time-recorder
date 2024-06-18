@@ -10,7 +10,7 @@
         /// <summary>
         /// Gets a task ID.
         /// </summary>
-         string TaskId { get; }
+        string TaskId { get; }
 
         /// <summary>
         /// Gets the hours part of the elapsed work time.
