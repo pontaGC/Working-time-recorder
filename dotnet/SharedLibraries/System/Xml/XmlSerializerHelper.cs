@@ -61,7 +61,6 @@ namespace SharedLibraries.System.Xml
                 return false;
             }
 
-            var serializer = new XmlSerializer(typeof(T));
             try
             {
                 RetryHelper.InvokeWithRetry(() => Serialze(source, targetStream, namespaces));
@@ -89,7 +88,6 @@ namespace SharedLibraries.System.Xml
                 return false;
             }
 
-            var serializer = new XmlSerializer(typeof(T));
             try
             {
                 deserializedObject = Deserialize<T>(xmlStream);
