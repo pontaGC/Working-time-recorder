@@ -20,7 +20,7 @@ namespace SharedLibraries.System.Xml
         /// <param name="namespaces">The namespaces for then generated XML document.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is <c>null</c>.</exception>
         /// <exception cref="InvalidOperationException">An error occurred during serialization. The original exception is available using the <c>InnerException</c> property.</exception>
-        public static void Serialzier<T>(T source, Stream targetStream, XmlSerializerNamespaces? namespaces = null)
+        public static void Serialze<T>(T source, Stream targetStream, XmlSerializerNamespaces? namespaces = null)
         {
             ArgumentNullException.ThrowIfNull(source);
 
@@ -64,7 +64,7 @@ namespace SharedLibraries.System.Xml
             var serializer = new XmlSerializer(typeof(T));
             try
             {
-                RetryHelper.InvokeWithRetry(() => serializer.Serialize(targetStream, source, namespaces));
+                RetryHelper.InvokeWithRetry(() => Serialze(source, targetStream, namespaces));
                 return true;
             }
             catch (Exception)
@@ -92,7 +92,7 @@ namespace SharedLibraries.System.Xml
             var serializer = new XmlSerializer(typeof(T));
             try
             {
-                deserializedObject = Deserialize(xmlStream);
+                deserializedObject = Deserialize<T>(xmlStream);
             }
             catch (Exception)
             {
