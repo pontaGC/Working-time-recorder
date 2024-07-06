@@ -143,7 +143,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         private void OnElapsedWorkTimeChanged(object? sender, ElapsedWorkTimeChangedEventArgs e)
         {
             this.ElapsedWorkTime = GetDisplayElapsedWorkTime(e.After.Hours, e.After.Miniutes);
-            this.ManHours = e.After.ConvertToManHours(Tasks.PersonDay);
+            this.ManHours = e.After.ConvertToManHours(TaskCollection.PersonDay);
         }
 
         #endregion

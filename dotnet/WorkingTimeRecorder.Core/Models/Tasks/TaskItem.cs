@@ -45,7 +45,7 @@ namespace WorkingTimeRecorder.Core.Models.Tasks
         public IElapsedWorkTime ElapsedWorkTime { get; set; }
 
         /// <inheritdoc />
-        public double ManHours => this.ElapsedWorkTime.ConvertToManHours(Tasks.PersonDay);
+        public double ManHours => this.ElapsedWorkTime.ConvertToManHours(TaskCollection.PersonDay);
 
         #endregion
     }

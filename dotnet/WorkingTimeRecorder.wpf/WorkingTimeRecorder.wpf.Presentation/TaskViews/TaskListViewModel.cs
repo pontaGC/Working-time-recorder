@@ -26,7 +26,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         private readonly IWTRSvc wtrSvc;
         private readonly IDialogs dialogs;
 
-        private readonly Tasks tasksModel;
+        private readonly TaskCollection tasksModel;
         private readonly DelegateCommand addItemCommand;
         private readonly DelegateCommand<Window> deleteItemCommand;
         private readonly DelegateCommand startRecordingWorkingTimeCommand;
@@ -47,7 +47,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         /// <param name="wtrSvc">The wtr service.</param>
         /// <param name="dialogs">The dialogs.</param>
         /// <exception cref="ArgumentNullException"><paramref name="model"/> or <paramref name="wtrSvc"/> is <c>null</c>.</exception>
-        public TaskListViewModel(Tasks model, IWTRSvc wtrSvc, IDialogs dialogs)
+        public TaskListViewModel(TaskCollection model, IWTRSvc wtrSvc, IDialogs dialogs)
         {
             ArgumentNullException.ThrowIfNull(model);
             ArgumentNullException.ThrowIfNull(wtrSvc);

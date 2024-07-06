@@ -24,7 +24,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
 
         private OutputWindowViewModel outputWindow;
 
-        private readonly Tasks tasksModel = new Tasks();
+        private readonly TaskCollection tasksModel = new TaskCollection();
 
         private readonly TaskItem dummyItem;
         private readonly TaskItem dummyItem2;

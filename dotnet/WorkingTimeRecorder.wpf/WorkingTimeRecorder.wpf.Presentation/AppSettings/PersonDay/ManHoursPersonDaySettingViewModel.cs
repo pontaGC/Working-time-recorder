@@ -42,7 +42,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.AppSettings.PersonDay
             this.setPersonDayCommand.Completed += this.OnSetPersonDayCommandCompleted;
             this.cancelCommand = new DelegateCommand(this.Cancel);
 
-            this.InputPersonDay = Tasks.PersonDay.ToString(this.wtrSvc.LanguageLocalizer.CurrentCulture);
+            this.InputPersonDay = TaskCollection.PersonDay.ToString(this.wtrSvc.LanguageLocalizer.CurrentCulture);
 
             this.RegisterRules();
             this.ValidateAllProperties();

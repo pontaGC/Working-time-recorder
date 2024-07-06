@@ -71,7 +71,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.AppSettings.PersonDay
                 return false;
             }
 
-            var currentValue = Tasks.PersonDay;
+            var currentValue = TaskCollection.PersonDay;
             return currentValue != newValue;
         }
 
@@ -85,10 +85,10 @@ namespace WorkingTimeRecorder.wpf.Presentation.AppSettings.PersonDay
             }
 
             // Sets a new value of man-hours per person day
-            var oldValue = Tasks.PersonDay;
-            Tasks.PersonDay = newValue;
+            var oldValue = TaskCollection.PersonDay;
+            TaskCollection.PersonDay = newValue;
 
-            Tasks.RaisePersonDayChangedEvent(this, new PersonDayChangedEventArgs(oldValue, newValue));
+            TaskCollection.RaisePersonDayChangedEvent(this, new PersonDayChangedEventArgs(oldValue, newValue));
 
             // Notify completion
             this.Completed?.Invoke(this, EventArgs.Empty);

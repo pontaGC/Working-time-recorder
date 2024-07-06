@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingTimeRecorder.Core", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedLibraries", "..\SharedLibraries\SharedLibraries.csproj", "{77B0DEA0-4116-45EB-8FE9-E042C3E1649B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingTimeRecorder.wpf.Implementation", "WorkingTimeRecorder.wpf.Implementation\WorkingTimeRecorder.wpf.Implementation.csproj", "{5C6A9F90-997C-4E61-B611-D98FB8DABE67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{77B0DEA0-4116-45EB-8FE9-E042C3E1649B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77B0DEA0-4116-45EB-8FE9-E042C3E1649B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77B0DEA0-4116-45EB-8FE9-E042C3E1649B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C6A9F90-997C-4E61-B611-D98FB8DABE67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C6A9F90-997C-4E61-B611-D98FB8DABE67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C6A9F90-997C-4E61-B611-D98FB8DABE67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C6A9F90-997C-4E61-B611-D98FB8DABE67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

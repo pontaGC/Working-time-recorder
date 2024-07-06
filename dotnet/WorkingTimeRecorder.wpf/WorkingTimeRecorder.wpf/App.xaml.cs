@@ -188,11 +188,11 @@ namespace WorkingTimeRecorder.wpf
             var personDay = appSettings.PersonDay;
             if (ManHoursConstants.MinimumPersonDay < personDay && personDay <= ManHoursConstants.MaxPersonDay)
             {
-                Tasks.PersonDay = Math.Round(personDay, ManHoursConstants.NumberOfDecimalPoints);
+                TaskCollection.PersonDay = Math.Round(personDay, ManHoursConstants.NumberOfDecimalPoints);
                 return;
             }
 
-            Tasks.PersonDay = ManHoursConstants.DefaultPersonDay;
+            TaskCollection.PersonDay = ManHoursConstants.DefaultPersonDay;
 
             // Notify of using default man-hours per person day
             var messageFormat = languageLocalizer.Localize(
@@ -286,9 +286,9 @@ namespace WorkingTimeRecorder.wpf
             }
 
             // Sets man-hours per person-day
-            if (appSettings.PersonDay != Tasks.PersonDay)
+            if (appSettings.PersonDay != TaskCollection.PersonDay)
             {
-                appSettings.PersonDay = Tasks.PersonDay;
+                appSettings.PersonDay = TaskCollection.PersonDay;
                 isModified = true;
             }
 

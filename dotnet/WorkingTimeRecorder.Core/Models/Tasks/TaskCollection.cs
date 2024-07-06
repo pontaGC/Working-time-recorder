@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 using WorkingTimeRecorder.Core.Models.Entities;
 using WorkingTimeRecorder.Core.Shared;
@@ -10,7 +9,7 @@ namespace WorkingTimeRecorder.Core.Models.Tasks
     /// The tasks to record working time.
     /// </summary>
     [Serializable]
-    public class Tasks : Entity
+    public class TaskCollection : Entity
     {
         #region Fields
 
@@ -20,12 +19,12 @@ namespace WorkingTimeRecorder.Core.Models.Tasks
 
         #region Constructors
 
-        public Tasks()
+        public TaskCollection()
             : this (Guid.NewGuid().ToString())
         {
         }
 
-        public Tasks(string id)
+        public TaskCollection(string id)
         {
             ArgumentNullException.ThrowIfNull(id);
 
