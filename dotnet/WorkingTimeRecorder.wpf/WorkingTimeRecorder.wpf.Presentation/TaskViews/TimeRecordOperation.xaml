@@ -10,7 +10,7 @@
              xmlns:converter="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Converters;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="200"
-             d:DataContext="{d:DesignInstance local:TaskViewModel, IsDesignTimeCreatable=False}">
+             d:DataContext="{d:DesignInstance local:TaskListViewModel, IsDesignTimeCreatable=False}">
     <UserControl.Resources>
         <ResourceDictionary>
             <converter:InverseBooleanConverter x:Key="InverseBooleanConverter" />

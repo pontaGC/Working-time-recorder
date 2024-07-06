@@ -19,7 +19,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
     /// <summary>
     /// The view-model for task view.
     /// </summary>
-    internal class TaskViewModel : ViewModelBase
+    internal class TaskListViewModel : ViewModelBase
     {
         #region Fields
 
@@ -41,13 +41,13 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TaskViewModel"/> class.
+        /// Initializes a new instance of the <see cref="TaskListViewModel"/> class.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="wtrSvc">The wtr service.</param>
         /// <param name="dialogs">The dialogs.</param>
         /// <exception cref="ArgumentNullException"><paramref name="model"/> or <paramref name="wtrSvc"/> is <c>null</c>.</exception>
-        public TaskViewModel(Tasks model, IWTRSvc wtrSvc, IDialogs dialogs)
+        public TaskListViewModel(Tasks model, IWTRSvc wtrSvc, IDialogs dialogs)
         {
             ArgumentNullException.ThrowIfNull(model);
             ArgumentNullException.ThrowIfNull(wtrSvc);

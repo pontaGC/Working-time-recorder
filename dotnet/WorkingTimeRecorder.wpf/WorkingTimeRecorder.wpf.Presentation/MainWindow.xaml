@@ -29,7 +29,7 @@
               Style="{StaticResource MainMenuStyle}"
               ItemsSource="{Binding MainMenuItems, Mode=OneTime}" />
 
-        <taskview:TaskView DockPanel.Dock="Top"
+        <taskview:TaskListView DockPanel.Dock="Top"
                            DataContext="{Binding TaskList, Mode=OneWay}" />
         <StackPanel x:Name="OutputWindowPanel"
                     DockPanel.Dock="Bottom" 

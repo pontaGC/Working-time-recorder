@@ -11,7 +11,7 @@
     <Compile Update="AppSettings\PersonDay\ManHoursPersonDaySettingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="TaskViews\TaskView.xaml.cs">
+    <Compile Update="TaskViews\TaskListView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="TaskViews\TimeRecordOperation.xaml.cs">
@@ -37,7 +37,7 @@
     <Page Update="OutputWindows\OutputWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="TaskViews\TaskView.xaml">
+    <Page Update="TaskViews\TaskListView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TaskViews\TaskViewStyle.xaml">

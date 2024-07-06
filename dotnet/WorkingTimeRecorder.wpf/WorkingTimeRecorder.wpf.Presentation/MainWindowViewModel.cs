@@ -59,7 +59,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
             this.dummyItem3.ElapsedWorkTime.SetHours(20);
             this.tasksModel.Items.Add(dummyItem3);
 
-            this.TaskList = new TaskViewModel(this.tasksModel, wtrSvc, dialogs);
+            this.TaskList = new TaskListViewModel(this.tasksModel, wtrSvc, dialogs);
 
             this.BuildMainMenuItems(new MainMenuItemBuilder(this.wtrSvc, this.dialogs));
 
@@ -69,7 +69,7 @@ namespace WorkingTimeRecorder.wpf.Presentation
         /// <summary>
         /// Gets a task list to record the working time.
         /// </summary>
-        public TaskViewModel TaskList { get; }
+        public TaskListViewModel TaskList { get; }
 
         /// <summary>
         /// Gets or sets a view-model of the output window.

@@ -1,11 +1,11 @@
 ﻿namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
 {
     /// <summary>
-    /// Interaction logic for <see cref="TaskView"/>.xaml.
+    /// Interaction logic for <see cref="TaskListView"/>.xaml.
     /// </summary>
-    internal partial class TaskView
+    internal partial class TaskListView
     {
-        public TaskView()
+        public TaskListView()
         {
             this.InitializeComponent();
         }
