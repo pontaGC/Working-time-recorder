@@ -84,6 +84,9 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
             set => this.SetProperty(ref this.canRunRecordingTime, value);
         }
 
+        /// <summary>
+        /// Gets or sets a value inicating whether the task list can be edited or not.
+        /// </summary>
         public bool CanTaskListEdited
         { 
             get => this.canTaskListEdited;
