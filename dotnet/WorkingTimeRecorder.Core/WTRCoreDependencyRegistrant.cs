@@ -1,5 +1,9 @@
 ﻿using WorkingTimeRecorder.Core.Shared;
 using WorkingTimeRecorder.Core.Injectors;
+using WorkingTimeRecorder.Core.Mappers.Models;
+using WorkingTimeRecorder.Core.Mappers;
+using WorkingTimeRecorder.Core.Models.Tasks.Serializable;
+using WorkingTimeRecorder.Core.Models.Tasks;
 
 namespace WorkingTimeRecorder.Core
 {
@@ -11,8 +15,16 @@ namespace WorkingTimeRecorder.Core
         {
             container.RegisterInstance<IWTRSvc>(WTRSvc.Instance);
 
+            RegisterMappers(container);
+
             // Internal accessibility instances
             container.RegisterInstance(WTRSvc.Instance.LoggerRegistrar);
+        }
+
+        private static void RegisterMappers(IIoCContainer container)
+        {
+            container.Register<IEntityMapper<TaskItem, TaskItemV>, TaskItemMapper>();
+            container.Register<IEntityMapper<TaskCollection, TaskCollectionV>, TaskCollectionMapper>();
         }
     }
 }
