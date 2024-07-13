@@ -5,6 +5,7 @@ using Prism.Commands;
 
 using WorkingTimeRecorder.Core.Models.Tasks;
 using WorkingTimeRecorder.Core.Mvvm;
+using WorkingTimeRecorder.Core.Persistences;
 using WorkingTimeRecorder.Core.Shared;
 using WorkingTimeRecorder.wpf.Presentation.Core.Dialogs;
 using WorkingTimeRecorder.wpf.Presentation.Core.Menus;
@@ -21,19 +22,28 @@ namespace WorkingTimeRecorder.wpf.Presentation
     {
         private readonly IWTRSvc wtrSvc;
         private readonly IDialogs dialogs;
+        private readonly IEntityRepository<TaskCollection> taskCollectionRepository;
 
         private OutputWindowViewModel outputWindow;
 
-        private readonly TaskCollection tasksModel = new TaskCollection();
+        private readonly TaskCollection tasksModel;
 
         private readonly TaskItem dummyItem;
         private readonly TaskItem dummyItem2;
         private readonly TaskItem dummyItem3;
 
-        public MainWindowViewModel(IWTRSvc wtrSvc, IDialogs dialogs)
+        public MainWindowViewModel(IWTRSvc wtrSvc, IDialogs dialogs, IEntityRepository<TaskCollection> taskCollectionRepository)
         {
             this.wtrSvc = wtrSvc;
             this.dialogs = dialogs;
+            this.taskCollectionRepository = taskCollectionRepository;
+
+            this.tasksModel = taskCollectionRepository.GetAll().FirstOrDefault();
+            if (this.tasksModel is null)
+            {
+                this.tasksModel = new TaskCollection();
+                this.taskCollectionRepository.Add(this.tasksModel);
+            }
 
             this.dummyItem = new TaskItem()
             {

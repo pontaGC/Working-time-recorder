@@ -23,8 +23,8 @@ namespace WorkingTimeRecorder.Core
 
         private static void RegisterMappers(IIoCContainer container)
         {
-            container.Register<IEntityMapper<TaskItem, TaskItemV>, TaskItemMapper>();
-            container.Register<IEntityMapper<TaskCollection, TaskCollectionV>, TaskCollectionMapper>();
+            container.Register<IEntityMapper<TaskItem, TaskItemV>, TaskItemMapper>(InstanceLifeStyle.Singleton);
+            container.Register<IEntityMapper<TaskCollection, TaskCollectionV>, TaskCollectionMapper>(InstanceLifeStyle.Singleton);
         }
     }
 }

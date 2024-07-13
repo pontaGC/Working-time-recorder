@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\WorkingTimeRecorder.Core\WorkingTimeRecorder.Core.csproj" />
+    <ProjectReference Include="..\WorkingTimeRecorder.wpf.Implementation\WorkingTimeRecorder.wpf.Implementation.csproj" />
     <ProjectReference Include="..\WorkingTimeRecorder.wpf.Presentation.Core\WorkingTimeRecorder.wpf.Presentation.Core.csproj" />
     <ProjectReference Include="..\WorkingTimeRecorder.wpf.Presentation\WorkingTimeRecorder.wpf.Presentation.csproj" />
   </ItemGroup>

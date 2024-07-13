@@ -23,6 +23,8 @@ using WorkingTimeRecorder.wpf.Presentation.Core.Dialogs;
 using WorkingTimeRecorder.Core.Configurations;
 using WorkingTimeRecorder.Core.Shared;
 using WorkingTimeRecorder.Core.Paths;
+using WorkingTimeRecorder.Core.Persistences;
+using WorkingTimeRecorder.wpf.Implementation;
 
 namespace WorkingTimeRecorder.wpf
 {
@@ -95,6 +97,7 @@ namespace WorkingTimeRecorder.wpf
             CreateLocalAppData();
 
             RegisterDependencies(this.container, new WTRCoreDependencyRegistrant());
+            RegisterDependencies(this.container, new WTRImplDependencyRegistrant());
             RegisterDependencies(this.container, new PresentationCoreDependencyRegistrant());
             RegisterDependencies(this.container, new PresentationDependencyRegistrant());
 
@@ -225,6 +228,7 @@ namespace WorkingTimeRecorder.wpf
         protected override void OnExit(ExitEventArgs e)
         {
             this.SaveAppSettngs();
+            this.SaveEntities();
             base.OnExit(e);
         }
 
@@ -309,6 +313,12 @@ namespace WorkingTimeRecorder.wpf
             var exeAssembly = Assembly.GetExecutingAssembly();
             var directoryPath = Path.GetDirectoryName(exeAssembly.Location);
             return Path.Combine(directoryPath, "appsettings.json");
+        }
+
+        private void SaveEntities()
+        {
+            var persistence = this.container.Resolve<IApplicationPersistence>();
+            persistence.SaveAllEntities();
         }
 
         #endregion

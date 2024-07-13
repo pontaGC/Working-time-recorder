@@ -22,3 +22,5 @@
 /dotnet/SharedLibraries/bin/Debug/net8.0
 /dotnet/SharedLibraries/obj
 /dotnet/WorkingTimeRecorder.wpf/WorkingTimeRecorder.wpf.Impl/obj
+/dotnet/WorkingTimeRecorder.wpf/WorkingTimeRecorder.wpf.Implementation/obj
+/dotnet/WorkingTimeRecorder.wpf/WorkingTimeRecorder.wpf.Implementation/bin/Debug/net8.0

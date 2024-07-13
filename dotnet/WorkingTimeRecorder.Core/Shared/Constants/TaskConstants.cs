@@ -10,5 +10,7 @@
 
         // This parameter can be changed as needed
         public const int MaxNameLength = 50;
+
+        public const string EntityType = "WorkingTimeRecorder.Task";
     }
 }
