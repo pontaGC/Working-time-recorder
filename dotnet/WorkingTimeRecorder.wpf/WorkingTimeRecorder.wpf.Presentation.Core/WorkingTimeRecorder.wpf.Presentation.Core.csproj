@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentWPF" Version="0.10.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\WorkingTimeRecorder.Core\WorkingTimeRecorder.Core.csproj" />
   </ItemGroup>
 

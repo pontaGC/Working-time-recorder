@@ -4,6 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:shared="clr-namespace:WorkingTimeRecorder.Core.Shared;assembly=WorkingTimeRecorder.Core"
         xmlns:markup="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Markup;assembly=WorkingTimeRecorder.wpf.Presentation.Core"
         xmlns:local="clr-namespace:WorkingTimeRecorder.wpf.Presentation"
@@ -15,6 +16,7 @@
         SizeToContent="Height"
         Height="380" Width="800"
         MinHeight="380"
+        fw:AcrylicWindow.Enabled="True"
         d:DataContext="{d:DesignInstance local:MainWindowViewModel, IsDesignTimeCreatable=False}">
     <Window.Resources>
         <ResourceDictionary>
