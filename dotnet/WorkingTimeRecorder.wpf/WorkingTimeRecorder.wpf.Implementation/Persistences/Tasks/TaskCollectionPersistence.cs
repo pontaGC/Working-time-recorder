@@ -75,7 +75,9 @@ namespace WorkingTimeRecorder.wpf.Implementation.Persistences.Tasks
         /// <inheritdoc />
         protected override TaskCollection Load([NotNull] Stream source)
         {
-            return LoadEntity(this.entityMapper, source);
+            var loadedEntity = LoadEntity(this.entityMapper, source);
+            this.taskCollections.TryAdd(loadedEntity.Id, loadedEntity);
+            return loadedEntity;
         }
 
         /// <inheritdoc />

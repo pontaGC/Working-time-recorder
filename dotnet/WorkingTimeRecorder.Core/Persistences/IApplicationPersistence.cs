@@ -6,6 +6,11 @@
     public interface IApplicationPersistence
     {
         /// <summary>
+        /// Loads all entities.
+        /// </summary>
+        void LoadAllEntities();
+
+        /// <summary>
         /// Saves all entities.
         /// </summary>
         void SaveAllEntities();

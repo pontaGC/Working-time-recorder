@@ -25,6 +25,7 @@ using WorkingTimeRecorder.Core.Shared;
 using WorkingTimeRecorder.Core.Paths;
 using WorkingTimeRecorder.Core.Persistences;
 using WorkingTimeRecorder.wpf.Implementation;
+using System.Runtime.CompilerServices;
 
 namespace WorkingTimeRecorder.wpf
 {
@@ -113,6 +114,8 @@ namespace WorkingTimeRecorder.wpf
 
             var wtrSvc = this.container.Resolve<IWTRSvc>();
             SetAppSettings(appSettings, wtrSvc);
+
+            this.LoadEntites();
 
             var mainWindowFactory = container.Resolve<IMainWindowFactory>();
             var mainWindow = mainWindowFactory.Create();
@@ -218,6 +221,12 @@ namespace WorkingTimeRecorder.wpf
             {
                 FileSystem.Directory.Create(folderPath);
             }
+        }
+
+        private void LoadEntites()
+        {
+            var persitence = this.container.Resolve<IApplicationPersistence>();
+            persitence.LoadAllEntities();
         }
 
         #endregion

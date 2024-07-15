@@ -28,10 +28,6 @@ namespace WorkingTimeRecorder.wpf.Presentation
 
         private readonly TaskCollection tasksModel;
 
-        private readonly TaskItem dummyItem;
-        private readonly TaskItem dummyItem2;
-        private readonly TaskItem dummyItem3;
-
         public MainWindowViewModel(IWTRSvc wtrSvc, IDialogs dialogs, IEntityRepository<TaskCollection> taskCollectionRepository)
         {
             this.wtrSvc = wtrSvc;
@@ -45,35 +41,9 @@ namespace WorkingTimeRecorder.wpf.Presentation
                 this.taskCollectionRepository.Add(this.tasksModel);
             }
 
-            this.dummyItem = new TaskItem()
-            {
-                Name = "Dummy task",
-            };
-            this.dummyItem.ElapsedWorkTime.SetHours(1);
-            this.dummyItem.ElapsedWorkTime.SetHours(20);
-            this.tasksModel.Items.Add(this.dummyItem);
-
-            this.dummyItem2 = new TaskItem()
-            {
-                Name = "Dummy task2",
-            };
-            this.dummyItem2.ElapsedWorkTime.SetHours(1);
-            this.dummyItem2.ElapsedWorkTime.SetHours(20);
-            this.tasksModel.Items.Add(dummyItem2);
-
-            this.dummyItem3 = new TaskItem()
-            {
-                Name = "Dummy task3",
-            };
-            this.dummyItem3.ElapsedWorkTime.SetHours(1);
-            this.dummyItem3.ElapsedWorkTime.SetHours(20);
-            this.tasksModel.Items.Add(dummyItem3);
-
             this.TaskList = new TaskListViewModel(this.tasksModel, wtrSvc, dialogs);
 
             this.BuildMainMenuItems(new MainMenuItemBuilder(this.wtrSvc, this.dialogs));
-
-            this.DummyCommand = new DelegateCommand(this.DummyAction);
         }
 
         /// <summary>
@@ -95,27 +65,10 @@ namespace WorkingTimeRecorder.wpf.Presentation
         /// </summary>
         public ObservableCollection<MenuItemViewModelBase> MainMenuItems { get; } = new ObservableCollection<MenuItemViewModelBase>();
 
-        public ICommand DummyCommand { get; }
-
         private void BuildMainMenuItems(IMenuItemBuilder menuItemBuilder)
         {
             var menuItems = menuItemBuilder.Build();
             this.MainMenuItems.AddRange(menuItems);
-        }
-
-        private int dummyCount;
-
-        private void DummyAction()
-        {
-            this.dummyItem.ElapsedWorkTime.IncrementHours();
-            this.dummyItem.ElapsedWorkTime.IncrementMinutes();
-
-            var recordingTargets = this.TaskList.ItemViewModels.Where(x => x.IsRecordingTarget).ToArray();
-
-            var logger = this.wtrSvc.LoggerCollection.Resolve(LogConstants.OutputWindow);
-            logger.Log(SharedLibraries.Logging.Severity.Information, dummyCount.ToString());
-
-            ++dummyCount;
         }
     }
 }

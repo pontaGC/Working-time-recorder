@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using SharedLibraries.System.Xml;
 using WorkingTimeRecorder.Core.Mappers;
 using WorkingTimeRecorder.Core.Models.Entities;
@@ -118,7 +119,7 @@ namespace WorkingTimeRecorder.Core.Persistences
             var deserializeObject = XmlSerializerHelper.Deserialize<TV>(source);
             var loadedEntity = entityMapper.MapBack(deserializeObject);
 
-            Debug.Assert(loadedEntity != null);
+            Debug.Assert(loadedEntity != null);            
             return loadedEntity;
         }
 
