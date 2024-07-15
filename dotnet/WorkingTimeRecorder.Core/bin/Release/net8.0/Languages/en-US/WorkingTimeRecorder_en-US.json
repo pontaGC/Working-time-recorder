@@ -1,0 +1,112 @@
+{
+  "Item": [
+    {
+      "Id": "WorkingTimeRecorder.Title",
+      "Text": "Working time Recorder"
+    },
+    {
+      "Id": "WorkingTimeRecorder.TaskName",
+      "Text": "Task name"
+    },
+    {
+      "Id": "WorkingTimeRecorder.ElapsedWorkTime",
+      "Text": "Elapsed work time"
+    },
+    {
+      "Id": "WorkingTimeRecorder.ManHours",
+      "Text": "Man-hours (h)"
+    },
+    {
+      "Id": "WorkingTimeRecorder.RecordingTarget",
+      "Text": "Recording Target"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Task.NotifyAddNewItem",
+      "Text": "Added an item. (No.: {0})"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Task.NotifyDeleteItem",
+      "Text": "Deleted an item. (No.: {0}, Task name: {1}, Man-hours: {2})"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Task.ConfirmDeleteItem",
+      "Text": "Deleted items cannot be recovered.\nAre you sure you want to delete the selected item?"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Task.NotifyStartRecordingWorkTime",
+      "Text": "Recording working time has started. (No.: {0}, Task name: {1}, Start time: {2})"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Task.NotifyStopRecordingWorkTime",
+      "Text": "Recording working time was stopped. (No.: {0}, Task name: {1}, End time: {2})"
+    },
+    {
+      "Id": "WorkingTimeRecorder.OutputWindow.Title",
+      "Text": "Output"
+    },
+    {
+      "Id": "WorkingTimeRecorder.LanguageSetting.Title",
+      "Text": "Language setting"
+    },
+    {
+      "Id": "WorkingTimeRecorder.LanguageSetting.SelectDisplayLanguage",
+      "Text": "Please select a display language."
+    },
+    {
+      "Id": "WorkingTimeRecorder.LanguageSetting.NeedToRestartToolToDisplaySelectedLanguage",
+      "Text": "A reboot is required to change the display language."
+    },
+    {
+      "Id": "WorkingTimeRecorder.ManHoursPerPersonDaySetting.Title",
+      "Text": "Setting: Man-hours per person day"
+    },
+    {
+      "Id": "WorkingTimeRecorder.MenuItem.Settings",
+      "Text": "Settings"
+    },
+    {
+      "Id": "WorkingTimeRecorder.MenuItem.Settings.Languages",
+      "Text": "Languages"
+    },
+    {
+      "Id": "WorkingTimeRecorder.MenuItem.Settings.PersonDay",
+      "Text": "Man-hours per person day"
+    },
+    {
+      "Id": "WorkingTimeRecorder.UnhandledExceptionOccuurred",
+      "Text": "The unexpected error has occurred."
+    },
+    {
+      "Id": "WorkingTimeRecorder.appsettings.FailedToRead",
+      "Text": "Failed to load appsettings.json. Unable to start application.\n\n{0}"
+    },
+    {
+      "Id": "WorkingTimeRecorder.appsettings.InvalidPersonDayFormat",
+      "Text": "PersonDay value ({0}) in appsettings.json is invalid. The default value of man-hours per person day ({1}) is used."
+    },
+    {
+      "Id": "WorkingTimeRecorder.appsettings.FailedSaveFile",
+      "Text": "Failed to save appsettings.json."
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.TextFieldRequired",
+      "Text": "The Text field is required."
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.DoubleParse",
+      "Text": "Please enter a number."
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.OverRange",
+      "Text": "The configurable range is {0} ~ {1}."
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.OverStringLength",
+      "Text": "Please enter the number of characters between {0} and {1}."
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.OverMaxStringLength",
+      "Text": "Please enter {0} characters or less."
+    }
+  ]
+}

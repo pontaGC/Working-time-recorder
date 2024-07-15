@@ -1,0 +1,112 @@
+{
+  "Item": [
+    {
+      "Id": "WorkingTimeRecorder.Title",
+      "Text": "作業時間レコーダ"
+    },
+    {
+      "Id": "WorkingTimeRecorder.TaskName",
+      "Text": "タスク名"
+    },
+    {
+      "Id": "WorkingTimeRecorder.ElapsedWorkTime",
+      "Text": "経過時間"
+    },
+    {
+      "Id": "WorkingTimeRecorder.ManHours",
+      "Text": "工数 (h)"
+    },
+    {
+      "Id": "WorkingTimeRecorder.RecordingTarget",
+      "Text": "記録対象"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Task.NotifyAddNewItem",
+      "Text": "新しいアイテムを追加しました。(No.: {0})"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Task.NotifyDeleteItem",
+      "Text": "アイテムを削除しました。(No.: {0}, タスク名: {1}, 工数: {2})"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Task.ConfirmDeleteItem",
+      "Text": "削除したアイテムは元に戻せません。\n選択中のアイテムを削除しますか?"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Task.NotifyStartRecordingWorkTime",
+      "Text": "作業時間の記録を開始しました。(No.: {0}, タスク名: {1}, 開始時間: {2})"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Task.NotifyStopRecordingWorkTime",
+      "Text": "作業時間の記録を終了しました。(No.: {0}, タスク名: {1}, 終了時間: {2})"
+    },
+    {
+      "Id": "WorkingTimeRecorder.OutputWindow.Title",
+      "Text": "出力"
+    },
+    {
+      "Id": "WorkingTimeRecorder.LanguageSetting.Title",
+      "Text": "言語設定"
+    },
+    {
+      "Id": "WorkingTimeRecorder.LanguageSetting.SelectDisplayLanguage",
+      "Text": "表示したい言語を選択してください。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.LanguageSetting.NeedToRestartToolToDisplaySelectedLanguage",
+      "Text": "表示言語の変更を実行するためには、再起動が必要です。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.ManHoursPerPersonDaySetting.Title",
+      "Text": "設定: 1人日の工数"
+    },
+    {
+      "Id": "WorkingTimeRecorder.MenuItem.Settings",
+      "Text": "設定"
+    },
+    {
+      "Id": "WorkingTimeRecorder.MenuItem.Settings.Languages",
+      "Text": "言語"
+    },
+    {
+      "Id": "WorkingTimeRecorder.MenuItem.Settings.PersonDay",
+      "Text": "1人日の工数"
+    },
+    {
+      "Id": "WorkingTimeRecorder.UnhandledExceptionOccuurred",
+      "Text": "予期せぬエラーが発生しました。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.appsettings.FailedToRead",
+      "Text": "appsettings.jsonの読み込みに失敗しました。アプリケーションを起動できません。\n\n{0}"
+    },
+    {
+      "Id": "WorkingTimeRecorder.appsettings.InvalidPersonDayFormat",
+      "Text": "appsettings.jsonに設定されたPersonDayの値({0})が不正です。既定値の1人日の工数({1})を使用します。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.appsettings.FailedSaveFile",
+      "Text": "appsettings.jsonの保存に失敗しました。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.TextFieldRequired",
+      "Text": "項目が未入力です。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.DoubleParse",
+      "Text": "数値を入力してください。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.OverRange",
+      "Text": "設定可能な範囲は、{0} ~ {1}です。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.OverStringLength",
+      "Text": "{0}以上{1}以下の文字数で入力してください。"
+    },
+    {
+      "Id": "WorkingTimeRecorder.Validation.Error.OverMaxStringLength",
+      "Text": "{0}以下の文字数で入力してください。"
+    }
+  ]
+}
