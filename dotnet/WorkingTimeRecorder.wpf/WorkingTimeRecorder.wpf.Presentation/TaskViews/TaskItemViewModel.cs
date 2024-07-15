@@ -123,6 +123,11 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         }
 
         /// <summary>
+        /// Gets a value indicating whether mearing work time is running or not.
+        /// </summary>
+        public bool IsRecordingRunning => this.model.ElapsedWorkTime.IsRunning;
+
+        /// <summary>
         /// Gets a command to execute to start recording workingt time.
         /// </summary>
         [NotNull]
@@ -169,6 +174,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         private void StartRecordingWorkingTime()
         {
             this.model.ElapsedWorkTime.StartMesuringTime();
+            this.RaisePropertyChanged(nameof(this.IsRecordingRunning));
         }
 
         private bool CanStopRecordingWorkingTime()
@@ -190,6 +196,7 @@ namespace WorkingTimeRecorder.wpf.Presentation.TaskViews
         private void StopRecordingWorkingTime()
         {
             this.model.ElapsedWorkTime.StopMesuringTime();
+            this.RaisePropertyChanged(nameof(this.IsRecordingRunning));
         }
 
         #endregion

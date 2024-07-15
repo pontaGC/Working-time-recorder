@@ -1,5 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:conveter="clr-namespace:WorkingTimeRecorder.wpf.Presentation.Core.Converters;assembly=WorkingTimeRecorder.wpf.Presentation.Core">
+
+    <conveter:MultiBooleanConverter x:Key="MultiBooleanConverter" />
+
     <!--Task No. Style-->
     <Style x:Key="TaskNoTextBoxStyle" TargetType="TextBox">
         <Style.Setters>
@@ -8,6 +12,21 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style.Setters>
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Value="True">
+                        <Condition.Binding>
+                            <MultiBinding Converter="{StaticResource MultiBooleanConverter}">
+                                <Binding Path="IsRecordingTarget" />
+                                <Binding Path="IsRecordingRunning" />
+                            </MultiBinding>
+                        </Condition.Binding>
+                    </Condition>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="limegreen" />
+            </MultiDataTrigger>
+        </Style.Triggers>
     </Style>
 
     <!--Task name Style-->
@@ -18,6 +37,21 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="ToolTip" Value="{Binding Path=Text, RelativeSource={RelativeSource Self}}" />
         </Style.Setters>
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Value="True">
+                        <Condition.Binding>
+                            <MultiBinding Converter="{StaticResource MultiBooleanConverter}">
+                                <Binding Path="IsRecordingTarget" />
+                                <Binding Path="IsRecordingRunning" />
+                            </MultiBinding>
+                        </Condition.Binding>
+                    </Condition>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="limegreen" />
+            </MultiDataTrigger>
+        </Style.Triggers>
     </Style>
 
     <!--Elapsed work time Style-->
@@ -29,6 +63,21 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="ToolTip" Value="{Binding Path=Text, RelativeSource={RelativeSource Self}}" />
         </Style.Setters>
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Value="True">
+                        <Condition.Binding>
+                            <MultiBinding Converter="{StaticResource MultiBooleanConverter}">
+                                <Binding Path="IsRecordingTarget" />
+                                <Binding Path="IsRecordingRunning" />
+                            </MultiBinding>
+                        </Condition.Binding>
+                    </Condition>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="limegreen" />
+            </MultiDataTrigger>
+        </Style.Triggers>
     </Style>
 
     <!--Man hours Style-->
@@ -40,6 +89,21 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="ToolTip" Value="{Binding Path=Text, RelativeSource={RelativeSource Self}}" />
         </Style.Setters>
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Value="True">
+                        <Condition.Binding>
+                            <MultiBinding Converter="{StaticResource MultiBooleanConverter}">
+                                <Binding Path="IsRecordingTarget" />
+                                <Binding Path="IsRecordingRunning" />
+                            </MultiBinding>
+                        </Condition.Binding>
+                    </Condition>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="limegreen" />
+            </MultiDataTrigger>
+        </Style.Triggers>
     </Style>
     
     <!--Recording target style-->
